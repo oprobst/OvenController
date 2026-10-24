@@ -1,33 +1,3 @@
-<!--
-Sync Impact Report
-==================
-Version change: 1.8.0 → 1.9.0
-Begründung: MINOR – Workflow-Regel wesentlich präzisiert (Ausnahme für kleinere Änderungen).
-Kein Prinzip entfernt; die Lockerung betrifft nur den Prozess, nicht die inhaltlichen
-Anforderungen, und sicherheitsrelevante Änderungen bleiben ausgenommen.
-
-Geänderte Prinzipien: keine
-
-Geänderte Abschnitte:
-- Entwicklungs-Workflow & Qualitätstore: „Jede Änderung durchläuft den Spec-Kit-Ablauf"
-  ersetzt durch Spec-Kit-Pflicht für neue Funktionen und größere Änderungen; kleinere
-  Änderungen (Wartung, kleine Bugfixes/Refactorings ohne Schnittstellenänderung, kleine
-  modul-lokale Anpassungen) dürfen bei grünen Qualitätstoren direkt erfolgen; Ausnahmen
-  mit Spec-Kit-Pflicht für Sicherheit, Schnittstellen, Zustandsmaschine, Persistenz-Schema
-  und Hardware-Schnittstelle; im Zweifel nicht klein.
-
-Hinzugefügte Abschnitte: keine
-
-Entfernte Abschnitte: keine
-
-Templates: nicht verändert (lesen die Verfassung zur Laufzeit).
-
-Offene TODOs:
-- Konkrete Werte (PCB-Grenztemperatur, maximale Betriebsdauer, Gehäusevorgaben) folgen
-  in der Spezifikation.
-- Microcontroller-Auswahl und endgültige Zustandsliste weiterhin offen.
--->
-
 # Mini-Ofen-Controller Constitution
 
 ## Core Principles
