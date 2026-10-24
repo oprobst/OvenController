@@ -14,7 +14,7 @@ Ein kleiner Ofen für zwei Zwecke:
 2. **Silicagel regenerieren** (ca. 100–110 °C, 1,5–3 h) für die Filamenttrocknung beim 3D-Druck.
 
 Dafür wird ein günstiger Mini-Backofen mit einem eigenen ESP32-Controller umgebaut. Das
-Controleo3-Kit (ca. 350 €) wurde als unverhältnismäßig teuer verworfen.
+Controleo3-Kit ist eine teure Option, wurde verworfen um dem eigenen Basteltrieb zu fröhnen.
 
 ## Dokumente
 
