@@ -165,6 +165,11 @@ erscheint, sich durchblättern lässt und die Statuszeile sichtbar bleibt.
 - Heizfunktionen, Profile und die vollständige Sicherheitsüberwachung des Heizbetriebs sind
   nicht Teil dieses Features (eigenes Feature „Sichere Temperaturregelung"). Die Heizung
   bleibt in diesem Feature dauerhaft aus.
+- Das Display ist hochkant eingebaut (Bedienfeld 52–56 mm breit, siehe
+  `docs/hardware-umbau.md`).
+- Die separate Stopp-Taste gehört zum Bedienkonzept, wird in diesem Feature aber noch nicht
+  ausgewertet; es gibt noch nichts zu stoppen. Ebenso folgt „langer Druck = Zurück" erst mit
+  dem ersten Untermenü.
 - Der Buzzer wird in diesem Feature nicht verwendet.
 - Das Ändern der WLAN-Zugangsdaten über das Menü („Setup") folgt in einem späteren Feature;
   bis dahin erfordert ein WLAN-Wechsel eine neu gebaute Firmware.
