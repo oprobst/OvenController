@@ -75,9 +75,25 @@ belegen, dass HAL und reale Hardware tatsächlich zusammenspielen.
   (SSR-Kühlkörper) MÜSSEN im Plan begründet werden.
 - Firmware DARF KEINE Annahmen über elektrische Sicherheitsmaßnahmen treffen, die nicht im
   KiCad-Projekt dokumentiert sind.
+- Die Platine MUSS ihre eigene Temperatur mit mindestens einem Sensor auf dem PCB messen,
+  platziert an der thermisch kritischsten Stelle (z. B. nahe SSR/Relais, Netzteil oder der
+  der Heizkammer zugewandten Seite).
+- Überschreitet die PCB-Temperatur eine Grenztemperatur, MUSS die Heizung abgeschaltet und
+  in den verriegelnden Fehlerzustand (Prinzip VIII) mit eigenem Fehlercode (Prinzip IX)
+  gewechselt werden. Diese Überwachung MUSS unabhängig von der Regelungslogik laufen.
+- Die PCB-Grenztemperatur MUSS zur Compile-Zeit festgelegt sein (Prinzip VII) und unterhalb
+  der zulässigen Betriebstemperatur der empfindlichsten Bauteile liegen; der konkrete Wert
+  wird in der Spezifikation festgelegt.
+- Ein Ausfall oder unplausibler Messwert des PCB-Temperatursensors MUSS wie eine
+  Übertemperatur behandelt werden.
+- Die PCB-Übertemperaturabschaltung SOLLTE zusätzlich hardwareseitig wirken (z. B.
+  Thermostat-IC oder Komparator, der die Heizungsfreigabe ohne Firmware sperrt);
+  ein Verzicht ist im Plan zu begründen.
 
 **Begründung**: Ein Ofen ist ein netzbetriebenes Heizgerät mit Brand-, Verletzungs- und
-Stromschlagrisiko; Sicherheit hat Vorrang vor jeder Funktionalität.
+Stromschlagrisiko; Sicherheit hat Vorrang vor jeder Funktionalität. Die Überwachung der
+PCB-Temperatur erkennt Überhitzung der Elektronik selbst (z. B. durch SSR-Verlustleistung
+oder Wärme aus der Heizkammer), die von den Heizkreis-Schutzmaßnahmen nicht erfasst wird.
 
 ### V. Ressourcenbewusstsein & Determinismus
 
@@ -260,4 +276,4 @@ Werkstoffe verformen sich oder werden zur Brandquelle.
   mit dokumentierter Begründung im Abschnitt „Complexity Tracking" zulässig.
 - Reviews MÜSSEN die Einhaltung der Prinzipien I–X prüfen.
 
-**Version**: 1.6.0 | **Ratified**: 2026-10-24 | **Last Amended**: 2026-10-24
+**Version**: 1.7.0 | **Ratified**: 2026-10-24 | **Last Amended**: 2026-10-24
