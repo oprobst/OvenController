@@ -1,0 +1,39 @@
+name: firmware
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache PlatformIO
+        uses: actions/cache@v4
+        with:
+          path: ~/.platformio
+          key: pio-${{ runner.os }}-${{ hashFiles('firmware/platformio.ini') }}
+
+      - name: Install PlatformIO and clang-format
+        run: pip install platformio==6.1.19 clang-format==18.1.8
+
+      # wifi_secrets.h is intentionally not created: CI covers the "WiFi not configured" build.
+      - name: Build firmware (esp32_revdev)
+        run: pio run -d firmware -e esp32_revdev
+
+      - name: Host tests (native)
+        run: pio test -d firmware -e native
+
+      - name: Static analysis
+        run: pio check -d firmware -e esp32_revdev --fail-on-defect=medium
+
+      - name: Formatting
+        run: |
+          find firmware -path firmware/.pio -prune -o \( -name '*.h' -o -name '*.cpp' \) -print \
+            | xargs clang-format --dry-run --Werror

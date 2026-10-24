@@ -30,9 +30,14 @@ aufgelöst.
 
 ## R3 – Framework und Toolchain
 
-- **Decision**: PlatformIO, Plattform `espressif32@6.9.0` (Arduino-ESP32 Core 2.0.17,
+- **Decision**: PlatformIO, Plattform `espressif32@6.12.0` (Arduino-ESP32 Core 2.0.17,
   ESP-IDF 4.4), C++17 (`-std=gnu++17`). Exceptions und RTTI werden per `build_unflags`
-  (`-fexceptions`, `-frtti`) entfernt und durch `-fno-exceptions -fno-rtti` ersetzt.
+  (`-fexceptions`, `-frtti`) entfernt und durch `-fno-exceptions -fno-rtti` ersetzt. Die
+  reinen C++-Flags setzt `firmware/scripts/cxx_flags.py` nur für C++-Quellen (sonst warnt der
+  C-Compiler). Abhängigkeiten zwischen den Bibliotheken unter `lib/` findet PlatformIO mit
+  `lib_ldf_mode = deep+`.
+- **Umsetzung**: 6.12.0 statt der ursprünglich geplanten 6.9.0, weil diese Version bereits
+  installiert war; beide bringen denselben Arduino-Core 2.0.17.
 - **Rationale**: Arduino-Core bietet stabile WLAN-, SNTP- und SPI-Treiber mit wenig Aufwand;
   der Zugriff bleibt in der HAL (Prinzip III). Version fest gepinnt für reproduzierbare
   Builds.
@@ -50,6 +55,10 @@ aufgelöst.
   Kein Vollbild-Framebuffer (240×320×2 = 150 KB wären neben WLAN zu viel); stattdessen werden
   nur geänderte Bereiche neu gezeichnet. Texte werden mit Hintergrundfarbe gezeichnet, damit
   nichts flackert.
+- **Schriften**: DejaVu 12/18/24 aus LovyanGFX. Sie enthalten nur ASCII; ä, ö, ü, Ä, Ö, Ü
+  werden aus dem Grundbuchstaben plus zwei gezeichneten Punkten zusammengesetzt, ° als kleiner
+  Kreis, ß als „ss". Die Unicode-Schriften von LovyanGFX (efont, IPA) wären je Größe mehrere
+  hundert KB groß und passen neben WLAN nicht sinnvoll in den Flash.
 - **Rationale**: Vom Benutzer gewählt. LovyanGFX unterstützt ST7789 und das ESP32-DMA, wird
   im Code (nicht über globale Makros) konfiguriert und passt damit zu „ein Header pro
   Revision". Ohne Sprites allokiert die Bibliothek nach `init()` keinen Speicher (Prinzip V).
@@ -61,8 +70,11 @@ aufgelöst.
 
 ## R5 – Temperaturmessung MAX31855
 
-- **Decision**: MAX31855K-Breakout am selben SPI-Bus wie das Display (eigener CS, 4 MHz,
-  SPI-Modus 0). Lesezyklus 250 ms. Eigener schlanker Treiber: Die HAL liefert nur das rohe
+- **Decision**: MAX31855K-Breakout an **eigenen Leitungen** (SCK, SO, CS), per Software
+  getaktet (32 Takte, < 50 µs). Lesezyklus 250 ms.
+- **Umsetzung**: Ursprünglich war der gemeinsame SPI-Bus mit dem Display geplant. LovyanGFX
+  und die Arduino-`SPIClass` würden sich dann dieselbe Hardware teilen; eigene Leitungen
+  vermeiden dieses Risiko und eine Display-Übertragung kann nie eine Messung verzögern. Eigener schlanker Treiber: Die HAL liefert nur das rohe
   32-Bit-Wort; die Auswertung (`Max31855Decoder`) ist reine Logik und auf dem Host testbar.
 - **Fehlererkennung** (ergibt „Fühlerfehler" mit Code, siehe [data-model.md](data-model.md)):
   - Fault-Bits des MAX31855: offen (OC), Kurzschluss gegen GND (SCG), gegen VCC (SCV).
@@ -172,13 +184,14 @@ aufgelöst.
 
 | Signal | GPIO | Bemerkung |
 |---|---|---|
-| SPI SCK | 18 | VSPI, gemeinsam für TFT und MAX31855 |
-| SPI MOSI | 23 | nur TFT |
-| SPI MISO | 19 | nur MAX31855 |
+| TFT SCK | 18 | VSPI, nur TFT |
+| TFT MOSI | 23 | VSPI, nur TFT (MISO wird nicht benötigt) |
 | TFT CS | 22 | |
 | TFT DC | 21 | |
 | TFT RST | 4 | |
 | TFT Hintergrundbeleuchtung | 32 | an = HIGH |
+| MAX31855 SCK | 14 | eigene Leitung, per Software getaktet |
+| MAX31855 SO | 34 | reiner Eingang, vom MAX31855 getrieben (kein Pull-up nötig) |
 | MAX31855 CS | 33 | |
 | Encoder A (CLK) | 25 | interner Pull-up |
 | Encoder B (DT) | 26 | interner Pull-up |
@@ -186,7 +199,8 @@ aufgelöst.
 | Stopp-Taste | – | in diesem Feature nicht angeschlossen; Pin und Hardware-Abschaltung folgen mit den Features „Sichere Temperaturregelung" und „Controller-Platine" |
 
 - **Rationale**: Keine Strapping-Pins (0, 2, 5, 12, 15), keine Flash-Pins (6–11), keine
-  reinen Eingänge (34–39) für Signale, die einen Pull-up brauchen. Die Belegung steht nur in
+  reinen Eingänge (34–39) für Signale, die einen Pull-up brauchen. GPIO 14 gibt beim Booten
+  kurz ein PWM-Signal aus; für den MAX31855 (nur lesend, CS dann inaktiv) ist das harmlos. Die Belegung steht nur in
   `board_rev_dev.h` (Prinzip VII).
 - **Regel**: Belegung vor dem Verdrahten gegen das Datenblatt des DevKitC V4 und der Module
   prüfen.

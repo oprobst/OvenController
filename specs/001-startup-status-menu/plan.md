@@ -20,7 +20,7 @@ Hardwarezugriffe, Host-Tests (`native`), Logging, Fehlercodes, Watchdog und CI.
 
 **Language/Version**: C++17 (`gnu++17`), ohne Exceptions und RTTI
 
-**Primary Dependencies**: PlatformIO-Plattform `espressif32@6.9.0` (Arduino-ESP32 2.0.17),
+**Primary Dependencies**: PlatformIO-Plattform `espressif32@6.12.0` (Arduino-ESP32 2.0.17),
 LovyanGFX 1.1.16 (Display), Unity (Tests). MAX31855, Encoder, Logger: eigene Module.
 
 **Storage**: Keiner. WLAN-Zugangsdaten zur Compile-Zeit aus `wifi_secrets.h` (nicht

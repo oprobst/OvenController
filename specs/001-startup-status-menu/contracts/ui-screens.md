@@ -20,8 +20,8 @@ Zwei Zeilen à 24 px, darunter eine Trennlinie bei y = 48 (1 px, Muted).
 
 | Bereich | Position | Inhalt |
 |---|---|---|
-| WLAN | Zeile 1 links, 160 px, Small | „WLAN verbunden" (Foreground) · „WLAN nicht verbunden" (Warning) · „WLAN nicht eingerichtet" (Muted) |
-| Uhrzeit | Zeile 1 rechts, 80 px, Medium, rechtsbündig | `HH:MM`; bei `Connected` ohne gültige Zeit `--:--` (Muted) |
+| WLAN | Zeile 1 links, 170 px, Small | „WLAN verbunden" (Foreground) · „WLAN nicht verbunden" (Warning) · „WLAN nicht eingerichtet" (Muted) |
+| Uhrzeit | Zeile 1 rechts, 70 px, Medium, rechtsbündig | `HH:MM`; bei `Connected` ohne gültige Zeit `--:--` (Muted) |
 | Datum | Zeile 2 links, 120 px, Small | `TT.MM.JJJJ`; bei `Connected` ohne gültige Zeit `--.--.----` (Muted) |
 | Temperatur | Zeile 2 rechts, 120 px, Medium, rechtsbündig | `23 °C` (gerundet); vor erster Messung `--- °C` (Muted); bei Fehler `E101` (Error) |
 

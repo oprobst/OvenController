@@ -9,7 +9,8 @@ Anleitung zum Aufbauen, Bauen, Testen und Abnehmen des Features.
 - PlatformIO Core ≥ 6.1 (auf dem Entwicklungsrechner vorhanden: 6.1.19)
 - Für `native`-Tests unter Windows: GCC für den Host, z. B. MSYS2 MinGW-w64
   (`pacman -S mingw-w64-ucrt-x86_64-gcc`, danach `C:\msys64\ucrt64\bin` in den `PATH`).
-  Ohne lokalen GCC laufen die Tests nur in der CI.
+  Ohne lokalen GCC laufen die Tests nur in der CI. Alternative: PlatformIO in WSL (Ubuntu mit
+  g++) installieren und `pio test -d firmware -e native` dort ausführen.
 - Hardware (Steckbrett, nur 5 V über USB, **keine Netzspannung**):
   - ESP32-DevKitC V4
   - 2,8"-TFT ST7789 240×320 (SPI), hochkant eingebaut

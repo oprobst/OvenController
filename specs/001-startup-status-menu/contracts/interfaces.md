@@ -130,6 +130,8 @@ public:
     virtual ~INetworkStatus() = default;
     /// Startet den Verbindungsaufbau im Hintergrund. Kehrt sofort zurück.
     virtual void begin() = 0;
+    /// Verarbeitet anstehende WLAN-Ereignisse und loggt Zustandswechsel (Hauptschleife, 1 s).
+    virtual void poll() = 0;
     virtual WifiState state() const = 0;
 };
 
@@ -139,6 +141,8 @@ public:
     virtual ~IWallClock() = default;
     /// Konfiguriert Zeitzone und Zeitserver. Kehrt sofort zurück.
     virtual void begin() = 0;
+    /// Erkennt und loggt die erste Synchronisation (Hauptschleife, 1 s).
+    virtual void poll() = 0;
     /// @return aktuelle Ortszeit; valid == false, solange keine Synchronisation erfolgt ist.
     virtual WallClockTime now() const = 0;
 };
@@ -188,9 +192,10 @@ public:
     virtual uint16_t width() const = 0;   ///< in Pixel
     virtual uint16_t height() const = 0;  ///< in Pixel
     virtual void fillRect(int16_t x, int16_t y, uint16_t w, uint16_t h, Color color) = 0;
-    /// Zeichnet Text (UTF-8, deutsche Umlaute und °) mit Hintergrund innerhalb der Box.
-    virtual void drawText(int16_t x, int16_t y, uint16_t w, const char* text, FontSize size,
-                          Color fg, Color bg, Align align) = 0;
+    /// Füllt die Box mit bg und zeichnet Text (UTF-8, deutsche Umlaute und °) vertikal
+    /// zentriert und horizontal ausgerichtet hinein; Überstand wird abgeschnitten.
+    virtual void drawText(int16_t x, int16_t y, uint16_t w, uint16_t h, const char* text,
+                          FontSize size, Color fg, Color bg, Align align) = 0;
 };
 ```
 
@@ -202,5 +207,7 @@ Logik-Klassen ohne Hardwarebezug: `UiStateMachine`, `MainMenu`, `StatusFormatter
 
 - `Scheduler`: feste Tabelle periodischer Aufgaben (max. 8), Perioden in `Milliseconds`,
   überlaufsicher.
-- `AppController(IClock&, IWatchdog&, ITemperatureSensor&, INetworkStatus&, IWallClock&,
-  IRotaryInput&, IGraphics&, ILogger&, const FirmwareIdentity&)` mit `setup()` und `tick()`.
+- `AppController(IWatchdog&, ITemperatureSensor&, INetworkStatus&, IWallClock&,
+  IRotaryInput&, IGraphics&, ILogger&, MainMenu&, const FirmwareIdentity&)` mit
+  `setup(Milliseconds now)` und `tick(Milliseconds now)`; die Zeit liefert der Composition
+  Root aus `IClock`.

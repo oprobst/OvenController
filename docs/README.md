@@ -24,6 +24,9 @@ Controleo3-Kit ist eine teure Option, wurde verworfen um dem eigenen Basteltrieb
 | [umluft-recherche.md](umluft-recherche.md) | Nachrüstung eines Umluftlüfters: Problem, Kandidaten, Ansteuerung |
 | [werkzeuge-pcb.md](werkzeuge-pcb.md) | Werkzeugkette für Schaltplan und Platine (KiCad, Hardware-as-Code, MCP) |
 | [anwendung.md](anwendung.md) | Praxishinweise zum Reflow-Löten und zum Regenerieren von Silicagel |
+| [error-codes.md](error-codes.md) | Fehlercodes der Firmware mit Ursache und Abhilfe |
+| [state-machine.md](state-machine.md) | Zustandsmaschinen der Firmware (Diagramm und Übergangstabelle) |
+| [compatibility.md](compatibility.md) | Kompatibilität Firmware ↔ PCB ↔ Gehäuse, HIL- und Abnahmeergebnisse |
 
 ## Abgrenzung zu Spec Kit
 
