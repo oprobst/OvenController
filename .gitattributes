@@ -1,0 +1,10 @@
+# Zeilenenden im Repository einheitlich als LF speichern
+* text=auto
+
+# Binärdateien nie verändern
+*.f3d binary
+*.step binary
+*.stl binary
+*.png binary
+*.jpg binary
+*.pdf binary
