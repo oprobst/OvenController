@@ -1,3 +1,33 @@
+<!--
+Sync Impact Report
+==================
+Version change: 1.8.0 → 1.9.0
+Begründung: MINOR – Workflow-Regel wesentlich präzisiert (Ausnahme für kleinere Änderungen).
+Kein Prinzip entfernt; die Lockerung betrifft nur den Prozess, nicht die inhaltlichen
+Anforderungen, und sicherheitsrelevante Änderungen bleiben ausgenommen.
+
+Geänderte Prinzipien: keine
+
+Geänderte Abschnitte:
+- Entwicklungs-Workflow & Qualitätstore: „Jede Änderung durchläuft den Spec-Kit-Ablauf"
+  ersetzt durch Spec-Kit-Pflicht für neue Funktionen und größere Änderungen; kleinere
+  Änderungen (Wartung, kleine Bugfixes/Refactorings ohne Schnittstellenänderung, kleine
+  modul-lokale Anpassungen) dürfen bei grünen Qualitätstoren direkt erfolgen; Ausnahmen
+  mit Spec-Kit-Pflicht für Sicherheit, Schnittstellen, Zustandsmaschine, Persistenz-Schema
+  und Hardware-Schnittstelle; im Zweifel nicht klein.
+
+Hinzugefügte Abschnitte: keine
+
+Entfernte Abschnitte: keine
+
+Templates: nicht verändert (lesen die Verfassung zur Laufzeit).
+
+Offene TODOs:
+- Konkrete Werte (PCB-Grenztemperatur, maximale Betriebsdauer, Gehäusevorgaben) folgen
+  in der Spezifikation.
+- Microcontroller-Auswahl und endgültige Zustandsliste weiterhin offen.
+-->
+
 # Mini-Ofen-Controller Constitution
 
 ## Core Principles
@@ -270,7 +300,19 @@ Werkstoffe verformen sich oder werden zur Brandquelle.
 
 ## Entwicklungs-Workflow & Qualitätstore
 
-- Jede Änderung durchläuft den Spec-Kit-Ablauf: Spezifikation → Plan → Tasks → Umsetzung.
+- Neue Funktionen und größere funktionale Änderungen durchlaufen den Spec-Kit-Ablauf:
+  Spezifikation → Plan → Tasks → Umsetzung.
+- Kleinere Änderungen DÜRFEN direkt ohne Spec-Kit-Ablauf erfolgen, wenn alle Qualitätstore
+  grün sind. Dazu zählen insbesondere:
+  - Wartungsarbeiten: Dokumentation, Formatierung, Abhängigkeits-Updates, Build-/CI-Pflege.
+  - Kleine Fehlerbehebungen und Refactorings, die keine öffentliche Schnittstelle ändern.
+  - Kleine Anpassungen an bestehendem Verhalten, die auf ein Modul beschränkt sind.
+- Den Spec-Kit-Ablauf MÜSSEN unabhängig vom Umfang alle Änderungen durchlaufen, die
+  - sicherheitsrelevantes Verhalten oder Sicherheitsgrenzen betreffen (Prinzip IV),
+  - öffentliche Modulschnittstellen, die Zustandsmaschine (Prinzip VIII) oder das Schema
+    persistenter Daten (Prinzip VII) ändern,
+  - die Hardware-Schnittstelle zwischen Firmware, PCB und Gehäuse berühren (Prinzip VI).
+- Im Zweifel gilt eine Änderung nicht als klein.
 - Vor jedem Merge MÜSSEN erfüllt sein:
   - Die CI-Pipeline ist grün.
   - Firmware baut fehlerfrei für alle Zielumgebungen.
@@ -304,4 +346,4 @@ Werkstoffe verformen sich oder werden zur Brandquelle.
   (z. B. `/speckit-analyze` für Spezifikation/Plan/Tasks und `/code-review` für Code);
   gefundene Abweichungen MÜSSEN vor dem Merge behoben oder begründet werden.
 
-**Version**: 1.8.0 | **Ratified**: 2026-10-24 | **Last Amended**: 2026-10-24
+**Version**: 1.9.0 | **Ratified**: 2026-10-24 | **Last Amended**: 2026-10-24
