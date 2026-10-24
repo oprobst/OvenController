@@ -1,7 +1,7 @@
 # Umluft – Recherche zur Nachrüstung
 
-Status: **offen**. Empfehlung: zuerst ohne Lüfter bauen, Loch und Platz in der Rückwand aber gleich
-einplanen.
+Status: **entschieden (2026-10-24): kein Lüfter.** Die Controller-Platine sieht keinen
+Lüfterausgang vor. Die Recherche bleibt als Hintergrund erhalten.
 
 ## Warum Umluft
 
