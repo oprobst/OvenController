@@ -53,28 +53,30 @@ paralleles Arbeiten, ohne unbeabsichtigte Kopplung.
 Fehlerfällen, die auf echter Hardware gefährlich oder schwer erzeugbar sind; HIL-Tests
 belegen, dass HAL und reale Hardware tatsächlich zusammenspielen.
 
-### IV. Thermische & elektrische Sicherheit, Fail-Safe (NICHT VERHANDELBAR)
+### IVa. Thermische Sicherheit & Fail-Safe (NICHT VERHANDELBAR)
+
+Verweise auf „Prinzip IV" in diesem Dokument umfassen IVa und IVb gemeinsam.
 
 - Der sichere Zustand ist „Heizung AUS". Bei jedem erkannten Fehler (Sensorfehler,
   Messwert außerhalb des Plausibilitätsbereichs, Übertemperatur, Kommunikationsfehler,
   Watchdog-Reset) MUSS die Firmware in diesen Zustand wechseln und den Fehler anzeigen.
+- Der Heizungsausgang MUSS hardwareseitig standardmäßig AUS sein (z. B. Pull-down an der
+  SSR-/Relais-Ansteuerung): Solange der Microcontroller im Reset ist, bootet, geflasht wird,
+  abgestürzt ist oder seine Pins hochohmig sind, DARF die Heizung NICHT einschalten.
 - Eine harte Maximaltemperatur MUSS unabhängig von der Regelungslogik überwacht werden.
-- Ein Hardware-Watchdog MUSS aktiv sein; nach einem Reset startet die Heizung NICHT
-  automatisch wieder.
+- Ein Hardware-Watchdog MUSS aktiv sein.
+- Die Brownout-Erkennung des Microcontrollers MUSS aktiviert sein.
+- Nach jedem Neustart (Watchdog-Reset, Brownout, Stromausfall, Einschalten) MUSS die
+  Firmware im Zustand „Heizung AUS" starten; ein laufender Heizvorgang DARF NICHT
+  automatisch fortgesetzt werden, sondern erfordert eine erneute Benutzeraktion.
 - Eine Thermal-Runaway-Erkennung (Heizung aktiv, aber kein erwarteter Temperaturanstieg)
   MUSS vorhanden sein.
+- Jeder Heizvorgang MUSS nach einer maximalen Betriebsdauer automatisch beendet werden.
+  Die Höchstdauer MUSS zur Compile-Zeit festgelegt sein (Prinzip VII) und DARF NICHT durch
+  Heizprofile oder Benutzereingaben überschritten werden; der konkrete Wert wird in der
+  Spezifikation festgelegt.
 - Das PCB-Design MUSS eine hardwareseitige Abschaltmöglichkeit vorsehen (z. B.
-  Thermosicherung/Übertemperaturschalter), die ohne Firmware wirkt; Netzspannung führende
-  Bereiche MÜSSEN normgerechte Kriech- und Luftstrecken einhalten.
-- Netzspannungsseite und Logik (Microcontroller, Sensorik, Bedienelemente) MÜSSEN galvanisch
-  getrennt sein (z. B. isoliertes Netzteil, Optokoppler bzw. SSR mit integrierter Isolation).
-- Der Netzpfad MUSS durch eine passend dimensionierte Sicherung abgesichert sein.
-- Ein leitfähiges (Metall-)Gehäuse MUSS mit dem Schutzleiter verbunden sein.
-- Die Heizlast MUSS über ein Solid-State-Relais oder ein Relais geschaltet werden, dessen
-  Nennstrom deutlich über dem maximalen Laststrom liegt; die Reserve und ggf. nötige Kühlung
-  (SSR-Kühlkörper) MÜSSEN im Plan begründet werden.
-- Firmware DARF KEINE Annahmen über elektrische Sicherheitsmaßnahmen treffen, die nicht im
-  KiCad-Projekt dokumentiert sind.
+  Thermosicherung/Übertemperaturschalter), die ohne Firmware wirkt.
 - Die Platine MUSS ihre eigene Temperatur mit mindestens einem Sensor auf dem PCB messen,
   platziert an der thermisch kritischsten Stelle (z. B. nahe SSR/Relais, Netzteil oder der
   der Heizkammer zugewandten Seite).
@@ -90,10 +92,27 @@ belegen, dass HAL und reale Hardware tatsächlich zusammenspielen.
   Thermostat-IC oder Komparator, der die Heizungsfreigabe ohne Firmware sperrt);
   ein Verzicht ist im Plan zu begründen.
 
-**Begründung**: Ein Ofen ist ein netzbetriebenes Heizgerät mit Brand-, Verletzungs- und
-Stromschlagrisiko; Sicherheit hat Vorrang vor jeder Funktionalität. Die Überwachung der
-PCB-Temperatur erkennt Überhitzung der Elektronik selbst (z. B. durch SSR-Verlustleistung
-oder Wärme aus der Heizkammer), die von den Heizkreis-Schutzmaßnahmen nicht erfasst wird.
+**Begründung**: Ein Ofen ist ein Heizgerät mit Brand- und Verletzungsrisiko; Sicherheit hat
+Vorrang vor jeder Funktionalität. Hardwareseitige Defaults, Neustartverhalten und
+Höchstlaufzeit decken Situationen ab, in denen die Firmware nicht oder nicht korrekt läuft
+oder der Ofen unbeaufsichtigt ist. Die Überwachung der PCB-Temperatur erkennt Überhitzung
+der Elektronik selbst (z. B. durch SSR-Verlustleistung oder Wärme aus der Heizkammer).
+
+### IVb. Elektrische Sicherheit (NICHT VERHANDELBAR)
+
+- Netzspannung führende Bereiche MÜSSEN normgerechte Kriech- und Luftstrecken einhalten.
+- Netzspannungsseite und Logik (Microcontroller, Sensorik, Bedienelemente) MÜSSEN galvanisch
+  getrennt sein (z. B. isoliertes Netzteil, Optokoppler bzw. SSR mit integrierter Isolation).
+- Der Netzpfad MUSS durch eine passend dimensionierte Sicherung abgesichert sein.
+- Ein leitfähiges (Metall-)Gehäuse MUSS mit dem Schutzleiter verbunden sein.
+- Die Heizlast MUSS über ein Solid-State-Relais oder ein Relais geschaltet werden, dessen
+  Nennstrom deutlich über dem maximalen Laststrom liegt; die Reserve und ggf. nötige Kühlung
+  (SSR-Kühlkörper) MÜSSEN im Plan begründet werden.
+- Firmware DARF KEINE Annahmen über elektrische Sicherheitsmaßnahmen treffen, die nicht im
+  KiCad-Projekt dokumentiert sind.
+
+**Begründung**: Der Ofen wird mit Netzspannung betrieben; Stromschlag- und Brandrisiko
+müssen durch die Hardware selbst beherrscht werden, unabhängig von der Firmware.
 
 ### V. Ressourcenbewusstsein & Determinismus
 
@@ -121,6 +140,8 @@ Grundlage für zuverlässige Regelung und Sicherheit.
   HAL bzw. revisionsspezifischer Konfiguration gekapselt sein, nicht in der Anwendungslogik.
 - Firmware-Versionen folgen Semantic Versioning; Gehäuse-Revisionen tragen ebenfalls eine
   eindeutige Kennung.
+- Beim Start MUSS die Firmware ihre Version und die erkannte bzw. konfigurierte
+  PCB-Revision auf der Benutzeroberfläche anzeigen und (sofern aktiv) ins Log schreiben.
 - Eine Kompatibilitätsmatrix (`docs/compatibility.md`) MUSS festhalten, welche
   Firmware-Versionen zu welchen PCB- und Gehäuse-Revisionen passen, und bei jeder neuen
   Revision bzw. jedem Firmware-Release aktualisiert werden.
@@ -238,6 +259,8 @@ Werkstoffe verformen sich oder werden zur Brandquelle.
   oder `cppcheck`) MÜSSEN konfiguriert sein.
 - **Coding-Konventionen**:
   - Sprache im Code (Bezeichner, Kommentare, Log-Meldungen) ist Englisch.
+  - Sprache der Projektdokumentation (`docs/`, Spezifikationen, Pläne, diese Verfassung)
+    ist Deutsch.
   - Interfaces tragen das Präfix `I` (z. B. `ITemperatureSensor`, `IHeater`).
   - Öffentliche Schnittstellen MÜSSEN mit Doxygen-Kommentaren dokumentiert sein (Zweck,
     Parameter mit Einheiten, Rückgabewerte, Fehlerverhalten).
@@ -259,8 +282,8 @@ Werkstoffe verformen sich oder werden zur Brandquelle.
   konsistent nachgezogen werden.
 - Mechanische Abhängigkeiten zwischen PCB und Gehäuse (Platinenmaße, Bohrungen, Bauteilhöhen,
   Anschlüsse) MÜSSEN zwischen KiCad und Fusion 360 abgeglichen werden.
-- Sicherheitsrelevante Änderungen (Prinzip IV) erfordern eine explizite Review-Prüfung
-  gegen die Fail-Safe-Anforderungen.
+- Sicherheitsrelevante Änderungen (Prinzip IV) erfordern eine explizite Prüfung gegen die
+  Anforderungen aus IVa und IVb anhand einer Checkliste (z. B. per `/speckit-checklist`).
 - Vor jedem Firmware-Release MÜSSEN zusätzlich die HIL-Tests (Prinzip III) bestanden sein.
 
 ## Governance
@@ -272,8 +295,13 @@ Werkstoffe verformen sich oder werden zur Brandquelle.
   - MAJOR: Entfernen oder grundlegende Neudefinition von Prinzipien.
   - MINOR: Neue Prinzipien/Abschnitte oder wesentlich erweiterte Vorgaben.
   - PATCH: Klarstellungen, Formulierungen, Tippfehler.
-- Jeder Plan (`/speckit-plan`) MUSS einen Constitution-Check enthalten; Abweichungen sind nur
-  mit dokumentierter Begründung im Abschnitt „Complexity Tracking" zulässig.
-- Reviews MÜSSEN die Einhaltung der Prinzipien I–X prüfen.
+- Jeder Plan (`/speckit-plan`) MUSS einen Constitution-Check enthalten. Abweichungen sind
+  nur mit dokumentierter Begründung im Abschnitt „Complexity Tracking" zulässig; für die als
+  NICHT VERHANDELBAR markierten Prinzipien (I, IVa, IVb) sind Abweichungen ausgeschlossen.
+  Regeln mit SOLLTE dürfen mit Begründung im Plan entfallen.
+- Das Projekt wird von einer Person entwickelt. Ein Review besteht daher aus einer
+  Selbstprüfung gegen die Prinzipien I–X sowie einer werkzeuggestützten Prüfung
+  (z. B. `/speckit-analyze` für Spezifikation/Plan/Tasks und `/code-review` für Code);
+  gefundene Abweichungen MÜSSEN vor dem Merge behoben oder begründet werden.
 
-**Version**: 1.7.0 | **Ratified**: 2026-10-24 | **Last Amended**: 2026-10-24
+**Version**: 1.8.0 | **Ratified**: 2026-10-24 | **Last Amended**: 2026-10-24
