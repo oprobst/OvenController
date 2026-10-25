@@ -1,7 +1,12 @@
 # Werkzeuge für Schaltplan und Platine
 
-Status: **Entscheidung offen** (atopile oder SKiDL, KiCad 9 oder 10, MCP ja/nein).
-Die Wahl wird bei `/speckit-plan` für das Feature „Controller-Platine“ getroffen.
+Status: **entschieden (2026-10-25)**: Schaltplan als Code mit **SKiDL**, Layout und Prüfung in
+**KiCad 10.0.3** (`D:\hobby\Elektronik\KiCad\10.0`, `kicad-cli` in `bin`). Kein MCP-Server
+vorerst. Begründung und Risiken: `specs/002-controller-pcb/research.md` (R1).
+
+Kurzfassung: atopile ist nur mit KiCad 9 erprobt und schreibt mit eigenem Parser in die
+`.kicad_pcb` (Gefahr von Datenverlust beim Speichern in KiCad 10). SKiDL erzeugt nur eine
+Netzliste; das Layout bleibt vollständig in KiCad.
 
 ## Möglichkeiten, mit Claude an KiCad-Projekten zu arbeiten
 

@@ -26,7 +26,7 @@
 | Position Timer, hat er eine Dauerstellung? | _offen_ |
 | Position Thermosicherung | _offen_ |
 | Freier Platz hinter der Rückwand | _offen_ (kein Lüfter mehr geplant; Platz für Relais und SSRs) |
-| Platz für Controller und SSRs auf der kalten Seite | _offen_ |
+| Platz für Controller und SSRs auf der kalten Seite | Tiefe des Bedienschachts reicht. Die äußere Seitenwand wird beim Öffnen abgeschraubt; Komponenten kommen deshalb auf ein eigenes Montageblech (siehe „Aufteilung und Steckverbinder") |
 
 ## Dämmung (wichtigster Umbauschritt)
 
@@ -59,7 +59,8 @@ nicht konkret ausgewählt.
 
 | Funktion | Vorauswahl | Bezugsquelle | Preis (Stand) |
 |---|---|---|---|
-| Mikrocontroller | ESP32-S3-WROOM-1-N8 (8 MB Flash, **ohne Octal-PSRAM**), natives USB. Prototyp: ESP32-S3-DevKitC-1-N8. Bisheriger Prototyp REV DEV auf ESP32-DevKitC V4 (Feature 001) (siehe „Mikrocontroller und Pinbelegung") | offen | offen |
+| Mikrocontroller | ESP32-S3-WROOM-1U-N8 (8 MB Flash, **ohne PSRAM**, 85 °C, **externe Antenne** über U.FL), natives USB. Prototyp: ESP32-S3-DevKitC-1-N8. Bisheriger Prototyp REV DEV auf ESP32-DevKitC V4 (Feature 001) (siehe „Mikrocontroller und Pinbelegung") | wird bestellt (Benutzer) | offen |
+| WLAN-Antenne | U.FL-Pigtail auf Gehäusedurchführung (z. B. RP-SMA) und 2,4-GHz-Antenne außen am Gehäuse | offen | offen |
 | Temperaturmessung | 2 Kanäle (oben, unten) mit je MAX31856 (TSSOP-14, 50-Hz-Filter, FAULT-Ausgang). Prototyp REV DEV: MAX31855-Breakout (siehe „Sensorik") | offen | ca. 8–12 € je IC (Richtwert) |
 | Thermoelemente | 2 × Typ K, Mantel Ø 1–1,5 mm, **isolierte Messstelle** | offen | offen |
 | Thermoelement-Buchse | 2 × Mini-TC-Buchse Typ K, Printversion, je neben ihrem MAX31856 | offen | offen |
@@ -68,11 +69,17 @@ nicht konkret ausgewählt.
 | Externer Watchdog | TI TPS3828-33 (SOT-23-5, Open-Drain-Reset, 1,6 s) in der Löschkette des Freigabe-Latch | offen | ca. 1 € (Richtwert) |
 | Freigabe-Latch | D-Flipflop mit asynchronem Löschen, z. B. 74LVC1G74 | offen | offen |
 | PCB-Temperatur (Firmware) | Vergleichsstellen-Temperatur (CJ) der MAX31856, kein eigener Sensor | – | – |
-| PCB-Übertemperatur (Hardware) | Microchip TC6501 (SOT-23-5, feste Schwelle ab Werk, Open-Drain aktiv low), Schwelle ca. 75 °C, Hysterese 10 °C | offen | ca. 1 € (Richtwert) |
+| PCB-Übertemperatur (Hardware) | Microchip TC6501 (SOT-23-5, feste Schwelle ab Werk, Open-Drain aktiv low), Schwelle 65 °C (z. B. TC6501P065…), Hysterese 10 °C | offen | ca. 1 € (Richtwert) |
 | Lüfter | entfällt (Entscheidung 2026-10-24) | – | – |
 | Netzteil | Mean Well IRM-10-5 (230 V → 5 V / 2 A, 10 W, Printmodul) mit Feinsicherung T 500 mA und Varistor S07K275 (siehe „Versorgung") | [Reichelt IRM-10-5](https://www.reichelt.de/de/de/shop/search/irm-10-5) | 8,10 € (2026-10-24) |
-| 3,3-V-Regler | LDO AP7361C-33 (1 A, SOT-223) mit Kupferfläche | offen | offen |
-| Programmierung | USB-C direkt am nativen USB des ESP32-S3 (kein USB-UART-Chip), ESD-Schutz, VBUS über Schottky-Diode, Taster BOOT und RESET | offen | offen |
+| 3,3-V-Regler | LDO AP7361C-33 (1 A, SOT-223) mit Kupferfläche. Die vorhandenen 1117-33 (ohne Datenblatt) nur für Versuche (siehe „Abgleich mit dem Bauteil-Magazin") | offen | offen |
+| Programmierung | Im Betrieb per OTA. Dazu USB-C direkt am nativen USB des ESP32-S3 (kein USB-UART-Chip), ESD-Schutz, VBUS über Schottky-Diode, Taster BOOT und RESET | offen | offen |
+| ESD-Schutz USB | ST USBLC6-2SC6 (SOT-23-6) an D+/D−/VBUS | vorhanden (Magazin) | – |
+| MOSFETs | N-Kanal IRLML6346 (Relaisspule, SSR-Low-Side, Buzzer), BSS138 (Pegelstufe), P-Kanal AO3401A (SSR-High-Side, Hintergrundbeleuchtung) | vorhanden (Magazin) | – |
+| Dioden | SS34 (VBUS-Entkopplung), MBR0530 oder 1N4148 (Freilauf Relaisspule) | vorhanden (Magazin) | – |
+| Passive Bauteile | R und C weitgehend vorhanden; Ausnahmen siehe „Abgleich mit dem Bauteil-Magazin" | vorhanden (Magazin) | – |
+| USB-Verlängerung | Panel-USB-C-Verlängerungskabel von der Platine zur Gehäusewand, Panel-Buchse mit Kunststoffgehäuse | vorhanden | – |
+| Montageblech | Blech im Bedienschacht als Träger für Platine und Lastteil, an PE | Eigenbau | – |
 | Anzeige | 2,8" TFT ST7789, 240 × 320 hochkant, SPI (festgelegt in Feature 001). Modul ohne eigenen Regler: alle Pins 3,3 V | vorhanden | – |
 | Eingabe: Drehencoder | Alps EC11E15244G1: 15 Impulse / 30 Rastungen, Taster, vertikal, 20 mm Welle (siehe „Bedienfeld") | [Conrad 3523314](https://www.conrad.de/de/p/alps-encoder-1-st-5vdc-encoder-inkremental-pos-30-15impulse-umdrehung-10ma-tht-3523314.html) | 3,49 € (2026-10-24) |
 | Eingabe: Stopp-Taste | rot, Ø 16–19 mm, Fronteinbau, **1 Öffner + 1 Schließer** (siehe „Bedienfeld" und „Lastseite") | offen | offen |
@@ -128,8 +135,9 @@ Bedienelemente: **TFT-Display, Drehencoder mit Taster, separate Stopp-Taste.** K
 - **Fronteinbau:** Der Encoder sitzt mit Mutter in der Front, auf einem kleinen Träger
   (ca. 20 × 20 mm, Encoder + JST-Buchse) oder per Litze. So hängt die Lage der Hauptplatine
   nicht am Bedienfeld.
-- Encoder, Stopp-Taste und ggf. Buzzer gehen über **einen gemeinsamen Steckverbinder** zur
-  Hauptplatine. Kabel kurz, mit GND, auf der kalten Seite verlegt, Zugentlastung am Gehäuse.
+- Encoder und Stopp-Taste gehen über **einen gemeinsamen Steckverbinder** zur Hauptplatine; das
+  Display hat ein eigenes Kabel, der Buzzer sitzt auf der Platine (siehe „Aufteilung und
+  Steckverbinder"). Kabel kurz, mit GND, auf der kalten Seite verlegt, Zugentlastung am Gehäuse.
 - Pull-ups, RC-Entprellung (10 kΩ / 10 nF nach Datenblatt) und ESD-Schutz sitzen auf der
   Hauptplatine direkt am Steckverbinder.
 - 15/30 bedeutet einen halben Quadraturzyklus pro Rastung; die Ruhelage wechselt zwischen
@@ -196,9 +204,17 @@ Jedes SSR braucht zwei Bedingungen gleichzeitig, physisch in Reihe:
 
 ### Freigabe-Latch
 
-D-Flipflop mit asynchronem Löschen (z. B. 74LVC1G74). Löschen hat Vorrang vor Setzen. Alle
-Löschquellen sind Open-Drain bzw. Kontakte und werden auf der CLR-Leitung zusammengeschaltet
-(Pull-up).
+D-Flipflop mit asynchronem Löschen (z. B. 74LVC1G74). Löschen hat Vorrang vor Setzen.
+
+Beschaltung der CLR-Leitung (aktiv low):
+
+- Ein **Pull-down** (z. B. 100 kΩ) zieht CLR nach GND.
+- 3,3 V gelangen **nur über den Öffner der Stopp-Taste** und einen Serienwiderstand (z. B. 1 kΩ)
+  auf CLR. Taste gedrückt, Kabel abgezogen oder Ader gebrochen → CLR low → Latch gelöscht.
+  Ein Pull-up direkt auf der Platine wäre falsch: Ein abgezogenes Kabel würde dann nicht
+  löschen.
+- Alle übrigen Löschquellen (TPS3828, TC6501, FAULT der MAX31856) sind Open-Drain und ziehen CLR
+  gegen den Serienwiderstand nach GND.
 
 | Signal | Quelle | Wirkung |
 |---|---|---|
@@ -234,12 +250,14 @@ freigeben.
 | Kammertemperatur | 2 Kanäle: ein Fühler oben, einer unten. Je MAX31856 + Mini-TC-Buchse Typ K |
 | Thermoelemente | Typ K, Mantel Ø 1–1,5 mm, isolierte Messstelle |
 | PCB-Temperatur (Firmware) | CJ-Temperatur der MAX31856, kein eigener Sensor |
-| PCB-Übertemperatur (Hardware) | TC6501, Schwelle ca. 75 °C, Hysterese 10 °C, am Hotspot |
+| PCB-Übertemperatur (Hardware) | TC6501, Schwelle 65 °C, Hysterese 10 °C, am Hotspot |
 | Fühler an der Lötplatine (Profilieren) | nicht vorgesehen |
 
-Die Grenzwerte (Firmware-Grenze der PCB-Temperatur ca. 60–65 °C, Hardware-Schwelle ca. 75 °C,
-FAULT-Schwelle der Kammer z. B. 280 °C, zulässige Abweichung oben/unten) werden in der
-Spezifikation festgelegt; vorher die Temperaturgrenzen des IRM-10-5 im Datenblatt prüfen.
+PCB-Grenzwerte laut `specs/002-controller-pcb/spec.md` (FR-024): Firmware-Grenze 60 °C,
+Hardware-Schwelle 65 °C. Grund: Das IRM-10-5 ist je nach Datenblattstand nur bis 70 °C
+Umgebung spezifiziert (neuere Revisionen bis 85 °C mit Leistungsreduzierung); ausgelegt wird
+auf 70 °C. FAULT-Schwelle der Kammer und zulässige Abweichung oben/unten legt das Feature
+„Sichere Temperaturregelung" fest.
 
 ### Begründung
 
@@ -322,7 +340,7 @@ Spezifikation festgelegt; vorher die Temperaturgrenzen des IRM-10-5 im Datenblat
        │              │
        └──────────────┤
                       │
-   Latch Q ──[100 Ω]──┤ N-MOSFET (Logic-Level, z. B. AO3400)
+   Latch Q ──[100 Ω]──┤ N-MOSFET (Logic-Level, IRLML6346)
             [100 kΩ Pull-down]
                       │
                      GND
@@ -345,6 +363,53 @@ Spezifikation festgelegt; vorher die Temperaturgrenzen des IRM-10-5 im Datenblat
   das USB blockiert.
 - VBUS über eine Schottky-Diode in die 5-V-Schiene, damit der PC nicht ins Netzteil
   zurückspeist. Flashen ohne Netz ist so möglich; Relais und SSRs schalten dabei nichts.
+- Ergänzung im Plan (research R14): auch der Netzteilausgang speist über eine Schottky-Diode
+  ein (Dioden-ODER), damit USB nicht rückwärts in das IRM-10-5 speist. Die 5-V-Schiene liegt
+  dann bei ca. 4,5 V.
+
+## Aufteilung und Steckverbinder
+
+### Entscheidung (2026-10-25)
+
+| Baugruppe | Ort | Inhalt |
+|---|---|---|
+| Hauptplatine | im Bedienschacht neben dem Garraum, schmal und lang, senkrecht zur Front | Netzteil, LDO, ESP32-S3, 2 × MAX31856 mit Buchsen, Latch und Sicherheitslogik, Treiber, Buzzer, Debug-LED, USB-C |
+| Front | Bedienfeld | Display, Encoder auf Mini-Träger, Stopp-Taste |
+| Lastteil | hinten, kalte Seite | Kaltgerätebuchse, Relais in Fassung, 2 SSRs am Blech |
+
+- Die Tiefe des Bedienschachts reicht (vom Benutzer bestätigt).
+- **Montageblech:** Die äußere Seitenwand der kalten Seite wird beim Öffnen abgeschraubt. Damit
+  daran keine Komponenten hängen, kommt innen ein eigenes Blech (genietet oder geschraubt) als
+  Träger für Hauptplatine und Lastteil. Das Blech ist Teil des Gehäuses und muss an den
+  Schutzleiter.
+- **Programmierung:** Im Betrieb per OTA (eigenes Firmware-Feature, nur im Leerlauf bei
+  gelöschter Freigabe). Zusätzlich führt ein Panel-USB-C-Verlängerungskabel vom USB-C der
+  Platine zur Gehäusewand, für Erstinbetriebnahme und Wiederherstellung.
+
+### Steckverbinder an der Hauptplatine
+
+| Anschluss | Signale | Bauform |
+|---|---|---|
+| Netz 230 V | L, N für das Netzteil | steckbare Schraubklemme, 2-polig, Raster 5,08 mm |
+| Lastteil (Kleinspannung) | +5 V geschaltet, SSR oben −, SSR unten −, Relaisspule +/−, GND | steckbare Schraubklemme, 6-polig, Raster 3,81 mm |
+| Display | 3,3 V, SCK, MOSI, CS, DC, RST, BL, mehrere GND | eigenes Flachbandkabel, IDC 2×5 |
+| Encoder + Stopp | A, B, SW, Stopp-Öffner (2 Adern), Stopp-Schließer, GND | IDC 2×4 oder JST-XH |
+| Thermoelemente | oben, unten | Mini-TC-Buchsen Typ K |
+| USB-C | über Panel-Verlängerung zur Gehäusewand | USB-C-Buchse an der Platinenkante |
+| Debug-UART | TX (43), RX (44), GND | 3-polige Pinleiste, optional bestückt |
+
+- **Display mit eigenem Kabel:** SPI mit 40–80 MHz über 10–20 cm Flachband ist störanfällig. Mit
+  zusätzlichen GND-Adern und ggf. reduzierter Taktrate (ca. 20–27 MHz) ist es robust. Encoder
+  und Stopp-Taste teilen sich einen eigenen Stecker; der Buzzer sitzt auf der Hauptplatine.
+- **USB-Panel-Buchse mit Kunststoffgehäuse** (Schirm nicht mit der Gehäusewand verbunden). So
+  entsteht im Betrieb keine Verbindung zwischen Platinen-GND und Schutzleiter, und Störströme
+  vom Schutzleiter (SSR-Schalten, Netzfilter) laufen nicht über die Masse der
+  Thermoelement-Messung. Beim Flashen über USB ist GND ohnehin über den PC verbunden; das ist
+  nur vorübergehend.
+- Schirm der Platinenbuchse über Bestückungsoption mit GND verbinden: Pads für RC
+  (z. B. 1 MΩ ∥ 4,7 nF) bzw. 0 Ω, Wahl nach EMV- bzw. ESD-Erfahrung. ESD-Schutz an D+/D− in
+  jedem Fall.
+- Die Platine selbst braucht keinen Schutzleiter-Anschluss.
 
 ## Mikrocontroller und Pinbelegung
 
@@ -353,8 +418,11 @@ Spezifikation festgelegt; vorher die Temperaturgrenzen des IRM-10-5 im Datenblat
 - **ESP32-S3-WROOM-1-N8** statt ESP32-WROOM-32E. Grund: Mit dem WROOM-32E waren alle nutzbaren
   GPIOs belegt, ohne Reserve. Der S3 hat deutlich mehr GPIOs und natives USB; USB-UART-Chip und
   Auto-Reset entfallen.
-- Modulvariante **ohne Octal-PSRAM** (N8, N16 oder N8R2 mit Quad-PSRAM). Varianten mit
-  Octal-PSRAM (z. B. N16R8) belegen GPIO 35–37.
+- Modulvariante **ESP32-S3-WROOM-1U-N8** (Entscheidung 2026-10-25): ohne PSRAM, max.
+  Umgebungstemperatur 85 °C. Varianten mit Octal-PSRAM (z. B. N16R8) belegen GPIO 35–37 und sind
+  nur bis 65 °C spezifiziert (85 °C nur mit PSRAM-ECC).
+- **Externe Antenne** (1U, U.FL statt PCB-Antenne): Im Blechgehäuse wäre die PCB-Antenne
+  abgeschirmt; für WLAN und OTA führt ein Pigtail zu einer Antenne außen am Gehäuse.
 - Prototyp vor der Platine: ESP32-S3-DevKitC-1-N8. Bis es da ist, bleibt REV DEV auf dem
   ESP32-DevKitC V4. Der Wechsel betrifft laut Verfassung nur HAL, Board-Konfiguration und
   PlatformIO-Umgebung; er wird im Plan des Features „Controller-Platine" festgehalten
@@ -400,15 +468,106 @@ Spezifikation festgelegt; vorher die Temperaturgrenzen des IRM-10-5 im Datenblat
 | Encoder Taster | 41 | externer Pull-up + RC |
 | Stopp-Schließer (Rücklesen) | 42 | externer Pull-up |
 | Latch Q (Rücklesen) | 47 | |
+| Löschleitung (Rücklesen, `CLR_SENSE`) | 36 | über 10 kΩ; ergänzt im Plan von Feature 002 (research R6) |
+
+Verbindliche Belegung und Steckverbinder: `specs/002-controller-pcb/contracts/connectors.md`.
 
 - Display und Thermoelemente auf getrennten SPI-Bussen (wie in REV DEV): Eine Display-Übertragung
   kann keine Messung verzögern.
 - Sicherheitsausgänge (HEAT_TOP, HEAT_BOT, ARM) liegen auf einfachen GPIOs mit externem Pull-down;
-  GPIO 39–42 (JTAG-Pins) nur für Eingänge. Den Zustand aller Pins während Reset und Boot vor dem
-  Layout gegen die Tabelle im Datenblatt des ESP32-S3 prüfen.
+  GPIO 39–42 (JTAG-Pins) nur für Eingänge.
+
+### Prüfung gegen das Datenblatt (ESP32-S3 Datasheet v2.2, Tabellen 2-1 und 2-2; 2026-10-24)
+
+Zustand bei und nach Reset:
+
+| GPIO | Zustand | Folge für die Belegung |
+|---|---|---|
+| 1–18, 21, 35–38, 47, 48 | ohne Pull-up/-down, Ausgang aus (teils Eingang aktiv) | externe Pull-ups/-downs bestimmen den Pegel: passt |
+| 0 | Pull-up | Strapping (Boot-Modus), frei gelassen |
+| 39 (MTCK) | Pull-up, solange JTAG-Pads nicht per eFuse abgeschaltet | Encoder A hat ohnehin einen externen Pull-up: passt |
+| 43, 44 (UART0) | Pull-up | frei gelassen |
+| 45, 46 | Pull-down | Strapping, frei gelassen |
+| 20 (USB D+) | USB-Pull-up aktiv | natives USB |
+
+Glitches beim Einschalten (Tabelle 2-2), jeweils ca. 60 µs:
+
+| GPIO | Glitch | Belegt mit | Bewertung |
+|---|---|---|---|
+| 1–14, 15, 16, 17 | Low | u. a. HEAT_TOP (4), HEAT_BOT (5), ARM (6), CS-Leitungen | Low = aus bzw. keine steigende Flanke an ARM: **sicher**. Kurzes Low an einem CS ohne vollständiges Byte wird verworfen; die MAX31856 werden nach dem Start ohnehin neu konfiguriert |
+| 18 | Low und High | DISARM (→ /MR, aktiv low) | Low löscht höchstens den Latch, High ist inaktiv: **sicher** |
+| 19, 20 | High | USB | – |
+| 21, 35, 39–42, 47 | keiner | WDI, Buzzer, Encoder, Stopp, Latch Q | – |
+
+Boot-Modus: GPIO 0 = 1 → Start aus dem Flash; GPIO 0 = 0 und GPIO 46 = 0 → Download.
+GPIO 45 wählt die Flash-Spannung (Pull-down = Standard), darf also keinen externen Pull-up
+bekommen. Ergebnis: Die Belegung REV A bleibt wie oben.
 - Die Firmware zieht als erste Aktion nach dem Start DISARM, damit der Latch auch nach einem
   reinen MCU-Reset sofort gelöscht ist.
 - Die Belegung kommt als `board_rev_a.h` in die Board-Konfiguration (Prinzip VII).
+
+## Abgleich mit dem Bauteil-Magazin (2026-10-25)
+
+Quelle: Übersichten unter `E:\OneDrive\Dokumente\Technik-DIY\Magazin` (ICs, Transistoren,
+Dioden, Schubladen für R und C).
+
+### Direkt nutzbar
+
+| Teil im Magazin | Einsatz | Bemerkung |
+|---|---|---|
+| USBLC6-2SC6 | ESD-Schutz USB | genau der vorgesehene Typ |
+| IRLML6346 (N, SOT-23) | Relaisspule (130 mA), SSR-Low-Side, Buzzer | bei 3,3 V voll durchgesteuert; ersetzt den vorgeschlagenen AO3400 |
+| BSS138 (N, SOT-23) | Pegelstufe vor dem P-MOSFET der SSR-High-Side | |
+| AO3401A (P, SOT-23) | SSR-High-Side (+5 V, Gate über BSS138 auf GND → Vgs −5 V), Hintergrundbeleuchtung | an 3,3 V (Beleuchtung) nur teilweise durchgesteuert; bei ca. 100 mA unkritisch |
+| SS34 (Schottky, SMA) | VBUS-Entkopplung | 3 A Reserve. Am USB liegt die 5-V-Schiene dann bei ca. 4,5 V; reicht für LDO und Relais |
+| MBR0530 (SOD-123) oder 1N4148 | Freilaufdiode Relaisspule | beide ≥ 200 mA |
+| 5,1 kΩ SMD | CC1/CC2 der USB-C-Buchse | |
+| 10 kΩ, 100 kΩ, 1 kΩ, 100 Ω, 0 Ω SMD | Pull-ups/-downs, CLR-Beschaltung, Gate-Widerstände, Bestückungsoptionen | |
+| 100 nF, 10 nF (0603 X7R), 10 µF / 22 µF Keramik | Abblockung, Thermoelement-Eingang, LDO | |
+| 100 µF Elko 16 V (THT), 47 µF Elko 16 V (SMD) | Puffer am ESP32 | |
+
+Nicht im Magazin: 1 MΩ und 4,7 nF in SMD (nur THT vorhanden; für die USB-Schirm-Option),
+Varistor S07K275, Feinsicherung T 500 mA, LEDs (nicht inventarisiert).
+
+### Alternativen mit Vor- und Nachteilen
+
+**ESP32-S3-WROOM-1U-N16R8 statt WROOM-1-N8**
+
+| Vorteile | Nachteile |
+|---|---|
+| vorhanden | **Max. Umgebungstemperatur −40…65 °C** (Module mit Octal-PSRAM); 85 °C nur mit aktivierter PSRAM-ECC (1/16 weniger PSRAM). Mit 65 °C passt keine Hardware-Schwelle mit Abstand darunter (Prinzip IVa: Grenze unter der Betriebstemperatur des empfindlichsten Bauteils) |
+| **externe Antenne (U.FL):** im Blechgehäuse deutlich besser als die PCB-Antenne; wichtig für OTA | Octal-PSRAM belegt GPIO 35–37: Buzzer muss von 35 auf 38 umziehen, Reserve schrumpft |
+| 16 MB Flash: viel Platz für zwei OTA-Partitionen | Antennenkabel U.FL → Gehäusedurchführung (z. B. RP-SMA) und Antenne nötig |
+| | PSRAM-ECC im Arduino-Framework nicht ohne Weiteres einstellbar (vorkompilierte sdkconfig) |
+
+Entscheidung (2026-10-25): Für REV A wird das **ESP32-S3-WROOM-1U-N8** gekauft (externe
+Antenne, ohne PSRAM, 85 °C). Das vorhandene N16R8 bleibt für Versuche.
+
+**1117-33 statt AP7361C-33**
+
+| Vorteile | Nachteile |
+|---|---|
+| vorhanden, SOT-223 | Hersteller unbekannt (AMS1117/LD1117/… verhalten sich unterschiedlich); manche brauchen für Stabilität einen Ausgangskondensator mit definiertem ESR statt reiner Keramik |
+| Dropout ca. 1,1 V: aus 5 V (bzw. 4,5 V über USB) reicht es noch | höherer Eigenstrom (ca. 5 mA) |
+| Verlustleistung gleich (beides linear) | Pinbelegung nicht mit dem AP7361C identisch: Footprint vorher festlegen |
+
+Bewertung (2026-10-25): Die vorhandenen 1117-33 sind Marktplatzware (Marke YINETTECH,
+Teilenummer „326-B-BI", 50 Stück) ohne Datenblatt; welcher Chip darin steckt, ist unbekannt.
+Stabilität mit Keramikkondensatoren, Strombegrenzung und Übertemperaturschutz lassen sich
+nicht belegen. Für REV A bleibt es deshalb beim **AP7361C-33**; die 1117 sind gut für Versuche
+und Steckbrett-Aufbauten.
+
+**NTC B57620C5103 + LM358 als Ersatz für den TC6501**
+
+| Vorteile | Nachteile |
+|---|---|
+| vorhanden, Schwelle per Widerstand frei wählbar | mehr Bauteile und Toleranzen (NTC ±5 %, Widerstände, Komparator); LM358 hat keinen Open-Drain-Ausgang, braucht Transistor oder Diode zur CLR-Leitung; mehr Fehlerquellen in einer Sicherheitsfunktion |
+
+Entscheidung (2026-10-25): **TC6501** bleibt (ein Bauteil, ab Werk kalibriert, ca. 1 €).
+
+**Nicht verwendbar:** TSR 0.5-2433 (braucht mindestens 6,5 V Eingang), FT232RL (entfällt durch
+natives USB), ICL7665 und NE555 (Watchdog übernimmt der TPS3828), SMBJ13A (Klemmspannung für
+die 5-V-Schiene zu hoch), LM335A und NTC als PCB-Sensor (CJ der MAX31856 reicht).
 
 ## Sicherheit der Hardware
 

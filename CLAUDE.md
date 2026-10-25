@@ -7,6 +7,8 @@ das Regenerieren von Silicagel.
 
 - `.specify/memory/constitution.md` – verbindliche Grundregeln des Projekts (Spec Kit)
 - `specs/` – Feature-Spezifikationen, Pläne und Aufgaben (Spec Kit)
+- `hardware/` – KiCad-10-Projekte; Schaltplan als SKiDL-Code (siehe `docs/werkzeuge-pcb.md`).
+  `kicad-cli` liegt unter `D:\hobby\Elektronik\KiCad\10.0\bin`
 - `docs/` – Hardware-Wissen außerhalb von Spec Kit. Einstieg: `docs/README.md`
   - `docs/hardware-umbau.md` – Ofen-Maße, Dämmung, Verkabelung, Komponenten-Vorauswahl
   - `docs/umluft-recherche.md` – Lüfter-Nachrüstung
