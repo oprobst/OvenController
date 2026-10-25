@@ -18,6 +18,20 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
   (ein Symbol aus KiCad 10, eine Netzliste, Import in KiCad 10). Scheitert das Lesen der
   Standardbibliotheken, kommen alle verwendeten Symbole in die projekteigene Bibliothek
   `hardware/lib/oven.kicad_sym`.
+- **Ergebnis Spike (T003, 2026-10-25)**: Risiko ausgeräumt.
+  - SKiDL **3.0.0** bringt eine eigene Werkzeugkennung **`KICAD10`** mit
+    (`set_default_tool(KICAD10)`).
+  - Mit `KICAD10_SYMBOL_DIR` = `D:\hobby\Elektronik\KiCad\10.0\share\kicad\symbols` und
+    `KICAD10_FOOTPRINT_DIR` = `…\share\kicad\footprints` liest SKiDL die
+    Standardbibliotheken von KiCad 10 fehlerfrei (getestet: `RF_Module:ESP32-S3-WROOM-1` mit
+    41 Pins, `Sensor_Temperature:MAX31856`, `Device:R`). Das Symbol `ESP32-S3-WROOM-1` passt
+    auch für das 1U-Modul; Footprint `RF_Module:ESP32-S3-WROOM-1U` (62 Pads).
+  - Die erzeugte Netzliste (Format „D") lässt sich mit dem `pcbnew`-Modul aus KiCad 10 in
+    eine Platine übernehmen: alle Footprints gefunden, alle Pins einem Pad zugeordnet;
+    `kicad-cli pcb drc` liest die Platine ohne Footprint-Fehler.
+  - Folge: Standardbibliotheken werden genutzt; `hardware/lib` nur für fehlende Teile.
+    Hinweis: SKiDL warnt beim Import über fehlende Umgebungsvariablen älterer KiCad-Versionen
+    und über fehlende Tags; die Schaltplanquellen setzen deshalb feste Tags je Bauteil.
 - **Alternatives considered**: atopile (nur mit KiCad 9 erprobt, eigener `.kicad_pcb`-Parser
   verwirft unbekannte Inhalte); Schaltplan direkt in der KiCad-GUI (mehr Handarbeit, schlechter
   reviewbar); MCP-Server (nur Inspektion, kein Export in KiCad 10).

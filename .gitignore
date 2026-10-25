@@ -16,6 +16,10 @@ firmware/include/wifi_secrets.h
 # Claude Code: lokale Einstellungen (können Berechtigungen und Pfade enthalten)
 .claude/settings.local.json
 
+# Hardware: Python-Umgebung für SKiDL
+hardware/.venv/
+__pycache__/
+
 # KiCad: Backups und lokale Dateien
 *-backups/
 *.kicad_prl
