@@ -105,8 +105,9 @@ Pinleiste 3-polig: 1 GND, 2 TX (GPIO 43), 3 RX (GPIO 44).
 
 ## Testpunkte
 
-TP1 5V, TP2 3V3, TP3 GND (2×), TP4 LATCH_Q, TP5 CLR, TP6 ARM, TP7 HEAT_TOP, TP8 HEAT_BOT,
-TP9 +5V_SSR, TP10 WDI. Keine Testpunkte im Netzbereich.
+TP1 5V, TP2 3V3, TP3 und TP11 GND, TP4 LATCH_Q, TP5 CLR, TP6 ARM, TP7 HEAT_TOP, TP8 HEAT_BOT,
+TP9 +5V_SSR, TP10 WDI. Keine Testpunkte im Netzbereich. Steckverbinder und Testpunkte tragen im
+Schaltplan genau diese Referenzen (J1–J7, J9, TP1–TP11); die übrigen Referenzen vergibt SKiDL.
 
 ## Mechanik
 

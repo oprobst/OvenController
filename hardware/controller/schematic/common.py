@@ -60,9 +60,14 @@ def v5():
     return net("+5V", power=True)
 
 
-def part(lib, name, tag, footprint, value=None, mpn=None, source=None, dnp=False):
-    """Creates a part with a stable tag and BOM fields (MPN, source, DNP)."""
+def part(lib, name, tag, footprint, value=None, mpn=None, source=None, dnp=False, ref=None):
+    """Creates a part with a stable tag and BOM fields (MPN, source, DNP).
+
+    ref fixes the designator for parts named in contracts/connectors.md (connectors, test points).
+    """
     p = Part(lib, name, footprint=footprint, tag=tag)
+    if ref is not None:
+        p.ref = ref
     if value is not None:
         p.value = value
     if mpn:
@@ -121,7 +126,7 @@ def pmos(tag, value, gate, source, drain):
     return q
 
 
-def testpoint(tag, signal):
-    tp = part("Connector", "TestPoint", tag, FP_TESTPOINT, value=signal.name)
+def testpoint(tag, signal, ref):
+    tp = part("Connector", "TestPoint", tag, FP_TESTPOINT, value=signal.name, ref=ref)
     signal += tp[1]
     return tp

@@ -88,7 +88,8 @@ def build():
 
     # Debug UART, optional population.
     j9 = part("Connector_Generic", "Conn_01x03", "mcu.J9",
-              "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical", value="UART")
+              "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical", value="UART",
+              ref="J9")
     g += j9[1]
     tx, rx = net("UART_TX"), net("UART_RX")
     tx += j9[2]

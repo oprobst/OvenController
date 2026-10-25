@@ -13,7 +13,7 @@ def build():
 
     j7 = part("Connector", "USB_C_Receptacle_USB2.0_16P", "usb.J7",
               "Connector_USB:USB_C_Receptacle_GCT_USB4085", value="USB-C",
-              mpn="GCT USB4085-GF-A", source="Mouser")
+              mpn="GCT USB4085-GF-A", source="Mouser", ref="J7")
     vbus += j7["A4"], j7["A9"], j7["B4"], j7["B9"]
     g += j7["A1"], j7["A12"], j7["B1"], j7["B12"]
     cc1 += j7["A5"]

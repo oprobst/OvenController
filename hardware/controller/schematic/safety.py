@@ -58,7 +58,7 @@ def build():
     clr += ts[5]
     capacitor("saf.C4", "100n", p3v3, g)
 
-    testpoint("saf.TP1", latch_q)
-    testpoint("saf.TP2", clr)
-    testpoint("saf.TP3", arm)
-    testpoint("saf.TP4", wdi)
+    testpoint("saf.TP1", latch_q, "TP4")
+    testpoint("saf.TP2", clr, "TP5")
+    testpoint("saf.TP3", arm, "TP6")
+    testpoint("saf.TP4", wdi, "TP10")

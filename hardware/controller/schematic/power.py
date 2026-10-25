@@ -29,7 +29,7 @@ def build():
     j1 = part(
         "Connector_Generic", "Conn_01x02", "pwr.J1",
         "Connector_Phoenix_MSTB:PhoenixContact_MSTBA_2,5_2-G-5,08_1x02_P5.08mm_Horizontal",
-        value="230V~", mpn="Phoenix MSTBA 2,5/2-G-5,08 + MSTB 2,5/2-ST-5,08",
+        value="230V~", mpn="Phoenix MSTBA 2,5/2-G-5,08 + MSTB 2,5/2-ST-5,08", ref="J1",
     )
     l_in += j1[1]
     n_in += j1[2]
@@ -71,7 +71,7 @@ def build():
     capacitor("pwr.C4", "10u", p3v3, g, FP_C_0805)
     capacitor("pwr.C5", "100n", p3v3, g)
 
-    testpoint("pwr.TP1", p5v)
-    testpoint("pwr.TP2", p3v3)
-    testpoint("pwr.TP3", g)
-    testpoint("pwr.TP4", g)
+    testpoint("pwr.TP1", p5v, "TP1")
+    testpoint("pwr.TP2", p3v3, "TP2")
+    testpoint("pwr.TP3", g, "TP3")
+    testpoint("pwr.TP4", g, "TP11")

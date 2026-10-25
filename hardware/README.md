@@ -35,7 +35,17 @@ hardware/.venv/Scripts/python -m pip install -r hardware/requirements.txt
 hardware/.venv/Scripts/python hardware/controller/schematic/main.py
 ```
 
-Das Skript führt den ERC von SKiDL aus und schreibt `hardware/controller/controller.net`.
+Das Skript führt den ERC von SKiDL aus, gleicht die GPIO-Netze mit
+`firmware/include/board/board_rev_a.h` ab und schreibt `hardware/controller/controller.net` sowie
+`hardware/controller/output/controller-bom.csv`. Exit-Code 1 bei ERC-Meldungen oder
+Abweichungen zum Board-Header. Harmlose Ausgaben: Warnungen zu `KICAD*_SYMBOL_DIR` älterer
+Versionen, zur globalen `fp-lib-table` und ein „Missing tag" ohne Bauteilnamen (SKiDL-intern).
+
+Netzliste gegen KiCad 10 prüfen (alle Footprints ladbar, jeder Pin hat ein Pad):
+
+```bash
+"D:/hobby/Elektronik/KiCad/10.0/bin/python.exe" hardware/tools/netlist_check.py hardware/controller/controller.net
+```
 
 ## Prüfen und exportieren
 

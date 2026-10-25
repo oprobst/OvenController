@@ -35,3 +35,6 @@ _autosave-*
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# SKiDL-Logdateien der Schaltplan-Skripte
+hardware/**/*.log

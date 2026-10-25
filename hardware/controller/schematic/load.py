@@ -48,7 +48,7 @@ def build():
 
     j2 = part("Connector_Generic", "Conn_01x06", "load.J2",
               "Connector_Phoenix_MC:PhoenixContact_MC_1,5_6-G-3.81_1x06_P3.81mm_Horizontal",
-              value="LOAD", mpn="Phoenix MC 1,5/6-G-3,81 + MC 1,5/6-ST-3,81")
+              value="LOAD", mpn="Phoenix MC 1,5/6-G-3,81 + MC 1,5/6-ST-3,81", ref="J2")
     v5_ssr += j2[1]
     ssr_top_n += j2[2]
     ssr_bot_n += j2[3]
@@ -56,6 +56,6 @@ def build():
     relay_n += j2[5]
     g += j2[6]
 
-    testpoint("load.TP1", heat_top)
-    testpoint("load.TP2", heat_bot)
-    testpoint("load.TP3", v5_ssr)
+    testpoint("load.TP1", heat_top, "TP7")
+    testpoint("load.TP2", heat_bot, "TP8")
+    testpoint("load.TP3", v5_ssr, "TP9")

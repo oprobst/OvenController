@@ -43,14 +43,15 @@ def channel(name, socket_ref):
     clr = net("CLR")
     schottky(f"tc.{tag}.D1", "MBR0530", clr, fault, FP_SCHOTTKY_SOD123)
 
-    j = part("Connector_Generic", "Conn_01x02", socket_ref, "oven:Omega_PCC-SMP_Horizontal",
-             value=f"TC {name.lower()}", mpn="Omega PCC-SMP-K", source="Farnell 3794917")
+    j = part("Connector_Generic", "Conn_01x02", f"tc.{tag}.J1", "oven:Omega_PCC-SMP_Horizontal",
+             value=f"TC {name.lower()}", mpn="Omega PCC-SMP-K", source="Farnell 3794917",
+             ref=socket_ref)
     tc_p += j[1]
     tc_n += j[2]
     return u
 
 
 def build():
-    channel("TOP", "tc.J5")
-    channel("BOT", "tc.J6")
+    channel("TOP", "J5")
+    channel("BOT", "J6")
     capacitor("tc.C1", "10u", v3v3(), gnd(), FP_C_0805)

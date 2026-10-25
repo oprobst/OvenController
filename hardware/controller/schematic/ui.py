@@ -53,7 +53,7 @@ def build():
 
     j3 = part("Connector_Generic", "Conn_02x05_Odd_Even", "ui.J3",
               "Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical", value="DISPLAY",
-              mpn="Wannenstecker 2x5 RM2.54")
+              mpn="Wannenstecker 2x5 RM2.54", ref="J3")
     p3v3 += j3[1]
     g += j3[2], j3[4], j3[6]
     sck += j3[3]
@@ -68,7 +68,7 @@ def build():
     stop_out, stop_ret = net("STOP_NC_OUT"), net("STOP_NC_RET")
     j4 = part("Connector_Generic", "Conn_02x04_Odd_Even", "ui.J4",
               "Connector_IDC:IDC-Header_2x04_P2.54mm_Vertical", value="PANEL",
-              mpn="Wannenstecker 2x4 RM2.54")
+              mpn="Wannenstecker 2x4 RM2.54", ref="J4")
     raw["ENC_A"] += j4[1]
     g += j4[2], j4[8]
     raw["ENC_B"] += j4[3]
