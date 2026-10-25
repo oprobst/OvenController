@@ -69,6 +69,12 @@ User-Story-Phasen enthalten Firmware, Inbetriebnahme und Abnahme der jeweiligen 
 
 - [X] T019 KiCad-10-Projekt `hardware/controller/controller.kicad_pro` mit 2 Lagen, 1,6 mm, 35 µm; Designregeln in `hardware/controller/controller.kicad_dru`: Netzklasse `Mains` ≥ 6,0 mm Abstand zu allen anderen Netzen, L ↔ N ≥ 3,0 mm, keine Vias im Netzbereich
 - [ ] T020 Netzliste einlesen, Platinenumriss (Ziel ≤ 100 × 100 mm, Grenze 150 × 150 mm), Zonen in der Reihenfolge Netz → Schlitz → Versorgung (LDO, TC6501 am Hotspot) → Logik (ESP32-S3 mit U.FL an der Kante) → Messung (MAX31856 + J5/J6 an der Kante zur Heizkammer, gemeinsame Kupferfläche); Frässchlitz ≥ 2 mm unter dem IRM-10-5; alle SMD oben; alle Steckverbinder am Rand gruppiert (research R13) in `hardware/controller/controller.kicad_pcb`
+  - Stand 2026-10-25: Netzliste übernommen (`hardware/tools/import_netlist.py`), Vorplatzierung
+    per `hardware/tools/place_controller.py`: Umriss 100 × 100 mm, 4 × M3 ohne Kupfer, Frässchlitz
+    2 × 34 mm unter dem IRM-10-5, Zonen wie oben. DRC: keine Abstands-, Kriech- oder
+    Bohrverstöße; nur offene Verbindungen (Routing T021) und Beschriftung an der Kante.
+    Offen: Feinplatzierung in KiCad, Omega-Buchse am Musterteil nachmessen, Lage der
+    Montagelöcher mit dem Gehäuse abstimmen, Wärmeabstand J5/U5 zum IRM-10-5 prüfen.
 - [ ] T021 Routing, GND-Fläche unten (nur Kleinspannung), LDO-Kupferfläche ≥ 4 cm², 4 Montagelöcher M3 **ohne Kupfer**, Testpunkte TP1–TP10 laut contracts/connectors.md (keine im Netzbereich), Bestückungsdruck: „REV A", Projektname, „230 V~"-Warnung, Funktion und Pinbelegung an jedem Steckverbinder, Polarität J5/J6 in `hardware/controller/controller.kicad_pcb`
 - [ ] T022 `kicad-cli pcb drc --exit-code-violations` ohne Verletzungen; Exporte nach `hardware/controller/output/`: Gerber, Bohrdaten, BOM, Bestückungsplan, STEP; Bauteilhöhe ≤ 40 mm im STEP prüfen
 - [ ] T023 [P] Encoder-Träger: Projekt, Layout (ca. 25 × 30 mm, Encoder zentriert, IDC am Rand), DRC und Exporte in `hardware/encoder-carrier/`

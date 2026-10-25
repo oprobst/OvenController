@@ -37,3 +37,17 @@
 	(constraint hole_clearance (min 3mm))
 	(constraint clearance (min 3mm))
 )
+
+# Footprint-given exceptions, limited to one part each:
+# GCT USB4085 has 0.85 mm pin pitch, so pad-to-pad clearance is 0.15 mm (manufacturable).
+(rule "usb_c_fine_pitch"
+	(condition "A.Parent == 'J7' && B.Parent == 'J7'")
+	(constraint clearance (min 0.15mm))
+)
+
+# ESP32-S3-WROOM-1U footprint: thermal vias in the ground pad with 0.2 mm drill.
+# Check with the board manufacturer (0.2 mm drill may cost extra).
+(rule "esp32_thermal_vias"
+	(condition "A.Parent == 'U3'")
+	(constraint hole_size (min 0.2mm))
+)

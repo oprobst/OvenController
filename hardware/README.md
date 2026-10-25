@@ -66,6 +66,19 @@ Netzliste gegen KiCad 10 prüfen (alle Footprints ladbar, jeder Pin hat ein Pad)
 "D:/hobby/Elektronik/KiCad/10.0/bin/python.exe" hardware/tools/netlist_check.py hardware/controller/controller.net
 ```
 
+## Netzliste in die Platine übernehmen
+
+```bash
+"D:/hobby/Elektronik/KiCad/10.0/bin/python.exe" hardware/tools/import_netlist.py hardware/controller/controller.net hardware/controller/controller.kicad_pcb
+```
+
+Wirkt wie „Platine aus Netzliste aktualisieren": Bauteile werden über den Symbolpfad (SKiDL-Tag)
+erkannt, Lage und Drehung bleiben erhalten, Netze und Felder werden aktualisiert, neue Bauteile
+landen unterhalb der Platine. Alternativ in KiCad: Datei → Importieren → Netzliste.
+
+Die Vorplatzierung (`hardware/tools/place_controller.py`) lief einmalig für REV A und verweigert
+einen zweiten Lauf, sobald ein Platinenumriss existiert.
+
 ## Prüfen und exportieren
 
 ```bash
