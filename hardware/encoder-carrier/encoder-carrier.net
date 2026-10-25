@@ -1,0 +1,221 @@
+(export 
+  (version "D")
+  (design
+    (source "main.py")
+    (date "10/25/2026 07:39 PM")
+    (tool "SKiDL (3.0.0)")
+    (sheet
+      (number 1)
+      (name "/")
+      (tstamps "/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "..\main.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value "")))))
+  (components
+    (comp
+      (ref "J1")
+      (value "PANEL")
+      (description "Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+      (footprint "Connector_IDC:IDC-Header_2x04_P2.54mm_Vertical")
+      (fields
+        (field
+          (name "MPN") "Wannenstecker 2x4 RM2.54")
+        (field
+          (name "Description") "Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+        (field
+          (name "Footprint") "Connector_IDC:IDC-Header_2x04_P2.54mm_Vertical")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "enc.J1")
+        (field
+          (name "SKiDL Line") "..\..\controller\schematic\common.py:68"))
+      (libsource
+        (lib "Connector_Generic")
+        (part "Conn_02x04_Odd_Even"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "b7adc55e-b2bd-53b2-b6ad-d01d445f515f"))
+    (comp
+      (ref "J2")
+      (value "STOP")
+      (description "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)")
+      (footprint "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical")
+      (fields
+        (field
+          (name "MPN") "JST B4B-XH-A + XHP-4")
+        (field
+          (name "Description") "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)")
+        (field
+          (name "Footprint") "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "enc.J2")
+        (field
+          (name "SKiDL Line") "..\..\controller\schematic\common.py:68"))
+      (libsource
+        (lib "Connector_Generic")
+        (part "Conn_01x04"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "b5c6e53a-777d-5441-bb1d-248bd4a74ef4"))
+    (comp
+      (ref "SW1")
+      (value "EC11E15244G1")
+      (description "Rotary encoder, dual channel, incremental quadrate outputs, with switch")
+      (footprint "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm")
+      (fields
+        (field
+          (name "MPN") "Alps EC11E15244G1")
+        (field
+          (name "Source") "Conrad 3523314")
+        (field
+          (name "Description") "Rotary encoder, dual channel, incremental quadrate outputs, with switch")
+        (field
+          (name "Footprint") "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "enc.SW1")
+        (field
+          (name "SKiDL Line") "..\..\controller\schematic\common.py:68"))
+      (libsource
+        (lib "Device")
+        (part "RotaryEncoder_Switch"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "9d64b40b-22ff-5068-a76f-2e6d0d8317ba")))
+  (nets
+    (net
+      (code 1)
+      (name "ENC_A_RAW")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "1")
+        (pintype "PASSIVE"))
+      (node
+        (ref "SW1")
+        (pin "A")
+        (pintype "PASSIVE")))
+    (net
+      (code 2)
+      (name "ENC_B_RAW")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "3")
+        (pintype "PASSIVE"))
+      (node
+        (ref "SW1")
+        (pin "B")
+        (pintype "PASSIVE")))
+    (net
+      (code 3)
+      (name "ENC_SW_RAW")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "4")
+        (pintype "PASSIVE"))
+      (node
+        (ref "SW1")
+        (pin "S1")
+        (pintype "PASSIVE")))
+    (net
+      (code 4)
+      (name "GND")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "2")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J1")
+        (pin "8")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J2")
+        (pin "4")
+        (pintype "PASSIVE"))
+      (node
+        (ref "SW1")
+        (pin "C")
+        (pintype "PASSIVE"))
+      (node
+        (ref "SW1")
+        (pin "S2")
+        (pintype "PASSIVE")))
+    (net
+      (code 5)
+      (name "STOP_NC_OUT")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "5")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J2")
+        (pin "1")
+        (pintype "PASSIVE")))
+    (net
+      (code 6)
+      (name "STOP_NC_RET")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "6")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J2")
+        (pin "2")
+        (pintype "PASSIVE")))
+    (net
+      (code 7)
+      (name "STOP_NO_RAW")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "7")
+        (pintype "PASSIVE"))
+      (node
+        (ref "J2")
+        (pin "3")
+        (pintype "PASSIVE")))))

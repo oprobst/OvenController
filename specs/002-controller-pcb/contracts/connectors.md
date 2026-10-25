@@ -51,8 +51,16 @@ IDC 2×4, Raster 2,54 mm. Gegenstück gleicher Belegung auf dem Encoder-Träger.
 | 5 | STOP_NC_OUT (3,3 V zum Öffner) | 6 | STOP_NC_RET (vom Öffner zur Löschleitung) |
 | 7 | STOP_NO (Schließer → GPIO) | 8 | GND |
 
-Auf dem Encoder-Träger: Klemme für die Stopp-Taste (Öffner: 2 Litzen, Schließer: 2 Litzen,
-Schließer gegen GND).
+Auf dem Encoder-Träger (`hardware/encoder-carrier`): J1 = IDC 2×4 mit derselben Belegung wie J4
+(Flachbandkabel 1:1, Pin 1 auf Pin 1), SW1 = Alps EC11E15244G1 (A, B, gemeinsamer Anschluss C und
+Taster S2 an GND, S1 = ENC_SW), J2 = JST-XH 1×4 für die Litzen der Stopp-Taste:
+
+| J2 Pin | Signal | Kontakt |
+|---|---|---|
+| 1 | STOP_NC_OUT | Öffner, Seite 1 |
+| 2 | STOP_NC_RET | Öffner, Seite 2 |
+| 3 | STOP_NO | Schließer, Seite 1 |
+| 4 | GND | Schließer, Seite 2 |
 
 ## J5, J6 – Thermoelemente
 
