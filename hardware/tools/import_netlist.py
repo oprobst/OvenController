@@ -79,6 +79,7 @@ def main(netlist, board_path):
         for name, text in fields_of(comp).items():
             if name in ("MPN", "Source", "DNP"):
                 fp.SetField(name, text)
+                fp.GetField(name).SetVisible(False)  # BOM data, not for the silkscreen
         fp.SetDNP(fields_of(comp).get("DNP") == "yes")
 
     removed = 0
