@@ -122,7 +122,9 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
     Eingängen) an 3,3 V. D = High, CLK = **ARM** (GPIO 6, steigende Flanke), PRE = High,
     CLR = Löschleitung.
   - **Löschleitung (aktiv low)**: 100-kΩ-Pull-down nach GND; 3,3 V nur über den
-    **Stopp-Öffner** und 1 kΩ. Open-Drain-Quellen auf der Leitung: TPS3828 /RESET, TC6501,
+    **Stopp-Öffner** und **4,7 kΩ** (ca. 0,7 mA; der TPS3828 garantiert VOL ≤ 0,45 V nur bis
+    1,2 mA, daher nicht 1 kΩ). Pegel bei geschlossenem Öffner: 3,3 V × 100/104,7 ≈ 3,15 V.
+    Open-Drain-Quellen auf der Leitung: TPS3828 /RESET, TC6501,
     FAULT beider MAX31856. 1 nF gegen GND gegen Störspitzen aus dem Kabel; ESD-Schutz am
     Steckverbinder (R9).
   - Rücklesen: **Q** an GPIO 47, **Löschleitung** über 10 kΩ an GPIO 36 (`CLR_SENSE`, neu),
@@ -142,10 +144,19 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
   an EN des ESP32. Die Firmware schaltet WDI alle 250 ms um, **nur aus der Hauptschleife und nur,
   wenn im letzten Zyklus Temperaturüberwachung und Platinenüberwachung rechtzeitig gelaufen
   sind** (`SafetyHeartbeat`, host-testbar).
-- **Prüfen beim Symbol**: (1) Watchdog-Zeit min/typ/max laut Datenblatt; liegt der Maximalwert
-  über 2 s, wird SC-002 auf diesen Wert + 0,1 s angepasst oder die Variante gewechselt.
-  (2) Ob ein hochohmiger WDI den Watchdog abschaltet (TI SLVA145); dann Pull-down an WDI
-  bestücken, sonst Footprint unbestückt lassen.
+- **Datenblatt (TI SLVS165O, Rev. März 2025), geprüft in T006**:
+  - Watchdog-Zeit TPS3823/4/8: **0,9 / 1,6 / 2,5 s** (min/typ/max). → SC-002 wird auf
+    **≤ 2,6 s** angepasst. Herzschlag alle 250 ms liegt weit unter dem Minimum von 0,9 s.
+  - Reset-Verzögerung 120 / 200 / 300 ms.
+  - **Offener WDI schaltet den Watchdog ab** („If left floating, the device generates pulses
+    internally"). WDI zieht bis zu 190 µA. → **Pull-down 2,2 kΩ an WDI ist Pflicht**
+    (0,42 V < 0,3 × VDD). Damit läuft der Watchdog auch, wenn der ESP32 im Reset ist oder
+    bootet; die Freigabe bleibt dann gelöscht, wie gewollt.
+  - /MR: interner Pull-up 90 kΩ, Mindestpulsbreite 1 µs → DISARM-Puls 100 µs.
+  - Schwelle -33: 2,83 / 2,93 / 3,00 V; Ausgang Open-Drain, VOL ≤ 0,45 V bei 1,2 mA.
+  - Temperaturbereich −40…+85 °C.
+- **Alternative geprüft**: TPS3820-33 (Watchdog 112–300 ms) hat einen Push-Pull-Ausgang und
+  würde einen Herzschlag < 100 ms verlangen; verworfen.
 - **Rationale**: Deckt hängende Firmware, Power-on und Unterspannung der Logik in einem
   Baustein ab; Open-Drain passt auf die gemeinsame Löschleitung.
 - **Alternatives considered**: ICL7665/NE555 aus dem Magazin (kein Watchdog bzw. mehr
@@ -158,8 +169,17 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
     Latch-Ausgang Q nach GND gezogen (Vgs ≈ −5 V), 100-kΩ-Pull-up Gate–Source.
   - Je Kanal **IRLML6346** (N-Kanal) auf der Low-Side, Gate von GPIO 4 (oben) bzw. 5 (unten) über
     100 Ω, 100 kΩ Pull-down.
-  - Relaisspule (Finder 40.61, 5 V, ca. 130 mA): IRLML6346 vom Latch-Ausgang Q, Freilaufdiode
-    MBR0530.
+  - Relaisspule: IRLML6346 vom Latch-Ausgang Q, Freilaufdiode MBR0530.
+- **Relais (geprüft in T007, Finder Datenblatt Serie 40, VIII-2026)**:
+  - **40.61.9.005.0000** (Standardspule 0,65 W): 38 Ω, 130 mA, Anzug ab **3,65 V**, max. 7,5 V.
+    Bei ca. 4,5 V Schiene bleibt Reserve auch für die Erwärmung der Spule.
+  - Nicht die empfindliche Spule 40.61.7.005: für 40.61 Anzug erst ab 0,8 × UN = 4,0 V.
+  - Kontakt 16 A / 250 V, AC1 4000 VA, Umgebung −40…+85 °C.
+  - Fassung **95.05**: 10 A / 250 V, −40…+70 °C (über 10 A Kontakte parallel). Bei 5,2 A
+    reicht ein Kontakt. Freilaufmodul 99.02.3.000.00 nicht nötig (Diode auf der Platine).
+- **SSR**: **Crydom D2425** (Nullspannungsschalter, 25 A, 24–280 V AC), Steuereingang
+  3–32 V DC, max. 12 mA (Distributorangaben). Bei ca. 4,4 V an `+5V_SSR` ausreichend. Nicht
+  Carlo Gavazzi RM1A23D25: Steuereingang erst ab 4,25 V, zu knapp.
   - Lastteil-Stecker 6-polig, steckbare Schraubklemme Raster 3,81 mm (Belegung:
     [contracts/connectors.md](contracts/connectors.md)).
 - **Reserve und Kühlung (Prinzip IVb)**:
@@ -284,29 +304,52 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
 | Steckverbinder, Klemmen, USB-C | ≥ 85 °C (prüfen) | Auswahlregel |
 | Summer | ≥ 70 °C (prüfen) | Auswahlregel |
 
-## Stückliste (Vorauswahl, Hauptplatine)
+## Stückliste (Auswahl T008, 2026-10-25)
 
-| Funktion | Bauteil | Gehäuse | Quelle |
+Hersteller-Teilenummern sind gewählt. „prüfen" heißt: Teilenummer, Footprint und Preis beim
+Anlegen des Symbols (T009) bzw. bei der Bestellung (T025) bestätigen. Preise sind Richtwerte
+pro Stück inkl. MwSt.
+
+### Hauptplatine
+
+| Funktion | Hersteller / Teilenummer | Footprint (KiCad 10) | Quelle | Preis |
+|---|---|---|---|---|
+| Netzteil | Mean Well IRM-10-5 | eigener (hardware/lib) | Reichelt IRM-10-5 | 8,10 € |
+| Sicherung | Feinsicherung 5 × 20 mm T 500 mA + Leiterplatten-Sicherungshalter mit Schutzkappe | `Fuse:` Halter 5×20 (prüfen) | Reichelt | ca. 1,50 € |
+| Varistor | TDK/EPCOS S07K275 (B72207S2271K101) | `Varistor:` Scheibe 7 mm | Reichelt | ca. 0,30 € |
+| LDO 3,3 V | Diodes AP7361C-33E-13 | `Package_TO_SOT_SMD:SOT-223-3_TabPin2` (Pinbelegung prüfen) | Mouser | ca. 0,50 € |
+| Dioden-ODER | SS34 (2×) | `Diode_SMD:D_SMA` | Magazin | – |
+| Controller | Espressif ESP32-S3-WROOM-1U-N8 | `RF_Module:ESP32-S3-WROOM-1U` | Benutzer bestellt | ca. 4 € |
+| USB-C | GCT USB4085-GF-A (Durchsteckmontage, USB 2.0) | `Connector_USB:USB_C_Receptacle_GCT_USB4085` | Mouser | ca. 1 € (prüfen) |
+| ESD | ST USBLC6-2SC6 (3×) | `Package_TO_SOT_SMD:SOT-23-6` | Magazin | – |
+| Thermoelement | Analog Devices MAX31856MUD+ (2×) | `Package_SO:TSSOP-14_4.4x5mm_P0.65mm` | Mouser | ca. 9 € |
+| Fühlerbuchse | Omega PCC-SMP-K (Print, Typ K, −29…+180 °C), Packung 5 = PCC-SMP-K-5 | eigener (hardware/lib) | Farnell 3794917 | prüfen |
+| Flipflop | TI SN74LVC74AD | `Package_SO:SOIC-14_3.9x8.7mm_P1.27mm` | Mouser | ca. 0,50 € |
+| Watchdog | TI TPS3828-33DBVR | `Package_TO_SOT_SMD:SOT-23-5` | Mouser | ca. 1 € |
+| Thermostat | Microchip TC6501P065VCTTR | `Package_TO_SOT_SMD:SOT-23-5` | DigiKey 412996 | ca. 0,75 € |
+| MOSFET N | IRLML6346 (4×) | `Package_TO_SOT_SMD:SOT-23` | Magazin | – |
+| MOSFET N | BSS138 | `Package_TO_SOT_SMD:SOT-23` | Magazin | – |
+| MOSFET P | AO3401A (2×) | `Package_TO_SOT_SMD:SOT-23` | Magazin | – |
+| Freilauf | MBR0530 (2×) | `Diode_SMD:D_SOD-123` | Magazin | – |
+| Summer | passiver Magnet-Summer 5 V, ≤ 30 mA, Betriebstemperatur ≥ 70 °C | `Buzzer_Beeper:` (prüfen) | offen | ca. 1 € |
+| LED | grün, 0805 | `LED_SMD:LED_0805_2012Metric` | Mouser/Reichelt | ca. 0,10 € |
+| Netzklemme | Phoenix MSTBA 2,5/2-G-5,08 + Stecker MSTB 2,5/2-ST-5,08 | `Connector_Phoenix_MSTB:PhoenixContact_MSTBA_2,5_2-G-5,08_1x02_P5.08mm_Horizontal` | Reichelt/Mouser | ca. 2 € |
+| Lastteil-Klemme | Phoenix MC 1,5/6-G-3,81 + Stecker MC 1,5/6-ST-3,81 | `Connector_Phoenix_MC:` 1x06 P3.81 mm horizontal | Reichelt/Mouser | ca. 2,50 € |
+| Display-Stecker | Wannenstecker 2×5, 2,54 mm (z. B. Würth WR-BHD) + Pfostenbuchse + Flachband | `Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical` | Reichelt | ca. 1 € |
+| Bedienteil-Stecker | Wannenstecker 2×4, 2,54 mm + Pfostenbuchse | `Connector_IDC:IDC-Header_2x04_P2.54mm_Vertical` | Reichelt | ca. 1 € |
+| Debug-UART | Stiftleiste 1×3, 2,54 mm (optional) | `Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical` | Magazin/Reichelt | – |
+| Taster | Kurzhubtaster 6 × 6 mm THT (2×) | `Button_Switch_THT:SW_PUSH_6mm` | Reichelt | ca. 0,20 € |
+| Elkos | 100 µF / 16 V, 105 °C | THT oder SMD (Magazin nur 16 V ohne Temperaturangabe) | Reichelt | ca. 0,20 € |
+| Passive | R, C 0603/0805 | `Resistor_SMD`, `Capacitor_SMD` | Magazin (Ausnahmen: 1 MΩ, 4,7 nF SMD; 2,2 kΩ für WDI vorhanden) | – |
+
+### Außerhalb der Platine
+
+| Funktion | Hersteller / Teilenummer | Quelle | Preis |
 |---|---|---|---|
-| Netzteil | Mean Well IRM-10-5 | Modul THT | Reichelt |
-| Sicherung | T 500 mA | TR5 / 5×20 | offen |
-| Varistor | S07K275 | THT | offen |
-| LDO 3,3 V | AP7361C-33E | SOT-223 | offen |
-| Dioden-ODER | SS34 (2×) | SMA | Magazin |
-| Controller | ESP32-S3-WROOM-1U-N8 | Modul | Benutzer bestellt |
-| USB-C | 16-polige Buchse mit THT-Laschen | – | offen |
-| ESD | USBLC6-2SC6 (3×) | SOT-23-6 | Magazin |
-| Thermoelement | MAX31856 (2×) | TSSOP-14 | offen |
-| Fühlerbuchse | Mini-TC Typ K, Print (2×) | THT | offen |
-| Flipflop | SN74LVC74A | SOIC-14 | offen |
-| Watchdog | TPS3828-33 | SOT-23-5 | offen |
-| Thermostat | TC6501P065 | SOT-23-5 | offen |
-| MOSFET N | IRLML6346 (4×: 2 × SSR, Relais, Summer) | SOT-23 | Magazin |
-| MOSFET N | BSS138 | SOT-23 | Magazin |
-| MOSFET P | AO3401A (2×: SSR-Versorgung, Beleuchtung) | SOT-23 | Magazin |
-| Freilauf | MBR0530 (2×) | SOD-123 | Magazin |
-| Summer | passiv, 5 V | THT | offen |
-| LED | grün | 0805 / 3 mm | offen |
-| Stecker | Klemmen 5,08 mm (2-pol.), 3,81 mm (6-pol.), IDC 2×5, IDC 2×4, Pinleiste 3-pol. | THT | offen |
-| Taster | BOOT, RESET | THT 6 × 6 mm | offen |
-| Passive | R, C 0603/0805 | SMD | Magazin (Ausnahmen: 1 MΩ, 4,7 nF SMD) |
+| SSR (2×) | Sensata Crydom D2425 | Mouser/Reichelt | ca. 45–60 € (prüfen) |
+| Sicherheitsrelais | Finder 40.61.9.005.0000 | Reichelt/Mouser | ca. 6–10 € |
+| Relaisfassung | Finder 95.05 (Schraubmontage) | Reichelt/Mouser | ca. 4–8 € |
+| Antenne | U.FL → RP-SMA-Pigtail (ca. 15 cm, Durchführung) + 2,4-GHz-Stabantenne RP-SMA | Reichelt/Amazon | ca. 8 € |
+| Encoder | Alps EC11E15244G1 | Conrad 3523314 | 3,49 € |
+| Stopp-Taste | rot, Ø 16–19 mm, 1 Öffner + 1 Schließer | offen | – |
+| Thermoelemente (2×) | Typ K, Mantel Ø 1–1,5 mm, isolierte Messstelle, Mini-Stecker SMPW-K | offen | – |

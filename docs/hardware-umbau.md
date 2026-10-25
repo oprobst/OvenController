@@ -61,19 +61,19 @@ nicht konkret ausgewählt.
 |---|---|---|---|
 | Mikrocontroller | ESP32-S3-WROOM-1U-N8 (8 MB Flash, **ohne PSRAM**, 85 °C, **externe Antenne** über U.FL), natives USB. Prototyp: ESP32-S3-DevKitC-1-N8. Bisheriger Prototyp REV DEV auf ESP32-DevKitC V4 (Feature 001) (siehe „Mikrocontroller und Pinbelegung") | wird bestellt (Benutzer) | offen |
 | WLAN-Antenne | U.FL-Pigtail auf Gehäusedurchführung (z. B. RP-SMA) und 2,4-GHz-Antenne außen am Gehäuse | offen | offen |
-| Temperaturmessung | 2 Kanäle (oben, unten) mit je MAX31856 (TSSOP-14, 50-Hz-Filter, FAULT-Ausgang). Prototyp REV DEV: MAX31855-Breakout (siehe „Sensorik") | offen | ca. 8–12 € je IC (Richtwert) |
+| Temperaturmessung | 2 Kanäle (oben, unten) mit je MAX31856MUD+ (TSSOP-14, 50-Hz-Filter, FAULT-Ausgang). Prototyp REV DEV: MAX31855-Breakout (siehe „Sensorik") | Mouser | ca. 9 € je IC (Richtwert) |
 | Thermoelemente | 2 × Typ K, Mantel Ø 1–1,5 mm, **isolierte Messstelle** | offen | offen |
-| Thermoelement-Buchse | 2 × Mini-TC-Buchse Typ K, Printversion, je neben ihrem MAX31856 | offen | offen |
-| Heizung schalten | 2 × Panel-SSR (Hockey-Puck), nullspannungsschaltend, 25 A, Markenware (z. B. Crydom D2425, Carlo Gavazzi RM1A, Omron G3NA-225B), nicht auf der Platine. Getrennt für Ober- und Unterhitze (siehe „Lastseite") | offen | ca. 25–45 € je Stück (Richtwert) |
-| Sicherheitsrelais | Finder 40.61 (16 A, 1 Schließer genutzt, 5-V-DC-Spule) in Fassung 95.05, angeschraubt (keine Hutschiene) | offen | Relais ca. 5–10 €, Fassung ca. 4–8 € (Richtwert) |
-| Externer Watchdog | TI TPS3828-33 (SOT-23-5, Open-Drain-Reset, 1,6 s) in der Löschkette des Freigabe-Latch | offen | ca. 1 € (Richtwert) |
-| Freigabe-Latch | D-Flipflop mit asynchronem Löschen, z. B. 74LVC1G74 | offen | offen |
+| Thermoelement-Buchse | 2 × Omega PCC-SMP-K (Mini-TC Typ K, Print, −29…+180 °C), je neben ihrem MAX31856 | Farnell 3794917 (PCC-SMP-K-5, 5 Stück) | prüfen |
+| Heizung schalten | 2 × Sensata Crydom **D2425** (Panel-SSR, nullspannungsschaltend, 25 A, Steuereingang 3–32 V DC, max. 12 mA), nicht auf der Platine. Getrennt für Ober- und Unterhitze (siehe „Lastseite"). Nicht Carlo Gavazzi RM1A (Steuereingang erst ab 4,25 V) | Mouser/Reichelt | ca. 45–60 € je Stück (Richtwert) |
+| Sicherheitsrelais | Finder **40.61.9.005.0000** (16 A, 1 Schließer genutzt, Standardspule 5 V: 38 Ω, 130 mA, Anzug ab 3,65 V) in Fassung 95.05 (10 A), angeschraubt (keine Hutschiene). Nicht die empfindliche Spule 40.61.7.005 (Anzug erst ab 4,0 V) | Reichelt/Mouser | Relais ca. 6–10 €, Fassung ca. 4–8 € (Richtwert) |
+| Externer Watchdog | TI TPS3828-33DBVR (SOT-23-5, Open-Drain-Reset, Watchdog 0,9/1,6/2,5 s) in der Löschkette des Freigabe-Latch; WDI mit 2,2 kΩ Pull-down (offener WDI schaltet den Watchdog ab) | Mouser | ca. 1 € (Richtwert) |
+| Freigabe-Latch | TI SN74LVC74AD (SOIC-14, D-Flipflop mit asynchronem Löschen) | Mouser | ca. 0,50 € (Richtwert) |
 | PCB-Temperatur (Firmware) | Vergleichsstellen-Temperatur (CJ) der MAX31856, kein eigener Sensor | – | – |
-| PCB-Übertemperatur (Hardware) | Microchip TC6501 (SOT-23-5, feste Schwelle ab Werk, Open-Drain aktiv low), Schwelle 65 °C (z. B. TC6501P065…), Hysterese 10 °C | offen | ca. 1 € (Richtwert) |
+| PCB-Übertemperatur (Hardware) | Microchip TC6501P065VCTTR (SOT-23-5, Schwelle 65 °C ab Werk, Open-Drain aktiv low), Hysterese 10 °C | DigiKey 412996 | ca. 0,75 € (Richtwert) |
 | Lüfter | entfällt (Entscheidung 2026-10-24) | – | – |
 | Netzteil | Mean Well IRM-10-5 (230 V → 5 V / 2 A, 10 W, Printmodul) mit Feinsicherung T 500 mA und Varistor S07K275 (siehe „Versorgung") | [Reichelt IRM-10-5](https://www.reichelt.de/de/de/shop/search/irm-10-5) | 8,10 € (2026-10-24) |
-| 3,3-V-Regler | LDO AP7361C-33 (1 A, SOT-223) mit Kupferfläche. Die vorhandenen 1117-33 (ohne Datenblatt) nur für Versuche (siehe „Abgleich mit dem Bauteil-Magazin") | offen | offen |
-| Programmierung | Im Betrieb per OTA. Dazu USB-C direkt am nativen USB des ESP32-S3 (kein USB-UART-Chip), ESD-Schutz, VBUS über Schottky-Diode, Taster BOOT und RESET | offen | offen |
+| 3,3-V-Regler | LDO Diodes AP7361C-33E-13 (1 A, SOT-223) mit Kupferfläche. Die vorhandenen 1117-33 (ohne Datenblatt) nur für Versuche (siehe „Abgleich mit dem Bauteil-Magazin") | Mouser | ca. 0,50 € (Richtwert) |
+| Programmierung | Im Betrieb per OTA. Dazu USB-C-Buchse GCT USB4085-GF-A (Durchsteckmontage) direkt am nativen USB des ESP32-S3 (kein USB-UART-Chip), ESD-Schutz, VBUS über Schottky-Diode, Taster BOOT und RESET | Mouser | ca. 1 € (prüfen) |
 | ESD-Schutz USB | ST USBLC6-2SC6 (SOT-23-6) an D+/D−/VBUS | vorhanden (Magazin) | – |
 | MOSFETs | N-Kanal IRLML6346 (Relaisspule, SSR-Low-Side, Buzzer), BSS138 (Pegelstufe), P-Kanal AO3401A (SSR-High-Side, Hintergrundbeleuchtung) | vorhanden (Magazin) | – |
 | Dioden | SS34 (VBUS-Entkopplung), MBR0530 oder 1N4148 (Freilauf Relaisspule) | vorhanden (Magazin) | – |
@@ -83,8 +83,8 @@ nicht konkret ausgewählt.
 | Anzeige | 2,8" TFT ST7789, 240 × 320 hochkant, SPI (festgelegt in Feature 001). Modul ohne eigenen Regler: alle Pins 3,3 V | vorhanden | – |
 | Eingabe: Drehencoder | Alps EC11E15244G1: 15 Impulse / 30 Rastungen, Taster, vertikal, 20 mm Welle (siehe „Bedienfeld") | [Conrad 3523314](https://www.conrad.de/de/p/alps-encoder-1-st-5vdc-encoder-inkremental-pos-30-15impulse-umdrehung-10ma-tht-3523314.html) | 3,49 € (2026-10-24) |
 | Eingabe: Stopp-Taste | rot, Ø 16–19 mm, Fronteinbau, **1 Öffner + 1 Schließer** (siehe „Bedienfeld" und „Lastseite") | offen | offen |
-| Signal | Buzzer | offen | offen |
-| Debug-LED | LED mit Vorwiderstand auf der Platine, nur zur Diagnose (nicht im Bedienfeld) | offen | offen |
+| Signal | passiver Magnet-Summer 5 V, ≤ 30 mA, ≥ 70 °C (Typ noch offen) | offen | ca. 1 € |
+| Debug-LED | LED grün 0805 mit Vorwiderstand auf der Platine, nur zur Diagnose (nicht im Bedienfeld) | Mouser/Reichelt | ca. 0,10 € |
 | Gehäuse | auf der kalten Seite des Ofens | – | – |
 
 Die Pinbelegung des Steckbrett-Prototyps („PCB REV DEV") steht in
@@ -209,7 +209,7 @@ D-Flipflop mit asynchronem Löschen (z. B. 74LVC1G74). Löschen hat Vorrang vor 
 Beschaltung der CLR-Leitung (aktiv low):
 
 - Ein **Pull-down** (z. B. 100 kΩ) zieht CLR nach GND.
-- 3,3 V gelangen **nur über den Öffner der Stopp-Taste** und einen Serienwiderstand (z. B. 1 kΩ)
+- 3,3 V gelangen **nur über den Öffner der Stopp-Taste** und einen Serienwiderstand (4,7 kΩ)
   auf CLR. Taste gedrückt, Kabel abgezogen oder Ader gebrochen → CLR low → Latch gelöscht.
   Ein Pull-up direkt auf der Platine wäre falsch: Ein abgezogenes Kabel würde dann nicht
   löschen.
@@ -310,7 +310,7 @@ auf 70 °C. FAULT-Schwelle der Kammer und zulässige Abweichung oben/unten legt 
 | ESP32-S3-WROOM-1 mit WLAN | 3,3 V | 100–150 mA | ca. 500 mA | Sendespitzen von wenigen ms |
 | TFT-Logik + Hintergrundbeleuchtung | 3,3 V | 50–100 mA | 100 mA | Strom der Beleuchtung am Modul nachmessen |
 | 2 × MAX31856, TPS3828, Logik, Debug-LED | 3,3 V | ca. 20 mA | – | |
-| Sicherheitsrelais Finder 40.61, 5 V | 5 V | ca. 130 mA | – | aus 6-V-Variante abgeleitet (55 Ω / 109 mA ≈ 0,65 W), beim Kauf prüfen |
+| Sicherheitsrelais Finder 40.61.9.005, 5 V | 5 V | 130 mA | – | laut Datenblatt: 38 Ω, Anzug ab 3,65 V |
 | 2 × SSR-Eingang | 5 V | 20–30 mA | 30 mA | |
 | Buzzer | 5 V | – | 30 mA | |
 | **Summe 5 V** | | **ca. 450 mA** | **ca. 800 mA** | |

@@ -39,7 +39,7 @@ baubar
 
 **Project Type**: Hardware (KiCad-Projekt unter `hardware/`) + Embedded-Firmware (`firmware/`)
 
-**Performance Goals**: Last stromlos ≤ 100 ms nach Stopp (Hardwarepfad), ≤ 2 s nach
+**Performance Goals**: Last stromlos ≤ 100 ms nach Stopp (Hardwarepfad), ≤ 2,6 s nach
 ausbleibendem Watchdog-Signal; Fühlerfehler ≤ 2 s erkannt; Temperatur beider Kanäle ≥ 1×/s
 
 **Constraints**: Platine ≤ 150 × 150 mm (Ziel ≤ 100 × 100 mm), Bauteilhöhe ≤ 40 mm, 2 Lagen,

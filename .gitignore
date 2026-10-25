@@ -19,6 +19,10 @@ firmware/include/wifi_secrets.h
 # Hardware: Python-Umgebung für SKiDL
 hardware/.venv/
 __pycache__/
+# SKiDL-Nebenprodukte (ERC-Bericht, Log, Bibliotheks-Cache)
+*.erc
+skidl_*.log
+*_sklib.py
 
 # KiCad: Backups und lokale Dateien
 *-backups/

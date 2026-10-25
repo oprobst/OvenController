@@ -69,7 +69,7 @@ Automatische HIL-Tests (ohne Netz, Last nicht nötig):
 | `test_hil_max31856` | Konfiguration, beide Kanäle lesen, CJ plausibel | FR-013, FR-015 |
 | `test_hil_enable_chain` · Start | Q nach Start gelöscht | US2-1, FR-020 |
 | · ARM/DISARM | ARM setzt Q, DISARM löscht in ≤ 1 ms | FR-022, FR-023 |
-| · Watchdog | Herzschlag stoppen → Q gelöscht in ≤ 2 s | US2-4, SC-002 |
+| · Watchdog | Herzschlag stoppen → Q gelöscht in ≤ 2,6 s | US2-4, SC-002 |
 | · Kammer-FAULT | Obergrenze per Register unter Raumtemperatur setzen → Q gelöscht, `clearActive` | US2-6, FR-014 |
 | · Vorrang Löschen | Stopp gedrückt halten (Testanweisung im Log) → ARM wirkungslos | US2-7 |
 

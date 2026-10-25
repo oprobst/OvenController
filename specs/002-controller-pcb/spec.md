@@ -68,7 +68,7 @@ auslösen und prüfen, dass die Last abschaltet und die Freigabe gelöscht bleib
 3. **Given** die Heizung ist freigegeben, **When** das Kabel der Stopp-Taste abgezogen wird oder
    eine Ader bricht, **Then** wirkt das wie ein Stopp.
 4. **Given** die Heizung ist freigegeben, **When** die Firmware nicht mehr regelmäßig ihr
-   Lebenszeichen gibt, **Then** schaltet die Last innerhalb von 2 Sekunden ab.
+   Lebenszeichen gibt, **Then** schaltet die Last innerhalb von 2,6 Sekunden ab.
 5. **Given** die Heizung ist freigegeben, **When** die Platinentemperatur die Hardware-Schwelle
    überschreitet, **Then** schaltet die Last ohne Mitwirkung der Firmware ab und bleibt nach
    dem Abkühlen aus.
@@ -285,8 +285,8 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
 
 - **SC-001**: Nach Druck auf die Stopp-Taste ist die Last in 100 % der Versuche innerhalb von
   100 ms stromlos, auch bei angehaltener Firmware.
-- **SC-002**: Nach Ausbleiben des Firmware-Lebenszeichens ist die Last innerhalb von 2 Sekunden
-  stromlos.
+- **SC-002**: Nach Ausbleiben des Firmware-Lebenszeichens ist die Last innerhalb von
+  2,6 Sekunden stromlos (maximale Watchdog-Zeit des Bausteins 2,5 s plus Reserve).
 - **SC-003**: Jede Löschquelle aus FR-021 schaltet die Last im HIL-Test ab; in keinem Fall
   heizt der Ofen danach ohne neue Benutzerfreigabe weiter.
 - **SC-004**: In 100 Einschaltvorgängen und 100 Neustarts wird kein Lastkreis auch nur kurz
@@ -338,6 +338,9 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   Messpunkte an 230 V.
 - Q: Bei welchen Platinentemperaturen soll abgeschaltet werden? → A: Firmware 60 °C,
   Hardware 65 °C (Auslegung auf 70 °C Umgebung für das Netzteilmodul).
+- Q: Welche Zeit gilt für die Abschaltung bei ausbleibendem Lebenszeichen (SC-002), nachdem
+  das Datenblatt des Watchdog-Bausteins geprüft ist (T006)? → A: 2,6 s statt 2 s; der Baustein
+  löst spätestens nach 2,5 s aus, schnellere Varianten haben keinen Open-Drain-Ausgang.
 - Q: Wie viel Firmware gehört zu diesem Platinen-Feature? → A: Hardware plus
   Inbetriebnahme-Firmware (Board-Konfiguration, Treiber, HIL-Tests); Regelung folgt im Feature
   „Sichere Temperaturregelung".
