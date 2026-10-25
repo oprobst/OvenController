@@ -29,6 +29,25 @@ python -m venv hardware/.venv
 hardware/.venv/Scripts/python -m pip install -r hardware/requirements.txt
 ```
 
+## KiCad-Projekt anlegen (einmalig je Platine)
+
+```bash
+"D:/hobby/Elektronik/KiCad/10.0/bin/python.exe" hardware/tools/make_board.py hardware/controller/controller.kicad_pcb
+```
+
+```bash
+python hardware/tools/make_project.py hardware/controller/controller.kicad_pro
+```
+
+Reihenfolge einhalten: Das Speichern einer neuen Platine setzt die Projektdatei zurück.
+`make_project.py` setzt die Netzklassen `Mains` (L_IN, N_IN, L_FUSED), `Power` und `Default`
+und die Mindestwerte. Die Sicherheitsabstände stehen als eigene Regeln in
+`controller/controller.kicad_dru`: Netz ↔ Kleinspannung 6 mm (Luft- und Kriechstrecke), L ↔ N
+3 mm, keine Vias in Netzleitungen, Netz ↔ Platinenrand 3 mm, Netz ↔ Montagelöcher 3 mm. Die
+ersten vier Regeln sind an einer Testplatine mit absichtlichen Verstößen geprüft (T019), die
+Regel zu den Montagelöchern wird mit dem ersten Layout geprüft. `controller/fp-lib-table` bindet
+`hardware/lib/oven.pretty` für die KiCad-Oberfläche ein.
+
 ## Netzliste erzeugen
 
 ```bash

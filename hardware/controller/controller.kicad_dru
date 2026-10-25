@@ -1,0 +1,39 @@
+(version 1)
+
+# Design rules for controller REV A (T019). Values: specs/002-controller-pcb/research.md R2, R13.
+# Net classes (controller.kicad_pro): Mains = L_IN, N_IN, L_FUSED; Power; Default.
+
+# Reinforced insulation primary (230 V) <-> everything else, IEC 60664-1 / 62368-1,
+# overvoltage category II, pollution degree 2: about 5 mm creepage / 3 mm clearance required,
+# 6 mm chosen with margin. The milled slot under the IRM-10-5 adds creepage distance.
+(rule "mains_to_low_voltage"
+	(condition "A.NetClass == 'Mains' && B.NetClass != 'Mains'")
+	(constraint clearance (min 6mm))
+	(constraint creepage (min 6mm))
+)
+
+# L <-> N behind the fuse: functional insulation.
+(rule "mains_l_to_n"
+	(condition "A.NetClass == 'Mains' && B.NetClass == 'Mains' && A.Net != B.Net")
+	(constraint clearance (min 3mm))
+	(constraint creepage (min 3mm))
+)
+
+# No vias in mains nets: all mains copper stays on the outer layers, visible and inspectable.
+(rule "mains_no_vias"
+	(condition "A.Type == 'Via' && A.NetClass == 'Mains'")
+	(constraint disallow via)
+)
+
+# The board is mounted on a grounded (PE) metal plate: keep mains copper away from the board
+# edge and from the mounting holes (basic insulation to PE, with margin).
+(rule "mains_to_edge"
+	(condition "A.NetClass == 'Mains'")
+	(constraint edge_clearance (min 3mm))
+)
+
+(rule "mains_to_mounting_holes"
+	(condition "A.NetClass == 'Mains' && B.Type == 'Pad' && B.Pad_Type == 'NPTH, mechanical'")
+	(constraint hole_clearance (min 3mm))
+	(constraint clearance (min 3mm))
+)
