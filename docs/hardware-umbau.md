@@ -213,14 +213,15 @@ Beschaltung der CLR-Leitung (aktiv low):
   auf CLR. Taste gedrückt, Kabel abgezogen oder Ader gebrochen → CLR low → Latch gelöscht.
   Ein Pull-up direkt auf der Platine wäre falsch: Ein abgezogenes Kabel würde dann nicht
   löschen.
-- Alle übrigen Löschquellen (TPS3828, TC6501, FAULT der MAX31856) sind Open-Drain und ziehen CLR
-  gegen den Serienwiderstand nach GND.
+- Die übrigen Löschquellen ziehen CLR gegen den Serienwiderstand nach GND: TPS3828 und TC6501
+  direkt (Open-Drain), die FAULT-Ausgänge der MAX31856 je über eine Schottky-Diode
+  (Ausgangstyp nicht sicher belegt).
 
 | Signal | Quelle | Wirkung |
 |---|---|---|
 | Löschen | Öffner der Stopp-Taste | Heizung sofort aus, ohne Firmware. Ein abgerissenes Kabel wirkt wie ein Stopp |
 | Löschen | PCB-Übertemperatur (TC6501, Open-Drain) | erfüllt die SOLLTE-Regel aus Prinzip IVa |
-| Löschen | FAULT der beiden MAX31856 (Open-Drain) | Kammer-Übertemperatur über eingestellte Schwelle oder Fühlerfehler, auch bei hängender Regelungslogik |
+| Löschen | FAULT der beiden MAX31856 (je über Schottky-Diode) | Kammer-Übertemperatur über eingestellte Schwelle oder Fühlerfehler, auch bei hängender Regelungslogik |
 | Löschen | TPS3828 /RESET | Power-on-Reset, Unterspannung der 3,3-V-Schiene, Watchdog-Ablauf |
 | Löschen | MCU „DISARM" über /MR des TPS3828 | Fehlerzustand der Firmware nimmt die Hardware-Freigabe weg |
 | Setzen | MCU-Impuls „ARM" | nur nach bestätigtem „Starten?" |
@@ -262,7 +263,7 @@ auf 70 °C. FAULT-Schwelle der Kammer und zulässige Abweichung oben/unten legt 
 ### Begründung
 
 - **MAX31856 statt MAX31855:** umschaltbarer 50/60-Hz-Filter (Thermoelement liegt neben
-  getakteten 230-V-Leitungen), einstellbare Temperaturschwellen und FAULT-Ausgang (Open-Drain)
+  getakteten 230-V-Leitungen), einstellbare Temperaturschwellen und FAULT-Ausgang (über Schottky-Diode)
   auf der CLR-Leitung des Freigabe-Latch. Die Schwellen schreibt die Firmware nach dem Start
   in die Register und liest sie zyklisch zurück; bis dahin ist der Latch gelöscht. Der
   MAX31855-Treiber bleibt für REV DEV; für die Platine kommt ein eigener HAL-Treiber

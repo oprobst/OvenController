@@ -53,6 +53,8 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
   Modul statt diskretem Netzteil.
 - **Temperatur**: IRM-10 je nach Datenblattstand bis 70 °C bzw. 85 °C Umgebung mit
   Leistungsreduzierung; ausgelegt wird auf 70 °C. Last ca. 0,45 A von 2 A (≈ 23 %).
+  Geprüft in T009: Das aktuelle Datenblatt (IRM-10-SPEC, 2025-08-08) nennt −30…+85 °C; die
+  Auslegung auf 70 °C bleibt als Reserve. Maße 45,7 × 25,4 × 21,5 mm.
 - **Alternatives considered**: HLK-5M05 (Zertifikate fraglich, 5 W wenig Reserve); TNY289 aus
   dem Magazin (diskretes Netzteil, unverhältnismäßiger Isolationsaufwand).
 
@@ -124,9 +126,12 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
   - **Löschleitung (aktiv low)**: 100-kΩ-Pull-down nach GND; 3,3 V nur über den
     **Stopp-Öffner** und **4,7 kΩ** (ca. 0,7 mA; der TPS3828 garantiert VOL ≤ 0,45 V nur bis
     1,2 mA, daher nicht 1 kΩ). Pegel bei geschlossenem Öffner: 3,3 V × 100/104,7 ≈ 3,15 V.
-    Open-Drain-Quellen auf der Leitung: TPS3828 /RESET, TC6501,
-    FAULT beider MAX31856. 1 nF gegen GND gegen Störspitzen aus dem Kabel; ESD-Schutz am
-    Steckverbinder (R9).
+    Open-Drain-Quellen direkt auf der Leitung: TPS3828 /RESET und TC6501. Die FAULT-Ausgänge
+    beider MAX31856 gehen je über eine **Schottky-Diode MBR0530** (Kathode am FAULT-Pin) auf
+    die Leitung: Ob FAULT Open-Drain oder Push-Pull ist, ließ sich in T009 nicht am
+    Originaldatenblatt klären; mit der Diode funktioniert beides (Low-Pegel auf der Leitung ca.
+    0,3 V < 0,8 V Eingangsschwelle des 74LVC74). 1 nF gegen GND gegen Störspitzen aus dem Kabel;
+    ESD-Schutz am Steckverbinder (R9).
   - Rücklesen: **Q** an GPIO 47, **Löschleitung** über 10 kΩ an GPIO 36 (`CLR_SENSE`, neu),
     Stopp-Schließer an GPIO 42.
   - Q steuert: P-MOSFET der SSR-Versorgung (über BSS138) und die Relaisspule (IRLML6346).
