@@ -1,0 +1,41 @@
+(kicad_sch
+  (version 20250114)
+  (generator "skidl")
+  (generator_version "0.2.0")
+  (uuid a99db074-4055-41d9-95f4-b496598f66b2)
+  (paper "A4")
+  (title_block
+    (title "Encoder-Traeger REV A")
+    (date "2026-10-25")
+    (company "")
+    (comment 1 "Generated with SKiDL")
+    (comment 2 "")
+    (comment 3 "")
+    (comment 4 ""))
+  (lib_symbols)
+  (sheet
+    (at 137.41 96.52)
+    (size 22.35 17.78)
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (fields_autoplaced yes)
+    (stroke
+      (width 0.1524)
+      (type solid))
+    (fill
+      (color 0 0 0 0.0))
+    (uuid d4eb487a-0831-5316-8a19-151ba66fd530)
+    (property "Sheetname" "Encoder"
+      (at 137.41 95.81 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left bottom)))
+    (property "Sheetfile" "encoder-carrier_encoder.kicad_sch"
+      (at 137.41 114.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left top)))))

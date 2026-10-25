@@ -3,7 +3,9 @@
 Run with KiCad's bundled Python:
     "D:/hobby/Elektronik/KiCad/10.0/bin/python.exe" hardware/tools/import_netlist.py hardware/controller/controller.net hardware/controller/controller.kicad_pcb
 
-- Footprints are matched by their symbol path (the netlist tstamp, stable through SKiDL tags).
+- Footprints are matched by their symbol path (sheet path + symbol UUID).
+- --relink-by-ref: footprints whose symbol path is unknown are matched by reference instead and
+  get the new path (once, when the source of the netlist changes, e.g. SKiDL -> KiCad schematic).
 - Existing footprints keep position, side and rotation; reference, value, fields and nets are
   updated. A changed footprint ID is reported, not swapped (do that in KiCad).
 - New footprints are placed in a row below the board; footprints whose symbol is gone are
@@ -42,7 +44,14 @@ def load_footprint(fp_id):
     return fp
 
 
-def main(netlist, board_path):
+def symbol_path(comp):
+    """KiCad footprint path: sheet path of the symbol plus its UUID ("/sheet/.../symbol")."""
+    sheet = children(comp, "sheetpath")
+    prefix = value(sheet[0], "tstamps") if sheet else "/"
+    return prefix + value(comp, "tstamps")
+
+
+def main(netlist, board_path, relink_by_ref=False):
     board_path = Path(board_path)
     pro = board_path.with_suffix(".kicad_pro")
     pro_backup = pro.read_bytes()
@@ -51,14 +60,21 @@ def main(netlist, board_path):
 
     existing = {fp.GetPath().AsString(): fp for fp in board.GetFootprints()
                 if fp.GetPath().AsString()}
+    by_old_ref = {fp.GetReference(): (path, fp) for path, fp in existing.items()}
     wanted = {}
+    relinked = 0
     added = updated = 0
     x = 0.0
     for comp in children(children(root, "components")[0], "comp"):
         ref, fp_id, val = value(comp, "ref"), value(comp, "footprint"), value(comp, "value")
-        path = "/" + value(comp, "tstamps")
+        path = symbol_path(comp)
         wanted[path] = ref
         fp = existing.get(path)
+        if fp is None and relink_by_ref and ref in by_old_ref:
+            old_path, fp = by_old_ref[ref]
+            fp.SetPath(pcbnew.KIID_PATH(path))
+            existing[path] = existing.pop(old_path)
+            relinked += 1
         if fp is None:
             fp = load_footprint(fp_id)
             if fp is None:
@@ -77,7 +93,7 @@ def main(netlist, board_path):
         fp.SetReference(ref)
         fp.SetValue(val or "")
         for name, text in fields_of(comp).items():
-            if name in ("MPN", "Source", "DNP"):
+            if name in ("MPN", "Source", "DNP", "Datasheet", "Description"):
                 fp.SetField(name, text)
                 fp.GetField(name).SetVisible(False)  # BOM data, not for the silkscreen
         fp.SetDNP(fields_of(comp).get("DNP") == "yes")
@@ -107,8 +123,8 @@ def main(netlist, board_path):
 
     pcbnew.SaveBoard(str(board_path), board)
     pro.write_bytes(pro_backup)
-    print(f"added {added}, updated {updated}, removed {removed}")
+    print(f"added {added}, updated {updated}, relinked {relinked}, removed {removed}")
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], relink_by_ref="--relink-by-ref" in sys.argv[3:])

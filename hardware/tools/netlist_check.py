@@ -8,37 +8,16 @@ library hardware/lib/oven.pretty), assigns the nets to the pads and reports foot
 cannot be found and pins without a matching pad. Exit code 1 on any problem.
 """
 
-import re
 import sys
 from pathlib import Path
 
 import pcbnew
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from sexp import children, parse_sexp, value  # noqa: E402,F401
+
 KICAD_FP = Path(r"D:\hobby\Elektronik\KiCad\10.0\share\kicad\footprints")
 PROJECT_LIBS = {"oven": Path(__file__).resolve().parents[1] / "lib" / "oven.pretty"}
-
-
-def parse_sexp(text):
-    tokens = re.findall(r'\(|\)|"(?:[^"\\]|\\.)*"|[^\s()]+', text)
-    stack = [[]]
-    for tok in tokens:
-        if tok == "(":
-            stack.append([])
-        elif tok == ")":
-            done = stack.pop()
-            stack[-1].append(done)
-        else:
-            stack[-1].append(tok[1:-1] if tok.startswith('"') else tok)
-    return stack[0][0]
-
-
-def children(node, key):
-    return [c for c in node[1:] if isinstance(c, list) and c and c[0] == key]
-
-
-def value(node, key):
-    found = children(node, key)
-    return found[0][1] if found and len(found[0]) > 1 else None
 
 
 def main(netlist):

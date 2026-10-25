@@ -36,6 +36,15 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
   verwirft unbekannte Inhalte); Schaltplan direkt in der KiCad-GUI (mehr Handarbeit, schlechter
   reviewbar); MCP-Server (nur Inspektion, kein Export in KiCad 10).
 
+- **Änderung (2026-10-25, nach T020)**: Der aus SKiDL erzeugte KiCad-Schaltplan war elektrisch
+  korrekt, aber kaum lesbar. Für die Sicherheitsprüfung (T024) braucht es einen lesbaren
+  Schaltplan. Deshalb ist ab jetzt der **KiCad-Schaltplan die Quelle**: einmal aus SKiDL als
+  Vorlage erzeugt (Blätter Netzteil, MCU, USB, Thermoelemente, Sicherheit, Last, Bedienung), in
+  KiCad aufgeräumt und gepflegt. Die geprüfte SKiDL-Netzliste ist als `controller.ref.net`
+  eingefroren; `hardware/tools/check_schematic.py` sichert die Übereinstimmung ab. Beim Erzeugen
+  hat dieses Skript zwei Generatorfehler gefunden (kurzgeschlossene Netze durch überlappende
+  Symbole, Zeichensatz der MPN-Felder); verwendet wird nur eine Vorlage ohne Verbindungsfehler.
+
 ## R2 – Netzeingang, Netzteil und Isolation
 
 - **Decision**:

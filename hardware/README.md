@@ -5,29 +5,22 @@ KiCad-Projekte des Ofen-Controllers. Entscheidungen und Begründungen:
 
 | Verzeichnis | Inhalt |
 |---|---|
-| `lib/` | projekteigene Symbole (`oven.kicad_sym`) und Footprints (`oven.pretty/`) |
-| `controller/` | Hauptplatine REV A: Schaltplan als SKiDL-Code in `schematic/`, KiCad-Projekt, Netzliste, Exporte in `output/` |
+| `lib/` | projekteigene Symbole (`oven.kicad_sym`) und Footprints (`oven.pretty/`), Prüfliste in `lib/README.md` |
+| `controller/` | Hauptplatine REV A: Schaltplan (`controller.kicad_sch` + 7 Blätter), Platine, Designregeln, Referenznetzliste `controller.ref.net`, Exporte in `output/` |
 | `encoder-carrier/` | Encoder-Träger REV A, gleiche Struktur |
+| `tools/` | Prüf- und Hilfsskripte (siehe unten) |
+| `archive/skidl/` | früherer Schaltplan als SKiDL-Code (nur noch Archiv) |
 
 ## Werkzeugkette
 
-- **Schaltplan**: Python-Code mit [SKiDL](https://github.com/devbisme/skidl), erzeugt eine
-  KiCad-Netzliste (`*.net`). Die Netzliste wird mitversioniert, damit Reviews ohne Python
-  möglich sind.
-- **Layout, ERC/DRC, Exporte**: KiCad 10.0.3, installiert unter
-  `D:\hobby\Elektronik\KiCad\10.0`. Kommandozeile: `D:\hobby\Elektronik\KiCad\10.0\bin\kicad-cli.exe`.
-- Das Layout entsteht in KiCad aus der Netzliste („Platine aus Netzliste aktualisieren").
-  Kein Werkzeug außer KiCad schreibt in `.kicad_pcb`.
-
-## Einrichtung (einmalig)
-
-```bash
-python -m venv hardware/.venv
-```
-
-```bash
-hardware/.venv/Scripts/python -m pip install -r hardware/requirements.txt
-```
+- **Quelle ist der KiCad-10-Schaltplan.** KiCad 10.0.3 unter `D:\hobby\Elektronik\KiCad\10.0`,
+  Kommandozeile `D:\hobby\Elektronik\KiCad\10.0\bin\kicad-cli.exe`.
+- Die Schaltpläne wurden einmalig aus dem SKiDL-Code (`archive/skidl/`) als Vorlage erzeugt; die
+  damals geprüfte Netzliste ist als `<platine>.ref.net` eingefroren.
+- Die Platine wird in KiCad aus dem Schaltplan aktualisiert (PCB-Editor: Werkzeuge → „Platine
+  aus Schaltplan aktualisieren", F8).
+- Die Skripte in `tools/` laufen mit normalem Python (`check_schematic.py`, `make_project.py`)
+  oder mit KiCads Python (`D:/hobby/Elektronik/KiCad/10.0/bin/python.exe`, alle mit `pcbnew`).
 
 ## KiCad-Projekt anlegen (einmalig je Platine)
 
@@ -48,41 +41,60 @@ ersten vier Regeln sind an einer Testplatine mit absichtlichen Verstößen gepr�
 Regel zu den Montagelöchern wird mit dem ersten Layout geprüft. `controller/fp-lib-table` bindet
 `hardware/lib/oven.pretty` für die KiCad-Oberfläche ein.
 
-## Netzliste erzeugen
+## Schaltplan prüfen (nach jeder Änderung)
 
 ```bash
-hardware/.venv/Scripts/python hardware/controller/schematic/main.py
+python hardware/tools/check_schematic.py controller
 ```
-
-Das Skript führt den ERC von SKiDL aus, gleicht die GPIO-Netze mit
-`firmware/include/board/board_rev_a.h` ab und schreibt `hardware/controller/controller.net` sowie
-`hardware/controller/output/controller-bom.csv`. Exit-Code 1 bei ERC-Meldungen oder
-Abweichungen zum Board-Header. Harmlose Ausgaben: Warnungen zu `KICAD*_SYMBOL_DIR` älterer
-Versionen, zur globalen `fp-lib-table` und ein „Missing tag" ohne Bauteilnamen (SKiDL-intern).
-
-Netzliste gegen KiCad 10 prüfen (alle Footprints ladbar, jeder Pin hat ein Pad):
 
 ```bash
-"D:/hobby/Elektronik/KiCad/10.0/bin/python.exe" hardware/tools/netlist_check.py hardware/controller/controller.net
+python hardware/tools/check_schematic.py encoder-carrier
 ```
 
-## Netzliste in die Platine übernehmen
+Exportiert die Netzliste des Schaltplans mit `kicad-cli` und vergleicht sie mit der
+Referenznetzliste: Bauteile (Referenz, Wert, Footprint, MPN, DNP), Verbindungen (welche Pins
+zusammenhängen, unabhängig vom Netznamen), Netznamen am ESP32 und an allen Netzen mit Netzklasse
+(`Mains`, `Power` aus der `.kicad_pro`). Bei der Hauptplatine zusätzlich der GPIO-Abgleich mit
+`firmware/include/board/board_rev_a.h`. Exit-Code 1 bei jeder Abweichung, umbenannte Netze ohne
+Netzklasse sind nur Hinweise.
+
+**Gewollte Schaltungsänderung:** Schaltplan ändern, ERC, dann die Referenznetzliste im selben
+Commit neu exportieren und den Grund in der Commit-Nachricht nennen:
 
 ```bash
-"D:/hobby/Elektronik/KiCad/10.0/bin/python.exe" hardware/tools/import_netlist.py hardware/controller/controller.net hardware/controller/controller.kicad_pcb
+"D:/hobby/Elektronik/KiCad/10.0/bin/kicad-cli.exe" sch export netlist --output hardware/controller/controller.ref.net hardware/controller/controller.kicad_sch
 ```
 
-Wirkt wie „Platine aus Netzliste aktualisieren": Bauteile werden über den Symbolpfad (SKiDL-Tag)
-erkannt, Lage und Drehung bleiben erhalten, Netze und Felder werden aktualisiert, neue Bauteile
-landen unterhalb der Platine. Alternativ in KiCad: Datei → Importieren → Netzliste.
+ERC des Schaltplans:
 
-Die Vorplatzierung (`hardware/tools/place_controller.py`) lief einmalig für REV A und verweigert
-einen zweiten Lauf, sobald ein Platinenumriss existiert.
+```bash
+"D:/hobby/Elektronik/KiCad/10.0/bin/kicad-cli.exe" sch erc --exit-code-violations --output hardware/controller/output/erc.rpt hardware/controller/controller.kicad_sch
+```
+
+## Schaltplan und Platine abgleichen
+
+Normalerweise in KiCad mit F8. Skriptweise (z. B. nach dem Wechsel der Quelle):
+
+```bash
+"D:/hobby/Elektronik/KiCad/10.0/bin/kicad-cli.exe" sch export netlist --output hardware/controller/output/controller.net hardware/controller/controller.kicad_sch
+```
+
+```bash
+"D:/hobby/Elektronik/KiCad/10.0/bin/python.exe" hardware/tools/import_netlist.py hardware/controller/output/controller.net hardware/controller/controller.kicad_pcb
+```
+
+`--relink-by-ref` verknüpft Footprints einmalig über die Referenz mit neuen Symbolen (so geschehen
+beim Wechsel SKiDL → KiCad-Schaltplan, Platzierung blieb erhalten). Die Montagelöcher H1–H4
+sind „nur Platine" und haben kein Symbol. Der DRC mit `--schematic-parity` prüft, dass Platine
+und Schaltplan zusammenpassen.
+
+Die Vorplatzierung (`tools/place_controller.py`) lief einmalig für REV A und verweigert einen
+zweiten Lauf, sobald ein Platinenumriss existiert.
 
 ## Prüfen und exportieren
 
 ```bash
-"D:/hobby/Elektronik/KiCad/10.0/bin/kicad-cli.exe" pcb drc --exit-code-violations --output hardware/controller/output/drc.rpt hardware/controller/controller.kicad_pcb
+"D:/hobby/Elektronik/KiCad/10.0/bin/kicad-cli.exe" pcb drc --schematic-parity --exit-code-violations --output hardware/controller/output/drc.rpt hardware/controller/controller.kicad_pcb
 ```
 
 ```bash
@@ -101,8 +113,9 @@ einen zweiten Lauf, sobald ein Platinenumriss existiert.
 "D:/hobby/Elektronik/KiCad/10.0/bin/kicad-cli.exe" pcb export step --output hardware/controller/output/controller.step hardware/controller/controller.kicad_pcb
 ```
 
-Die Stückliste erzeugt das SKiDL-Skript aus den Bauteilfeldern (Hersteller, Bestellnummer,
-Quelle) als `output/controller-bom.csv`.
+```bash
+"D:/hobby/Elektronik/KiCad/10.0/bin/kicad-cli.exe" sch export bom --fields "Reference,Value,Footprint,MPN,Source,QUANTITY,DNP" --group-by "Value,Footprint,MPN" --output hardware/controller/output/controller-bom.csv hardware/controller/controller.kicad_sch
+```
 
 ## Regeln
 
@@ -112,5 +125,7 @@ Quelle) als `output/controller-bom.csv`.
 - Netzspannung führende Netze gehören zur Netzklasse `Mains`; ihre Abstände prüft der DRC
   (Regeln in `controller/controller.kicad_dru`).
 - Keine Test- oder Messpunkte im 230-V-Bereich.
-- GPIO-Zuordnung in der Netzliste und in `firmware/include/board/board_rev_a.h` müssen
-  übereinstimmen (Verfassung, Prinzip VI).
+- GPIO-Zuordnung im Schaltplan und in `firmware/include/board/board_rev_a.h` müssen
+  übereinstimmen (Verfassung, Prinzip VI); `check_schematic.py` prüft das.
+- Netze mit Netzklasse (L_IN, N_IN, L_FUSED, Versorgungen) brauchen im Schaltplan ein Label mit
+  genau diesem Namen, sonst fallen sie aus ihrer Netzklasse und damit aus den Abstandsregeln.

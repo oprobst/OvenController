@@ -1,12 +1,22 @@
 # Werkzeuge für Schaltplan und Platine
 
-Status: **entschieden (2026-10-25)**: Schaltplan als Code mit **SKiDL**, Layout und Prüfung in
-**KiCad 10.0.3** (`D:\hobby\Elektronik\KiCad\10.0`, `kicad-cli` in `bin`). Kein MCP-Server
-vorerst. Begründung und Risiken: `specs/002-controller-pcb/research.md` (R1).
+Status: **entschieden (2026-10-25), geändert am selben Tag**:
 
-Kurzfassung: atopile ist nur mit KiCad 9 erprobt und schreibt mit eigenem Parser in die
-`.kicad_pcb` (Gefahr von Datenverlust beim Speichern in KiCad 10). SKiDL erzeugt nur eine
-Netzliste; das Layout bleibt vollständig in KiCad.
+- **Quelle des Schaltplans ist der KiCad-10-Schaltplan** (`hardware/<platine>/<platine>.kicad_sch`).
+  Layout, ERC/DRC und Exporte in **KiCad 10.0.3** (`D:\hobby\Elektronik\KiCad\10.0`,
+  `kicad-cli` in `bin`). Kein MCP-Server.
+- Der Schaltplan wurde zuerst als Code mit **SKiDL** geschrieben und geprüft (Feature 002, T010–T018).
+  Weil der aus SKiDL erzeugte Schaltplan kaum lesbar war, ist er seitdem nur noch die
+  **Vorlage**: einmal generiert, in KiCad aufgeräumt, ab dann gepflegt. Der SKiDL-Code liegt in
+  `hardware/archive/skidl/` und wird nicht mehr geändert.
+- Die damals geprüfte Netzliste ist als Referenz eingefroren (`<platine>.ref.net`).
+  `hardware/tools/check_schematic.py` vergleicht den Schaltplan mit ihr (Bauteile, Verbindungen,
+  Netznamen am ESP32) und prüft die GPIO-Belegung gegen `firmware/include/board/board_rev_a.h`.
+  Eine gewollte Schaltungsänderung heißt: Referenznetzliste im selben Commit aktualisieren und
+  den Grund nennen.
+
+Warum nicht atopile: nur mit KiCad 9 erprobt und schreibt mit eigenem Parser in die
+`.kicad_pcb` (Gefahr von Datenverlust beim Speichern in KiCad 10).
 
 ## Möglichkeiten, mit Claude an KiCad-Projekten zu arbeiten
 

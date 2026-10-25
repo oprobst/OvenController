@@ -49,7 +49,8 @@ Die Dokumente hier liefern dafür den Kontext und die Randbedingungen.
 - [ ] Ofen öffnen: Heizstäbe, Verdrahtung, Thermostat, Thermosicherung und Platz hinter der
       Rückwand dokumentieren und messen → Ergebnisse in [hardware-umbau.md](hardware-umbau.md)
 - [x] Umluft ja/nein: **nein** (2026-10-24) → [umluft-recherche.md](umluft-recherche.md)
-- [x] Werkzeuge festlegen: **SKiDL + KiCad 10**, kein MCP (2026-10-25) →
+- [x] Werkzeuge festlegen: **KiCad 10**, Schaltplan in KiCad (Vorlage aus SKiDL), kein MCP
+      (2026-10-25) →
       [werkzeuge-pcb.md](werkzeuge-pcb.md)
 - [ ] Einkaufsliste für Dämmung und Verkabelung erstellen (grob 120–200 € gesamt, je nach
       Bastelkiste)
