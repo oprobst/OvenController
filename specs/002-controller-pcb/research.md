@@ -94,6 +94,8 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
   - Eingang: Mini-Thermoelement-Buchse Typ K (Printversion, Kontakte aus Thermoelement-Material)
     direkt neben dem IC, Eingangsfilter nach Datenblatt (Differenzkondensator, ggf. Ferrite).
     Buchsen und ICs auf einer gemeinsamen Kupferfläche, ohne Wärmequellen in der Nähe.
+  - Umsetzung (T013): BIAS an T−, 10 nF differenziell zwischen T+ und T−. Beides beim nächsten
+    Zugriff auf das Originaldatenblatt (Typical Application Circuit) bestätigen.
   - Die Firmware liest Register zyklisch zurück und vergleicht sie mit der Soll-Konfiguration;
     Abweichung → Fehler E105 und DISARM.
 - **Rationale**: 50-Hz-Filter gegen Einstreuung aus den getakteten 230-V-Leitungen; FAULT als
@@ -204,8 +206,11 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
   - Hauptplatine: Stecker **IDC 2×4** (Raster 2,54 mm) für Encoder A/B/Taster, Stopp-Öffner
     (Hin- und Rückleitung) und Stopp-Schließer, GND.
   - Eingänge mit 10 kΩ Pull-up, 10 kΩ Serie, 10 nF nach GND (Datenblatt Alps EC11E); ESD-Schutz
-    der vier Signalleitungen mit einem **USBLC6-2SC6** als vierfaches Diodenarray (VBUS-Pin an
-    3,3 V), ein zweites USBLC6-2SC6 schützt die beiden Stopp-Öffner-Leitungen.
+    mit **USBLC6-2SC6** (VBUS-Pin an 3,3 V). Ein Baustein schützt **zwei** Leitungen (Pins 1/6
+    und 3/4 sind jeweils dieselbe Leitung): zwei Bausteine für ENC_A/ENC_B und ENC_SW/STOP_NO,
+    ein dritter für die beiden Stopp-Öffner-Leitungen (Korrektur in T016).
+  - `STOP_NC_OUT` über 220 Ω an 3,3 V, damit ein Kurzschluss im Kabel den LDO nicht belastet
+    (Pegel an CLR bei geschlossenem Öffner weiterhin ca. 3,1 V).
   - **Encoder-Träger** (eigene kleine Platine, ca. 25 × 30 mm): Alps EC11E15244G1, IDC 2×4 zur
     Hauptplatine, Steckklemme bzw. JST-XH für die Litzen der Stopp-Taste. Befestigung nur über die
     Mutter des Encoders.
@@ -326,7 +331,7 @@ pro Stück inkl. MwSt.
 | Dioden-ODER | SS34 (2×) | `Diode_SMD:D_SMA` | Magazin | – |
 | Controller | Espressif ESP32-S3-WROOM-1U-N8 | `RF_Module:ESP32-S3-WROOM-1U` | Benutzer bestellt | ca. 4 € |
 | USB-C | GCT USB4085-GF-A (Durchsteckmontage, USB 2.0) | `Connector_USB:USB_C_Receptacle_GCT_USB4085` | Mouser | ca. 1 € (prüfen) |
-| ESD | ST USBLC6-2SC6 (3×) | `Package_TO_SOT_SMD:SOT-23-6` | Magazin | – |
+| ESD | ST USBLC6-2SC6 (4×: USB, 3 × Bedienteil) | `Package_TO_SOT_SMD:SOT-23-6` | Magazin (Bestand prüfen) | – |
 | Thermoelement | Analog Devices MAX31856MUD+ (2×) | `Package_SO:TSSOP-14_4.4x5mm_P0.65mm` | Mouser | ca. 9 € |
 | Fühlerbuchse | Omega PCC-SMP-K (Print, Typ K, −29…+180 °C), Packung 5 = PCC-SMP-K-5 | eigener (hardware/lib) | Farnell 3794917 | prüfen |
 | Flipflop | TI SN74LVC74AD | `Package_SO:SOIC-14_3.9x8.7mm_P1.27mm` | Mouser | ca. 0,50 € |
@@ -335,7 +340,7 @@ pro Stück inkl. MwSt.
 | MOSFET N | IRLML6346 (4×) | `Package_TO_SOT_SMD:SOT-23` | Magazin | – |
 | MOSFET N | BSS138 | `Package_TO_SOT_SMD:SOT-23` | Magazin | – |
 | MOSFET P | AO3401A (2×) | `Package_TO_SOT_SMD:SOT-23` | Magazin | – |
-| Freilauf | MBR0530 (2×) | `Diode_SMD:D_SOD-123` | Magazin | – |
+| Schottky klein | MBR0530 (4×: Relais, Summer, FAULT oben/unten) | `Diode_SMD:D_SOD-123` | Magazin (Bestand prüfen) | – |
 | Summer | passiver Magnet-Summer 5 V, ≤ 30 mA, Betriebstemperatur ≥ 70 °C | `Buzzer_Beeper:` (prüfen) | offen | ca. 1 € |
 | LED | grün, 0805 | `LED_SMD:LED_0805_2012Metric` | Mouser/Reichelt | ca. 0,10 € |
 | Netzklemme | Phoenix MSTBA 2,5/2-G-5,08 + Stecker MSTB 2,5/2-ST-5,08 | `Connector_Phoenix_MSTB:PhoenixContact_MSTBA_2,5_2-G-5,08_1x02_P5.08mm_Horizontal` | Reichelt/Mouser | ca. 2 € |
