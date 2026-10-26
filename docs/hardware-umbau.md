@@ -504,7 +504,7 @@ Glitches beim Einschalten (Tabelle 2-2), jeweils ca. 60 µs:
 | 18 | Low und High | DISARM (→ /MR, aktiv low) | Low löscht höchstens den Latch, High ist inaktiv: **sicher** |
 | 19, 20 | High | USB | – |
 | 21, 35, 39–42, 47 | keiner | WDI, Buzzer, Encoder, Stopp, Latch Q | – |
-| 37, 38 | gegen Tabelle 2-2 prüfen | FAN_TACH, FAN_PWM | unkritisch: ein Glitch ändert höchstens kurz die Lüfterdrehzahl |
+| 37, 38 | keiner (Tabelle 2-2 nennt nur GPIO 1–20) | FAN_TACH, FAN_PWM | – (ein Glitch hätte höchstens kurz die Lüfterdrehzahl geändert) |
 
 Boot-Modus: GPIO 0 = 1 → Start aus dem Flash; GPIO 0 = 0 und GPIO 46 = 0 → Download.
 GPIO 45 wählt die Flash-Spannung (Pull-down = Standard), darf also keinen externen Pull-up

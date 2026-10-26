@@ -92,6 +92,15 @@ und Schaltplan zusammenpassen.
 Die Vorplatzierung (`tools/place_controller.py`) lief einmalig für REV A und verweigert einen
 zweiten Lauf, sobald ein Platinenumriss existiert.
 
+Die Netzabdeckung ist auf der Platine der Footprint COV1 (`oven:Netzabdeckung_REVA`, nur
+Platine, im Ursprung platziert). Er wird aus Parametern erzeugt; nach Änderungen an Wandlage oder
+Schraubenlöchern das Skript anpassen, neu erzeugen und in KiCad „Footprints aus Bibliothek
+aktualisieren“:
+
+```bash
+"D:/hobby/Elektronik/KiCad/10.0/bin/python.exe" hardware/tools/make_cover_footprint.py
+```
+
 ## Prüfen und exportieren
 
 ```bash

@@ -330,7 +330,7 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
 | Steckverbinder, Klemmen, USB-C | ≥ 85 °C (prüfen) | Auswahlregel |
 | Summer | ≥ 70 °C (prüfen) | Auswahlregel |
 | Lüfter Noctua NF-A4x10 5V PWM | 70 °C (Datenblatt) | ✅ Grenze, sitzt im Frischluftstrom |
-| Lüfterstecker Molex 47053-1000 | ≥ 85 °C (prüfen) | Auswahlregel |
+| Lüfterstecker Molex 47053-1000 | 0…+75 °C (Avnet), −40…+105 °C (Arrow); Molex-Zeichnung bei der Bestellung prüfen | ✅ beide ≥ 70 °C |
 | Netzabdeckung PC | Glasübergang ca. 110–145 °C | ✅ |
 
 ## R18 – Platinenlüfter (FR-036 bis FR-038)
@@ -340,7 +340,8 @@ Quelle: Noctua PWM specifications white paper (gilt für alle 4-Pin-Lüfter mit 
 
 - **Decision**:
   - **Lüfter**: Noctua NF-A4x10 5V PWM in der Gehäusewand, bläst Außenluft über die Platine.
-    5 V, ca. 0,3 W (≈ 60 mA), 0–5000 U/min, ca. 1050 U/min bei 20 % PWM, Betrieb −10…+70 °C.
+    5 V, typisch 0,3 W / 0,06 A, maximal 0,35 W / 0,07 A (Noctua-Datenblatt), 0–5000 U/min,
+    ca. 1050 U/min bei 20 % PWM, Betrieb −10…+70 °C. Geprüft in T072 (2026-10-26).
   - **Stecker J10**: 4-poliger Lüfter-Wannenstecker Molex 47053-1000 (Raster 2,54 mm, mit
     Verpolschutz-Steg), Footprint `Connector:FanPinHeader_1x04_P2.54mm_Vertical`. Belegung nach
     Intel-4-Draht-Standard: 1 GND, 2 +5V, 3 Drehzahl, 4 PWM. Der Lüfter steckt direkt oder mit
@@ -429,7 +430,7 @@ nächsten Kleinspannungsbauteile beginnen bei x ≈ 23 mm.
   - **Abbildung im Layout**: Board-only-Footprint **COV1** (`oven:Netzabdeckung_REVA`, nicht in
     der Stückliste) mit Umriss der Schalen auf F.Fab/B.Fab, Sperrflächen (Rule Areas: keine
     Footprints) entlang der Innenwand auf beiden Seiten, den NPTH-Bohrungen H5–H8 als Pads und
-    dem 3D-Modell der Schalen. DRC-Regel `cover_holes_to_mains`: Bohrungen von COV1 ≥ 6 mm
+    dem 3D-Modell der Schalen. DRC-Regel `cover_holes_to_mains` (`physical_hole_clearance`, weil `hole_clearance` NPTH-Bohrungen nicht prüft): Bohrungen von COV1 ≥ 6 mm
     zu Netzklasse `Mains`. Bauteilhöhen unter dem Deckel ≤ 25 mm.
   - **Modell**: Fusion 360 (Prinzip X), Quelle und Exporte unter `hardware/controller/cover/`
     (`netzabdeckung.f3d`, `netzabdeckung_oben.step/.stl`, `netzabdeckung_unten.step/.stl`,
@@ -445,6 +446,23 @@ nächsten Kleinspannungsbauteile beginnen bei x ≈ 23 mm.
   Rastnasen (ohne Werkzeug lösbar, bruchgefährdet); Metallschrauben (leitfähig an der
   Oberfläche); Wand quer über das IRM-10-5 (nicht dicht); Lüftungsschlitze von Anfang an
   (Schlitze < 1 mm im FDM-Druck unzuverlässig, erst nach Messung).
+- **Maße (T082, 2026-10-26)**:
+  - IRM-10-5: 45,7 × 25,4 × 21,5 mm (IRM-10-SPEC 2025-08-08). Netzseitige Pins 1 (AC/N) und
+    2 (AC/L) am linken Modulende (x = 6,75 mm), Ausgang 3/4 am rechten (x = 45,25 mm); das
+    Modul ist damit das höchste Teil unter dem Deckel.
+  - J1 MSTBA 2,5/2-G-5,08 (horizontal): 8,6 mm hoch (KiCad-3D-Modell); Stecker
+    MSTB 2,5/2-ST-5,08 laut Datenblatt 15 mm in der größten Abmessung, steckt waagerecht.
+    Mit Kabelbogen ≤ 15 mm; am Muster bestätigen.
+  - F1 Schurter FAB 0031-355x mit Kappe: 10,1 mm hoch (KiCad-3D-Modell).
+  - RV1 S07K275: Scheibe stehend, ca. 10–13 mm (am Bauteil messen).
+  - Alle Teile unter dem Deckel ≤ 21,5 mm: Innenhöhe 25 mm passt.
+  - Netzkabel H05VV-F 2 × 0,75 mm²: Außendurchmesser 5,7–7,2 mm je Hersteller (Helukabel,
+    Nexans). Die Durchführung wird deshalb erst nach Messung am gekauften Kabel festgelegt
+    (Durchmesser + 0,3 mm).
+  - Filament: PC-FR mit V-0, z. B. Elegoo PC-FR oder Bambu Lab PC FR (UL 94-2023 V-0 laut
+    Händler), Polymaker PolyMax PC-FR (V-0 nach IEC 60695-11-10, Makrolon-Basis). Alle
+    brauchen einen geschlossenen Drucker (Düse 250–280 °C, Bett 90–110 °C); Prüfbericht beim
+    Kauf anfordern. Ohne V-0 ist Standard-PC zulässig (R19, Werkstoff).
 - **Folgen für das Layout (vor T021)**: J5/U5 weiter vom IRM-10-5 abrücken (ohnehin offen in
   T020, Wärme), damit Wand und Überstand an der rechten Modulkante Platz haben; die
   Kleinspannungsbauteile an der Innenwand (J2, Q3–Q5, U7, C2, C3) so weit nach rechts, dass

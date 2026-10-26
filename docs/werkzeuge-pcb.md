@@ -55,3 +55,16 @@ KiCad-Projekt kompiliert und lässt sich wie Software versionieren und reviewen.
 
 Pinbelegungen und Footprints **immer gegen das Datenblatt prüfen**. Hier machen KI-Werkzeuge
 typischerweise Fehler.
+
+## Erkenntnisse aus dem Layout (KiCad 10.0.3)
+
+- **Abstand Kupfer zu Bohrungen ohne Kupfer (NPTH)**: Eine eigene Regel mit
+  `hole_clearance` wird für NPTH-Bohrungen nicht geprüft, auch nicht bei offensichtlicher
+  Verletzung. `physical_hole_clearance` wirkt (beide Reihenfolgen von A und B). Getestet am
+  2026-10-26 mit einer Kopie der Platine; die Regeln `mains_to_mounting_holes` und
+  `cover_holes_to_mains` in `hardware/controller/controller.kicad_dru` nutzen deshalb
+  `physical_hole_clearance`.
+- **NPTH-Pads verlieren ihre Nummer** beim Laden: Pads einer Footprint-Bohrung lassen sich in
+  Skripten nicht über `GetNumber()` finden, nur über die Position.
+- **Rule Areas in Footprints** („keine Footprints“) melden Bauteile, deren Courtyard hineinragt
+  (`items_not_allowed`); so zeigt der Footprint der Netzabdeckung (COV1) Bauteile unter ihrer Wand.

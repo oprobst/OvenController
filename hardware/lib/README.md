@@ -12,6 +12,7 @@ Datenblatt geprüft und hier eingetragen sind.
 |---|---|---|
 | TC6501 | `oven.kicad_sym` | Symbol; Footprint `Package_TO_SOT_SMD:SOT-23-5` (SOT-23A = SC-74A) |
 | TPS3828-33DBV | `oven.kicad_sym` | Symbol wie TPS3823-xxDBV aus KiCad, aber ~{RESET} als Open-Drain (ERC an der Löschleitung) |
+| Netzabdeckung REV A | `oven.pretty/Netzabdeckung_REVA.kicad_mod` | Board-only-Footprint COV1 (research R19): Schalenumriss auf F.Fab/B.Fab, Sperrflächen unter der Innenwand und den Schraubenflanschen, NPTH H5–H8, Hülsen H1/H3, 3D-Modelle aus `cover/`; erzeugt von `hardware/tools/make_cover_footprint.py` |
 | Omega PCC-SMP | `oven.pretty/Omega_PCC-SMP_Horizontal.kicad_mod` | Footprint der Thermoelement-Printbuchse, **ungeprüft** (siehe unten) |
 
 ## Prüfliste
@@ -30,4 +31,6 @@ Datenblatt geprüft und hier eingetragen sind.
 | Omega PCC-SMP-K | `Connector_Generic:Conn_01x02` (1 = +, 2 = −) / `oven:Omega_PCC-SMP_Horizontal` | Omega Katalogblatt G-38 (Maße nur isometrisch) | **Ungeprüft**: quer 7,9 mm (Kontakte) und 15,7 mm (Halter), Lochdurchmesser 1,77 mm sind eindeutig; der Abstand Kontakte–Halter (13,5 mm) ist aus der Isometrie gelesen. **Vor dem Layout an einem Musterteil nachmessen.** Polarität: von oben gesehen, Steckseite zu +Y, liegt + rechts | 2026-10-25 |
 | Alps EC11E15244G1 | `Device:RotaryEncoder_Switch` / `Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm` | KiCad-Footprint (nach Alps-Zeichnung erstellt): A/C/B im Raster 2,5 mm, Taster S1/S2 14,5 mm gegenüber, 2 Haltelaschen | Padnamen passen zum Symbol; Maße mit dem gelieferten Encoder vergleichen | 2026-10-25 |
 | MOSFETs IRLML6346, BSS138, AO3401A | `Transistor_FET:AO3400A` (Wert IRLML6346 bzw. BSS138) / `Transistor_FET:AO3401A`, `Package_TO_SOT_SMD:SOT-23`; nicht `Device:Q_NMOS` (Pins heißen dort G/S/D statt 1/2/3) | Standard-SOT-23: 1 G, 2 S, 3 D | beim Platzieren je Typ gegen das Datenblatt prüfen | offen |
+| Lüfterstecker Molex 47053-1000 | `Connector_Generic:Conn_01x04` / `Connector:FanPinHeader_1x04_P2.54mm_Vertical` | KiCad-Footprint („Molex 47053-1000“ in der Beschreibung), Noctua PWM White Paper (Pin 1 GND, 2 +5V, 3 Drehzahl, 4 PWM) | Belegung nach Intel-4-Draht-Standard; Betrieb 0…+75 °C bzw. −40…+105 °C je Distributor, beides ≥ 70 °C | 2026-10-26 |
+| Noctua NF-A4x10 5V PWM | (Kabel an J10) | Noctua-Produktdaten und PWM White Paper | 5 V, max. 0,35 W / 0,07 A, −10…+70 °C, ohne PWM-Signal volle Drehzahl, unter 20 % PWM Stillstand, Drehzahl Open Collector 2 Pulse/Umdrehung, PWM 25 kHz, VIL ≤ 0,8 V, max. 5,25 V | 2026-10-26 |
 | SS34, MBR0530 | `Device:D_Schottky` / `Diode_SMD:D_SMA`, `D_SOD-123` | Kathodenring | beim Platzieren prüfen | offen |
