@@ -6,7 +6,7 @@ KiCad-Projekte des Ofen-Controllers. Entscheidungen und Begründungen:
 | Verzeichnis | Inhalt |
 |---|---|
 | `lib/` | projekteigene Symbole (`oven.kicad_sym`) und Footprints (`oven.pretty/`), Prüfliste in `lib/README.md` |
-| `controller/` | Hauptplatine REV A: Schaltplan (`controller.kicad_sch` + 7 Blätter), Platine, Designregeln, Referenznetzliste `controller.ref.net`, Exporte in `output/` |
+| `controller/` | Hauptplatine REV A: Schaltplan (`controller.kicad_sch` + 2 Blätter: `controller_leistung` (A3: Netzteil, Sicherheit, Last) und `controller_steuerung` (A2: MCU, USB, Thermoelemente, Bedienung)), Platine, Designregeln, Referenznetzliste `controller.ref.net`, Exporte in `output/` |
 | `encoder-carrier/` | Encoder-Träger REV A, gleiche Struktur |
 | `tools/` | Prüf- und Hilfsskripte (siehe unten) |
 | `archive/skidl/` | früherer Schaltplan als SKiDL-Code (nur noch Archiv) |
