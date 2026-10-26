@@ -52,6 +52,7 @@ User-Story-Phasen enthalten Firmware, Inbetriebnahme und Abnahme der jeweiligen 
 - [X] T007 [P] Finder 40.61 mit 5-V-DC-Spule prüfen: Bestellnummer, Spulenstrom, Ansprechspannung (muss ≤ 4,3 V sein, weil die 5-V-Schiene ca. 4,5 V hat), Fassung 95.05 + Freilaufmodul; SSR-Eingangsstrom bei 4,5 V. Ergebnis in `specs/002-controller-pcb/research.md` R8/R14
 - [X] T008 [P] Konkrete Bauteile mit Bestellnummer, Quelle und Preis auswählen und in `specs/002-controller-pcb/research.md` (Stückliste) sowie in der Komponententabelle von `docs/hardware-umbau.md` eintragen: USB-C-Buchse (handlötbar, ≥ 85 °C), Mini-TC-Printbuchse Typ K, passiver Summer 5 V (≥ 70 °C), Sicherungshalter + T 500 mA, Varistor S07K275, Klemmen 5,08 mm 2-pol. und 3,81 mm 6-pol. (steckbar), IDC 2×5 und 2×4 (Platine und Kabel), Taster 6 × 6 mm, LED, AP7361C-33E, SN74LVC74A, TPS3828-33, TC6501P065, MAX31856, U.FL-Pigtail mit RP-SMA, Antenne; Elkos nur 105-°C-Typen (research R17)
 - [X] T009 Symbole und Footprints in `hardware/lib/oven.kicad_sym` und `hardware/lib/oven.pretty/` für alle Teile, die in KiCad 10 fehlen oder abweichen (mindestens IRM-10-5, TC6501, Mini-TC-Buchse, USB-C-Buchse aus T008); jede Pinbelegung gegen das Datenblatt geprüft und in `hardware/lib/README.md` als Liste „Bauteil – Datenblatt-Version – geprüft am" dokumentiert
+- [ ] T072 [P] Platinenlüfter laut Datenblatt prüfen und in `specs/002-controller-pcb/research.md` R18/R17 sowie `hardware/lib/README.md` („Bauteil – Datenblatt-Version – geprüft am“) festhalten: Noctua NF-A4x10 5V PWM (Strom, Betriebstemperatur −10…+70 °C, Drehzahl bei 20 % PWM, Verhalten ohne PWM-Signal = volle Drehzahl), Molex 47053-1000 (Betriebstemperatur ≥ 85 °C, Pin 1 = GND, Abgleich mit `Connector:FanPinHeader_1x04_P2.54mm_Vertical`), ESP32-S3 Datasheet Tabelle 2-2 für GPIO 37/38 (Ergebnis in die Glitch-Tabelle von `docs/hardware-umbau.md`)
 
 ### Schaltplan Hauptplatine (SKiDL, ein Modul je Block)
 
@@ -74,24 +75,27 @@ User-Story-Phasen enthalten Firmware, Inbetriebnahme und Abnahme der jeweiligen 
     2 × 34 mm unter dem IRM-10-5, Zonen wie oben. DRC: keine Abstands-, Kriech- oder
     Bohrverstöße; nur offene Verbindungen (Routing T021) und Beschriftung an der Kante.
     Offen: Feinplatzierung in KiCad, Omega-Buchse am Musterteil nachmessen, Lage der
-    Montagelöcher mit dem Gehäuse abstimmen, Wärmeabstand J5/U5 zum IRM-10-5 prüfen.
+    Montagelöcher mit dem Gehäuse abstimmen, Wärmeabstand J5/U5 zum IRM-10-5 prüfen;
+    nach T073 J10 am Rand der Logikzone (Kabel zur Gehäusewand) mit BSS138 und Widerständen
+    daneben platzieren.
 - [ ] T071 Schaltplan in KiCad übernehmen und ab dann als Quelle nutzen (Entscheidung 2026-10-25, research R1):
   - Erledigt: SKiDL-Netzlisten als `controller.ref.net` / `encoder-carrier.ref.net` eingefroren; Vorlage aus SKiDL erzeugt (Blätter Netzteil, MCU, USB, Thermoelemente, Sicherheit, Last, Bedienung; Träger: Encoder); Generatorfehler behoben (ENC_B_RAW/ENC_SW_RAW kurzgeschlossen, Zeichensatz der MPN-Felder, fehlende Labels BOOT, LED_DIAG, L_FUSED); `hardware/tools/check_schematic.py` mit 0 Fehlern für beide Platinen; Platine per `import_netlist.py --relink-by-ref` neu verknüpft (Platzierung unverändert), DRC `--schematic-parity` ohne Abweichung; SKiDL-Code nach `hardware/archive/skidl/`
   - Gewollte Änderung 2026-10-26: Eingangsfilter nach MAX31856-Datenblatt (C14/C17 100 nF, C27–C30 10 nF nach GND), Referenznetzliste neu exportiert; C27–C30 liegen auf der Platine noch unterhalb des Umrisses und kommen bei der Feinplatzierung (T020) an U5/U6
   - Umbau 2026-10-26: die 7 Blätter zu 2 zusammengelegt – „Leistung und Sicherheit“ (A3: Netzteil, Sicherheit, Last) und „Steuerung und Messung“ (A2, da Bedienung allein fast A3 füllt: MCU, USB, Thermoelemente, Bedienung); Inhalte nur verschoben, nicht umverdrahtet, je Bereich ein beschrifteter Rahmen; Abgleich 0 Fehler, ERC unverändert, Platine über Referenzen neu verknüpft (Platzierung unverändert), Parity ohne Abweichung
   - Offen (Benutzer, in KiCad): lose No-Connect-Markierung im Bereich Thermoelemente (Blatt Steuerung, 369,6/102,9 mm) entfernen, Blätter lesbar anordnen (ggf. Steuerung nach Verdichten auf A3), Labels wo sinnvoll durch Drähte ersetzen, Symbole aus der Bibliothek aktualisieren (`lib_symbol_mismatch`), `PWR_FLAG` an L_IN/N_IN, L_FUSED, +5V und GND (Träger: GND), ERC-Ausnahme mit Begründung für SDO↔SDO der beiden MAX31856 (Tristate), optional Labels für die übrigen unbenannten Netze (FAULT_*, LED_DIAG_A, TFT_SCK/MOSI, USB_CC1/2, USB_SHIELD)
   - Fertig, wenn: `check_schematic.py` für beide Platinen 0 Fehler, `kicad-cli sch erc` ohne Fehler, DRC `--schematic-parity` ohne Abweichung
-- [ ] T021 Routing, GND-Fläche unten (nur Kleinspannung), LDO-Kupferfläche ≥ 4 cm², 4 Montagelöcher M3 **ohne Kupfer**, Testpunkte TP1–TP10 laut contracts/connectors.md (keine im Netzbereich), Bestückungsdruck: „REV A", Projektname, „230 V~"-Warnung, Funktion und Pinbelegung an jedem Steckverbinder, Polarität J5/J6 in `hardware/controller/controller.kicad_pcb`
+- [ ] T073 Platinenlüfter in `hardware/controller/controller_steuerung.kicad_sch` (eigener beschrifteter Rahmen „Lüfter“) nach research R18 und contracts/connectors.md J10 zeichnen (KiCad geschlossen bzw. nach T071): J10 Molex 47053-1000 (1 GND, 2 +5V, 3 FAN_TACH, 4 FAN_PWM) mit 10 µF und 100 nF an +5V; FAN_PWM: GPIO 38 (globales Label `FAN_PWM`) an das Gate eines BSS138 mit 100 kΩ Gate-Pull-down, Source an GND, Drain an J10 Pin 4 mit 1 kΩ Pull-up an +5V; FAN_TACH: J10 Pin 3 mit 10 kΩ Pull-up an 3,3 V, 1 kΩ Serie und 1 nF nach GND an GPIO 37 (globales Label `FAN_TACH`); TP12 an FAN_TACH; MPN/Source-Felder wie bei den übrigen Bauteilen. Danach: `hardware/tools/check_schematic.py` (Tabellen `MODULE_PIN`/`HEADER_TO_NET`) um FAN_PWM ↔ GPIO 38 und FAN_TACH ↔ GPIO 37 erweitern, `firmware/include/board/board_rev_a.h` um `kPinFanTach = 37`, `kPinFanPwm = 38`, `kFanPwmHz = 25000`, `kFanPulsesPerRevolution = 2` ergänzen, `hardware/controller/controller.ref.net` neu exportieren (gewollte Änderung, Grund im Commit), `check_schematic.py controller` mit 0 Fehlern, ERC ohne neue Befunde, Platine per `hardware/tools/import_netlist.py` aktualisieren und DRC `--schematic-parity` ohne Abweichung
+- [ ] T021 Routing, GND-Fläche unten (nur Kleinspannung), LDO-Kupferfläche ≥ 4 cm², 4 Montagelöcher M3 **ohne Kupfer**, Testpunkte TP1–TP12 laut contracts/connectors.md (keine im Netzbereich), Bestückungsdruck: „REV A", Projektname, „230 V~"-Warnung, Funktion und Pinbelegung an jedem Steckverbinder (J10: „FAN 5V“), Polarität J5/J6 in `hardware/controller/controller.kicad_pcb`
 - [ ] T022 `kicad-cli pcb drc --exit-code-violations` ohne Verletzungen; Exporte nach `hardware/controller/output/`: Gerber, Bohrdaten, BOM, Bestückungsplan, STEP; Bauteilhöhe ≤ 40 mm im STEP prüfen
 - [ ] T023 [P] Encoder-Träger: Projekt, Layout (ca. 25 × 30 mm, Encoder zentriert, IDC am Rand), DRC und Exporte in `hardware/encoder-carrier/`
 - [ ] T024 Sicherheits-Review der Hardware: `/speckit-checklist` gegen Prinzip IVa/IVb ausführen (Ergebnis `specs/002-controller-pcb/checklists/safety.md`), Selbstprüfung gegen Prinzip I–X, Abweichungen beheben
-- [ ] T025 Bestellung von Platinen und Bauteilen (Benutzer); Bezugsquellen und Preise in `docs/hardware-umbau.md` nachtragen
+- [ ] T025 Bestellung von Platinen und Bauteilen (Benutzer), einschließlich Noctua NF-A4x10 5V PWM und ggf. Verlängerung NA-SEC1; Bezugsquellen und Preise in `docs/hardware-umbau.md` nachtragen
 - [ ] T026 Bestückung (Benutzer) und stromlose Prüfung nach `specs/002-controller-pcb/quickstart.md` Abschnitt 2; Ergebnis in `docs/compatibility.md` (Spalte Bemerkung)
 
 ### Firmware-Grundlagen (parallel zur Hardware)
 
-- [ ] T027 [P] Fehlercodes E106 `ThermocoupleOverUnderVoltage`, E107 `ChamberOverTemperature`, E108 `ColdJunctionOutOfRange`, E201 `PcbOverTemperature`, E202 `PcbTemperatureUnknown`, E203 `EnableLatchMismatch`, E204 `UnsupportedPcbRevision`, E205 `HardwareTrip` in `firmware/lib/diagnostics/include/error_code.h` und mit Bedeutung/Ursache/Abhilfe in `docs/error-codes.md`
-- [ ] T028 [P] Konstanten in `firmware/include/app_config.h`: `kPcbLimitCelsius = 60`, `kPcbRecoverCelsius = 55`, `kPcbRecoverHoldMs = 5000`, `kHeartbeatPeriodMs = 250`, `kHeartbeatMaxAgeMs = 500`, `kChamberFaultLimitCelsius = 300` (Inbetriebnahme-Wert), `kLatchMismatchMs = 10`, `kStrapSampleCount = 8`
+- [ ] T027 [P] Fehlercodes E106 `ThermocoupleOverUnderVoltage`, E107 `ChamberOverTemperature`, E108 `ColdJunctionOutOfRange`, E201 `PcbOverTemperature`, E202 `PcbTemperatureUnknown`, E203 `EnableLatchMismatch`, E204 `UnsupportedPcbRevision`, E205 `HardwareTrip`, E206 `FanFailure` in `firmware/lib/diagnostics/include/error_code.h` und mit Bedeutung/Ursache/Abhilfe in `docs/error-codes.md`
+- [ ] T028 [P] Konstanten in `firmware/include/app_config.h`: `kPcbLimitCelsius = 60`, `kPcbRecoverCelsius = 55`, `kPcbRecoverHoldMs = 5000`, `kHeartbeatPeriodMs = 250`, `kHeartbeatMaxAgeMs = 500`, `kChamberFaultLimitCelsius = 300` (Inbetriebnahme-Wert), `kLatchMismatchMs = 10`, `kStrapSampleCount = 8`, Lüfter (FR-037/FR-038): `kFanMinDutyPercent = 20`, `kFanRampStartCelsius = 35`, `kFanFullSpeedCelsius = 50`, `kFanFailRpm = 500`, `kFanFailHoldMs = 3000`, `kFanStartupGraceMs = 3000`, `kFanUpdatePeriodMs = 1000`
 - [ ] T029 Test zuerst: `firmware/test/test_temperature/` an `IThermocoupleReader` anpassen (Fake `firmware/test/fakes/fake_thermocouple_reader.h`); Tests für `Max31855Reader` (Rohwort → `TemperatureReading` wie bisher) und für `OvenTemperatureMonitor` mit Kanalnamen; `OvenTemperature` bekommt `coldJunction`
 - [ ] T030 Refactoring `firmware/lib/temperature/`: `i_thermocouple_reader.h`, `max31855_reader.{h,cpp}`, `OvenTemperatureMonitor(IThermocoupleReader&, ILogger&, const char* channelName)`, `oven_temperature.h` mit `coldJunction`; Composition Root REV DEV in `firmware/src/main.cpp` nachziehen – macht T029 grün, `pio test -e native` und `pio run -e esp32_revdev` grün
 - [ ] T031 [P] `firmware/include/app_version.h` auf 0.2.0
@@ -112,6 +116,7 @@ Temperaturkanäle funktionieren; Heizausgänge bleiben aus.
 - [ ] T032 [P] [US1] Host-Tests `firmware/test/test_temperature/test_max31856_decoder.cpp`: Temperatur- und CJ-Umrechnung aus Rohbytes; Fehlerbits laut data-model.md: „OPEN → E101", „OVUV → E106", „TCHIGH → E107", „CJRANGE, CJHIGH, CJLOW → E108", „TCRANGE, TCLOW → E104"
 - [ ] T033 [P] [US1] Host-Tests `firmware/test/test_temperature/test_max31856_reader.cpp` mit `firmware/test/fakes/fake_max31856_bus.h`: `configure()` schreibt Typ K, 50 Hz, Automatik, Fühlerbrucherkennung, Interrupt-Fehlermodus, FAULT-Maske und Obergrenze `kChamberFaultLimitCelsius`; Antwort 0x00/0xFF → E105; jede 10. Abfrage Konfigurationsvergleich, Abweichung → E105; `clearFault()` setzt das Quittierbit
 - [ ] T034 [P] [US1] Host-Tests `firmware/test/test_board/test_revision_detector.cpp`: „REV A: Fenster 1450–1850 mV", 1449 und 1851 mV → `Unknown`; kein Teiler → `Dev`; erkannt ≠ kompiliert oder `Unknown` → E204
+- [ ] T074 [P] [US1] Host-Tests `firmware/test/test_cooling/test_fan_curve.cpp` für `fanDutyPercent()`: „`celsius ≤ 35` → 20 %“, „`35 < celsius < 50` → linear 20…100 %“ (z. B. 42,5 °C → 60 %), „`celsius ≥ 50` → 100 %“, „Platinentemperatur ungültig (E202) → 100 %“; Ergebnis nie unter 20 %
 - [ ] T035 [P] [US1] Host-Tests für zwei Temperaturen in der Statuszeile in `firmware/test/test_ui/test_status_formatter.cpp` (oben/unten, Fehlercode je Kanal z. B. „E101 oben")
 
 ### Implementierung für User Story 1
@@ -119,12 +124,16 @@ Temperaturkanäle funktionieren; Heizausgänge bleiben aus.
 - [ ] T036 [P] [US1] `firmware/lib/temperature/include/max31856_decoder.h` + `src/max31856_decoder.cpp` – macht T032 grün
 - [ ] T037 [US1] `firmware/lib/temperature/include/i_max31856_bus.h`, `max31856_reader.{h,cpp}` laut contracts/interfaces.md – macht T033 grün
 - [ ] T038 [P] [US1] Modul `firmware/lib/board/` mit `i_revision_strap.h`, `pcb_revision.h` (`PcbRevisionId`), `revision_detector.{h,cpp}` – macht T034 grün
+- [ ] T075 [US1] Modul `firmware/lib/cooling/` mit `include/i_fan_output.h`, `include/i_fan_tachometer.h`, `include/fan_curve.h` und `src/fan_curve.cpp` laut contracts/interfaces.md (Abschnitt cooling), Konstanten aus `app_config.h` – macht T074 grün
 - [ ] T039 [US1] `firmware/lib/ui/` Statuszeile mit zwei Temperaturen (StatusFormatter, StatusBar, SystemStatus) – macht T035 grün; REV DEV zeigt weiter einen Wert
 - [ ] T040 [P] [US1] HAL `firmware/lib/hal_esp32/esp32_max31856_bus.{h,cpp}`: SPI3 über GPIO-Matrix (MISO 13, SCK 14, MOSI 15), Modus 1, `kThermocoupleSpiHz`, CS je Instanz
 - [ ] T041 [P] [US1] HAL `firmware/lib/hal_esp32/esp32_revision_strap.{h,cpp}`: ADC1 an GPIO 1, `kStrapSampleCount` Messungen, kalibrierte mV, Mittelwert; REV DEV liefert „kein Teiler"
+- [ ] T076 [P] [US1] HAL `firmware/lib/hal_esp32/esp32_fan_output.{h,cpp}` (LEDC an `kPinFanPwm`, `kFanPwmHz` = 25 kHz, Ausgang invertiert wegen BSS138: GPIO high = PWM low; `setDutyPercent(100)` = Ausgang dauerhaft low) und `esp32_fan_tachometer.{h,cpp}` (PCNT an `kPinFanTach`, steigende Flanken, Glitch-Filter ca. 1 µs, `takePulseCount()` nicht blockierend); nur für REV A gebaut
 - [ ] T042 [US1] HAL-Anpassungen für den ESP32-S3 in `firmware/lib/hal_esp32/`: Encoder an GPIO 39–41 ohne interne Pull-ups (externe vorhanden), `kEncoderStepsPerDetent` aus dem Board-Header; LovyanGFX auf SPI2 mit Pins aus `board_rev_a.h` und `kTftSpiHz`; Hintergrundbeleuchtung per LEDC an GPIO 7 (P-MOSFET: LOW = an); serielle Ausgabe über USB-CDC mit Sende-Timeout 0 ms (nie blockierend); Diagnose-LED an GPIO 2 blinkt im Betrieb
 - [ ] T043 [US1] Sicherer Start in `firmware/lib/hal_esp32/esp32_heater_outputs.{h,cpp}` und `esp32_enable_latch.{h,cpp}` (Minimalumfang): GPIO 4/5/6 als Ausgang LOW vor allem anderen, DISARM-Puls an GPIO 18 als erste Aktion in `setup()`
 - [ ] T044 [US1] Composition Root REV A in `firmware/src/main.cpp` (`#if OVEN_BOARD_REV_A`): sicherer Start (T043), Revisionsprüfung (E204 → Heizausgänge aus, DISARM, Fehleranzeige, kein Menü), zwei `Max31856Reader` mit `configure()`, zwei `OvenTemperatureMonitor` („oben", „unten"), Log `msg="revision"`; danach Ablauf aus Feature 001. `pio run -e esp32s3_reva` muss danach bauen; CI-Schritt „Build firmware (esp32s3_reva)" in `.github/workflows/firmware.yml` ergänzen (aus T004 verschoben)
+- [ ] T077 [US1] Lüfter in die Composition Root REV A (`firmware/src/main.cpp`) einbinden: direkt nach dem sicheren Start `setDutyPercent(100)`, dann alle `kFanUpdatePeriodMs` Sollwert aus `fanDutyPercent()` mit der Platinentemperatur (Maximum der CJ-Werte), Drehzahl = Pulse/s × 60 ÷ 2, Log `lvl=INFO mod=cooling msg="fan" duty=… rpm=… pcb_c=…` (contracts/interfaces.md); REV DEV ohne Lüfter
+- [ ] T078 [P] [US1] HIL-Test `firmware/test/hil/test_hil_fan/test_main.cpp` (automatischer Teil): 20 %, 50 %, 100 % je 5 s ansteuern → Drehzahl steigt monoton, bei 20 % ≥ 800 U/min (quickstart Abschnitt 4)
 - [ ] T045 [P] [US1] HIL-Test `firmware/test/hil/test_hil_revision/test_main.cpp`: Teilerspannung im Fenster REV A, Erkennung = A
 - [ ] T046 [P] [US1] HIL-Test `firmware/test/hil/test_hil_max31856/test_main.cpp`: Konfiguration beider Kanäle bestätigt, Kammertemperatur und CJ bei Raumtemperatur plausibel (10–40 °C), Kanäle ≤ 2 °C auseinander, abgezogener Fühler (Testanweisung im Log) → E101 ≤ 2 s
 - [ ] T047 [US1] Abnahme nach `specs/002-controller-pcb/quickstart.md` Abschnitte 3 und 5 durchführen, Ergebnis in `docs/compatibility.md`
@@ -147,15 +156,19 @@ und 6.5 mit Ersatzlast.
 - [ ] T049 [P] [US2] Host-Tests `firmware/test/test_board/test_pcb_temperature_monitor.cpp` mit Fake-Sensoren: Maximum der gültigen CJ-Werte; „celsius ≥ 60 °C → E201"; „kein gültiger Wert → E202"; Meldung erst gelöscht, „wenn der Wert 5 s lang unter 55 °C liegt"
 - [ ] T050 [P] [US2] Host-Tests `firmware/test/test_heater/test_enable_monitor.cpp` mit `firmware/test/fakes/fake_enable_latch.h` und `fake_stop_button.h`: E203 bei „`armed` ohne vorheriges ARM seit dem letzten DISARM", „`armed` bleibt nach DISARM länger als 10 ms gesetzt", „`armed` und `clearActive` gleichzeitig länger als 10 ms"; E205 bei Übergang armed → nicht armed ohne eigenes DISARM, Ursache `stop` (stopPressed), `line` (clearActive ohne stopPressed), `fault`/`pcb`/`watchdog` nach Zusatzinfo
 
+- [ ] T079 [P] [US2] Host-Tests `firmware/test/test_cooling/test_fan_monitor.cpp` mit `firmware/test/fakes/fake_fan_output.h` und `fake_fan_tachometer.h`: Sollwert aus der Kennlinie wird an `IFanOutput` gegeben; „`rpm < 500` für 3 s → E206“; kurzer Einbruch unter 3 s → kein Fehler; „die ersten 3 s nach dem Start werden nicht bewertet“; E206 bleibt gesetzt („verriegelnd bis zur Quittierung“), `acknowledge()` löscht nur, wenn wieder ≥ 500 U/min gemessen werden; Log `msg="fan failure" code=E206`
+
 ### Implementierung für User Story 2
 
 - [ ] T051 [US2] Modul `firmware/lib/heater/` mit `heater_channel.h`, `i_heater_outputs.h`, `i_enable_latch.h`, `i_stop_button.h`, `i_external_watchdog.h` laut contracts/interfaces.md; `EnableMonitor` als neue Klasse in `contracts/interfaces.md` ergänzen (Signatur: `update(Milliseconds now, bool firmwareArmed, bool firmwareDisarmed)`, `ErrorCode status()`, `const char* tripCause()`)
 - [ ] T052 [US2] `firmware/lib/heater/src/safety_heartbeat.cpp` – macht T048 grün
 - [ ] T053 [US2] `firmware/lib/heater/src/enable_monitor.cpp` – macht T050 grün
 - [ ] T054 [US2] `firmware/lib/board/src/pcb_temperature_monitor.cpp` – macht T049 grün
+- [ ] T080 [US2] `firmware/lib/cooling/include/fan_monitor.h` und `src/fan_monitor.cpp` laut contracts/interfaces.md – macht T079 grün
 - [ ] T055 [P] [US2] HAL vervollständigen: `firmware/lib/hal_esp32/esp32_enable_latch.{h,cpp}` (ARM: steigende Flanke an GPIO 6; DISARM: LOW-Puls 100 µs an GPIO 18 (Datenblatt: ≥ 1 µs); `isArmed()` GPIO 47; `isClearActive()` GPIO 36 LOW), `esp32_stop_button.{h,cpp}` (GPIO 42, LOW = gedrückt, entprellt), `esp32_external_watchdog.{h,cpp}` (GPIO 21 umschalten)
-- [ ] T056 [US2] Integration in `firmware/lib/app/` und `firmware/src/main.cpp`: Scheduler-Aufgaben Herzschlag (jeder Durchlauf, `SafetyHeartbeat::tick`), Platinentemperatur 250 ms, Freigabeüberwachung 10 ms; jede Meldung E1xx/E201–E205 → `allOff()`, `disarm()`, Log und Fehleranzeige mit Code; Normalbetrieb ruft `arm()` nie auf
+- [ ] T056 [US2] Integration in `firmware/lib/app/` und `firmware/src/main.cpp`: Scheduler-Aufgaben Herzschlag (jeder Durchlauf, `SafetyHeartbeat::tick`), Platinentemperatur 250 ms, Freigabeüberwachung 10 ms; jede Meldung E1xx/E201–E206 → `allOff()`, `disarm()`, Log und Fehleranzeige mit Code; Normalbetrieb ruft `arm()` nie auf. `FanMonitor` ersetzt die Lüfter-Aufgabe aus T077 (Periode `kFanUpdatePeriodMs`); E206 wird auch ohne Heizvorgang angezeigt (FR-037)
 - [ ] T057 [US2] HIL-Test `firmware/test/hil/test_hil_enable_chain/test_main.cpp`: Q nach Start gelöscht; ARM setzt Q; DISARM löscht ≤ 1 ms; Herzschlag stoppen → Q gelöscht ≤ Watchdog-Maximalzeit aus T006; Kammer-Obergrenze unter Raumtemperatur setzen → Q gelöscht und `clearActive`; ARM bei aktivem Stopp wirkungslos; manuelle Schritte M1–M4 mit Testanweisung im Log und Prüfung von Q (quickstart Abschnitt 4)
+- [ ] T081 [US2] HIL-Test `firmware/test/hil/test_hil_fan/test_main.cpp` um die manuellen Schritte M5–M7 erweitern (Testanweisung im Log): Freigabe setzen, Lüfter festhalten bzw. J10 abziehen → E206 ≤ 5 s und Q gelöscht (SC-009, US2-9); ohne Freigabe Lüfter abziehen → E206 angezeigt; Platine mit Heißluft auf ca. 40/50 °C → Drehzahl steigt, ab 50 °C volle Drehzahl; Ergebnis in `docs/compatibility.md`
 - [ ] T058 [US2] Lastteil mit Ersatzlast anschließen und quickstart 6.4 (≤ 100 ms nach Stopp) und 6.5 (simuliertes SSR-Kurzschluss → Relais trennt) durchführen; Ergebnis in `docs/compatibility.md`
 - [ ] T059 [US2] `docs/state-machine.md` um Abschnitt „Hardware-Freigabe" ergänzen (Mermaid aus data-model.md, Hinweis: Hardware-Speicher, Firmware setzt nur in HIL-Tests)
 
@@ -183,7 +196,7 @@ und 6.5 mit Ersatzlast.
 
 **Independent Test**: quickstart.md Abschnitt 7.
 
-- [ ] T063 [P] [US4] Übergabe an das Gehäuse-Feature: Maßzeichnung (Außenmaße, Montagelöcher, Steckverbinderlage, höchstes Bauteil) als Abschnitt „Übergabe Platine REV A" in `docs/hardware-umbau.md`, STEP aus `hardware/controller/output/` und `hardware/encoder-carrier/output/`
+- [ ] T063 [P] [US4] Übergabe an das Gehäuse-Feature: Maßzeichnung (Außenmaße, Montagelöcher, Steckverbinderlage, höchstes Bauteil) und Vorgaben für die aktive Lüftung (40-mm-Lüfter Noctua NF-A4x10 in der Wand des Bedienschachts, bläst Außenluft über die Platine; Lage von J10, Kabellänge 20 cm + 30 cm Verlängerung; Lüfterausschnitt, Gitter und Abluftöffnungen legt das Gehäuse-Feature fest, Prinzip X) als Abschnitt „Übergabe Platine REV A" in `docs/hardware-umbau.md`, STEP aus `hardware/controller/output/` und `hardware/encoder-carrier/output/`
 - [ ] T064 [P] [US4] Montage von Antennen-Pigtail (RP-SMA-Durchführung) und Panel-USB-Verlängerung in `docs/hardware-umbau.md` beschreiben (Lochdurchmesser, Lage, Kabellängen)
 - [ ] T065 [US4] quickstart Abschnitt 7 durchführen (WLAN bei geschlossenem Gehäuse, Upload über die Wandbuchse, Aus- und Einbau < 10 min); Ergebnis in `docs/compatibility.md`
 
@@ -194,9 +207,9 @@ und 6.5 mit Ersatzlast.
 ## Phase 7: Polish & Cross-Cutting Concerns
 
 - [ ] T066 [P] `docs/compatibility.md`: Zeile Firmware 0.2.0 ↔ PCB REV A ↔ Gehäuse „–" mit HIL- und Abnahmeergebnis; Zeile 0.2.0 ↔ REV DEV (weiterhin unterstützt)
-- [ ] T067 [P] `firmware/include/board/board_rev_a.h`: Pins gegen Datenblätter (ESP32-S3, MAX31856, TPS3828, SN74LVC74A) und KiCad-Netzliste geprüft, Kommentar „pins verified against datasheet: yes (<Datum>)"
+- [ ] T067 [P] `firmware/include/board/board_rev_a.h`: Pins gegen Datenblätter (ESP32-S3, MAX31856, TPS3828, SN74LVC74A, Noctua-PWM-Whitepaper) und KiCad-Netzliste geprüft, Kommentar „pins verified against datasheet: yes (<Datum>)"
 - [ ] T068 [P] `docs/hardware-umbau.md`: Komponententabelle mit endgültigen Bauteilen, Bezugsquellen, Preisen; Status „REV A gefertigt"
-- [ ] T069 `pio test -e native`, `pio run -e esp32_revdev`, `pio run -e esp32s3_reva`, `pio check`, clang-format; ohne neue Warnungen (Qualitätstore der Verfassung)
+- [ ] T069 `pio test -e native` (inkl. `test_cooling`), `pio run -e esp32_revdev`, `pio run -e esp32s3_reva`, `pio check`, clang-format; ohne neue Warnungen (Qualitätstore der Verfassung)
 - [ ] T070 Abschluss-Review: Selbstprüfung gegen Prinzip I–X, `/code-review` für die Firmware-Änderungen, `/speckit-analyze` für Spec/Plan/Tasks; Abweichungen beheben oder begründen
 
 ---
@@ -208,10 +221,12 @@ und 6.5 mit Ersatzlast.
 - **Setup (Phase 1)**: keine; T003 (Spike) vor T009–T018.
 - **Foundational (Phase 2)**: T006–T009 vor dem Schaltplan; T010–T016 parallel; T017 nach
   T010–T016; T019–T022 nacheinander nach T017; T024 vor T025; T026 nach Lieferung.
-  Firmware-Grundlagen T027–T031 parallel zur Hardware.
+  Firmware-Grundlagen T027–T031 parallel zur Hardware. Lüfter: T072 vor T073; T073 nach T071
+  (gleiche Schaltplandatei, KiCad geschlossen) und vor der Feinplatzierung (T020) und T021.
 - **US1 (Phase 3)**: Tests und Implementierung ab Ende der Firmware-Grundlagen; HIL und Abnahme
-  (T045–T047) erst nach T026.
+  (T045–T047, T078) erst nach T026. Lüfter: T074 → T075 → T077; T076 parallel; T077 nach T044.
 - **US2 (Phase 4)**: nach US1 (nutzt Start, Messkanäle und Board-Modul); T058 braucht das Lastteil.
+  Lüfter: T079 → T080 → T056; T081 nach T056 und T078.
 - **US3 (Phase 5)**: nach US2 (Heizen nur mit funktionierender Freigabe).
 - **US4 (Phase 6)**: T063/T064 nach T022; T065 nach US1.
 - **Polish**: nach den gewünschten Stories.
@@ -225,8 +240,8 @@ und 6.5 mit Ersatzlast.
 - Phase 1: T004 und T005 parallel zu T001–T003.
 - Phase 2: T007/T008 parallel; Schaltplanblöcke T010–T016 parallel; T018 und T023 parallel zur
   Hauptplatine; T027–T031 parallel zur gesamten Hardware.
-- US1: T032–T035 parallel; T036, T038, T040, T041 parallel; T045/T046 parallel.
-- US2: T048–T050 parallel; T055 parallel zu T052–T054.
+- US1: T032–T035 und T074 parallel; T036, T038, T040, T041, T076 parallel; T045/T046/T078 parallel.
+- US2: T048–T050 und T079 parallel; T055 parallel zu T052–T054 und T080.
 
 ---
 
