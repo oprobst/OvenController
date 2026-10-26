@@ -70,6 +70,7 @@ nicht konkret ausgewählt.
 | Freigabe-Latch | TI SN74LVC74AD (SOIC-14, D-Flipflop mit asynchronem Löschen) | Mouser | ca. 0,50 € (Richtwert) |
 | PCB-Temperatur (Firmware) | Vergleichsstellen-Temperatur (CJ) der MAX31856, kein eigener Sensor | – | – |
 | PCB-Übertemperatur (Hardware) | Microchip TC6501P065VCTTR (SOT-23-5, Schwelle 65 °C ab Werk, Open-Drain aktiv low), Hysterese 10 °C | DigiKey 412996 | ca. 0,75 € (Richtwert) |
+| Netzabdeckung | Ober- und Unterschale aus PC-Filament (3D-Druck, bevorzugt UL 94 V-0) über dem 230-V-Bereich der Platine, verschraubt mit Polyamid-Schrauben M3; Messen im Kleinspannungsbereich bei eingestecktem Netzstecker (spec FR-039, research R19, Entscheidung 2026-10-26). Zuleitung zur Platine als Mantelleitung H05VV-F 2 × 0,75 mm² | Druck selbst / Reichelt | ca. 5 € |
 | Umluftlüfter (Garraum) | entfällt (Entscheidung 2026-10-24) | – | – |
 | Platinenlüfter | **Noctua NF-A4x10 5V PWM** (40 × 40 × 10 mm, 5 V, ca. 0,3 W, 0–5000 U/min, 4-Pin mit PWM und Drehzahlsignal, Betrieb −10…+70 °C laut Datenblatt) in der Gehäusewand des Bedienschachts, bläst Außenluft über die Platine (spec FR-036–FR-038, Entscheidung 2026-10-26) | offen | 15,90 € (2026-10-26) |
 | Netzteil | Mean Well IRM-10-5 (230 V → 5 V / 2 A, 10 W, Printmodul) mit Feinsicherung T 500 mA und Varistor S07K275 (siehe „Versorgung") | [Reichelt IRM-10-5](https://www.reichelt.de/de/de/shop/search/irm-10-5) | 8,10 € (2026-10-24) |

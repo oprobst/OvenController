@@ -13,7 +13,9 @@ Steckbare Schraubklemme 2-polig, Raster 5,08 mm. Nur im Netzbereich, Beschriftun
 | 1 | L (nach Hauptschalter und Gerätesicherung der Kaltgerätebuchse) |
 | 2 | N |
 
-Kein PE an der Platine.
+Kein PE an der Platine. Zuleitung: Mantelleitung H05VV-F 2 × 0,75 mm² durch die Durchführung der
+Netzabdeckung (Mantel endet ≥ 5 mm innen, Zugentlastung an der Unterschale); der Klemmstecker
+liegt ganz unter der Abdeckung ([research.md R19](../research.md#r19--netzabdeckung-fr-039-sc-010)).
 
 ## J2 – Lastteil (Kleinspannung)
 
@@ -138,3 +140,8 @@ Schaltplan genau diese Referenzen (J1–J7, J9, J10, TP1–TP12); die übrigen R
   IRM-10-5).
 - 4 Montagelöcher M3 ohne Kupfer, Lage wird mit dem Feature „Controller-Gehäuse" abgestimmt
   (Übergabe als STEP und Maßzeichnung).
+- Netzabdeckung (Footprint COV1): Ober- und Unterschale über dem Netzbereich, befestigt an
+  H5–H8 (Ø 3,2 mm, ohne Kupfer, ≥ 6 mm vom Netzkupfer). Bauraum: ca. 27 mm über und 6 mm unter
+  der Platine, ca. 3 mm Überstand am linken und unteren Rand. Liegen H1/H3 im Abdeckbereich,
+  führen geschlossene Hülsen der Schalen die Befestigungsschrauben. Bauteile unter dem Deckel
+  ≤ 25 mm hoch; unter der Innenwand keine Bauteile.

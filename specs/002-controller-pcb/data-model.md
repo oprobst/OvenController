@@ -109,6 +109,20 @@ Kennlinie (FR-038): `celsius ≤ 35` → 20 %; `35 < celsius < 50` → linear 20
 `rpm < 500` für 3 s → E206, DISARM, verriegelnd bis zur Quittierung (Anlaufzeit: die ersten 3 s
 nach dem Start werden nicht bewertet). Grenzwerte als `constexpr` in `app_config.h`.
 
+## Netzabdeckung
+
+| Feld | Bedeutung |
+|---|---|
+| `outline` | Umriss des Netzbereichs (L-Form) einschließlich des ganzen IRM-10-5, aus Footprint COV1 |
+| `shells` | Oberschale und Unterschale, PC, Wand 2 mm |
+| `fixings` | H5–H8, Ø 3,2 mm ohne Kupfer, Polyamid-Schrauben M3 |
+| `sleeves` | geschlossene Hülsen an H1/H3, solange diese im Abdeckbereich liegen |
+| `cableEntry` | Rundloch für H05VV-F 2 × 0,75 mm², Kabeldurchmesser + 0,3 mm, Zugentlastung |
+
+Regeln (FR-039, research R19): Prüfdraht 1 mm erreicht kein Teil der Netzklasse `Mains`;
+Spalte konstruktiv ≤ 0,5 mm; Bohrungen ≥ 6 mm vom Netzkupfer; Bauteile unter dem Deckel
+≤ 25 mm; keine Footprints unter der Innenwand; Lösen nur mit Werkzeug.
+
 ## Heizkreis
 
 | Feld | Bedeutung |

@@ -331,6 +331,7 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
 | Summer | ≥ 70 °C (prüfen) | Auswahlregel |
 | Lüfter Noctua NF-A4x10 5V PWM | 70 °C (Datenblatt) | ✅ Grenze, sitzt im Frischluftstrom |
 | Lüfterstecker Molex 47053-1000 | ≥ 85 °C (prüfen) | Auswahlregel |
+| Netzabdeckung PC | Glasübergang ca. 110–145 °C | ✅ |
 
 ## R18 – Platinenlüfter (FR-036 bis FR-038)
 
@@ -377,6 +378,77 @@ Quelle: Noctua PWM specifications white paper (gilt für alle 4-Pin-Lüfter mit 
   (3-Draht-Steuerung, verfälscht das Drehzahlsignal); eigene Platinentemperatur-Messung für den
   Lüfter (die CJ-Werte der MAX31856 reichen, R5).
 - **Freie Pins danach**: 3, 45, 46 (Strapping, nicht beschalten) und 48.
+
+## R19 – Netzabdeckung (FR-039, SC-010)
+
+Ausgangslage (Vorplatzierung T020): Der Netzbereich bildet ein L am linken und unteren Rand –
+Spalte mit J1, F1 und RV1 (x ≈ 0–17 mm, y ≈ 9–64 mm) und das IRM-10-5 unten links
+(x ≈ 3–49 mm, y ≈ 65–91 mm, Höhe 21,5 mm, Frässchlitz bei x = 25–27 mm unter dem Modul). Die
+nächsten Kleinspannungsbauteile beginnen bei x ≈ 23 mm.
+
+- **Decision**:
+  - **Umfang**: Die Abdeckung umschließt das ganze L einschließlich des **gesamten IRM-10-5**
+    (eine Wand quer über das Modul ist nicht dicht herstellbar; das gekapselte Modul ist auf
+    der Sekundärseite ohnehin berührungssicher).
+  - **Aufbau**: Ober- und Unterschale aus PC, Wandstärke 2 mm, 100 % Füllung in Wänden und
+    Deckel. An den Platinenkanten (links, unten) greifen die Schalen **um die Kante herum** und
+    überlappen sich (Stufenfuge), sodass auch die Stirnseite der Platine abgedeckt ist; die
+    Schalen ragen dort ca. 3 mm über den Platinenrand. Innen, zur Kleinspannungsseite, steht die
+    Wand auf der Platine, und zwar im kupferfreien Isolationsband zwischen Netz- und
+    Kleinspannungskupfer (6 mm laut R2): Wand 2 mm + je 0,5 mm Toleranz.
+  - **Spalte**: Konstruktiv ≤ 0,5 mm (Auflage der Wand auf der Lötstopplackseite, Stufenfuge an
+    der Kante, Kabeldurchführung); damit bleibt Reserve zur Grenze von 1 mm und der Prüfdraht
+    nach SC-010 kommt nicht hindurch. Keine Lüftungsschlitze in der ersten Version (siehe
+    Wärme).
+  - **Innenhöhe** oben 25 mm (IRM-10-5 21,5 mm, J1 mit Stecker und Kabelbogen prüfen),
+    Gesamthöhe ca. 27 mm über der Platine (≤ 40 mm laut FR-028). Unten 4 mm Innenhöhe für
+    Lötstellen und Drahtenden (THT-Beinchen auf ≤ 2 mm kürzen), ca. 6 mm unter der Platine.
+  - **Befestigung**: 4 Bohrungen **H5–H8** (Ø 3,2 mm, ohne Kupfer) mit durchgehenden
+    Polyamid-Schrauben M3 und Muttern; Abstand zum Netzkupfer ≥ 6 mm (eigene DRC-Regel),
+    Abstand zwischen zwei Schrauben entlang einer Wand ≤ 50 mm, damit sich keine Kante um mehr
+    als 0,5 mm abheben kann. Die Bohrungen liegen auf der Kleinspannungsseite direkt neben der
+    Innenwand oder in den Schalenecken außerhalb des Kupfers.
+  - **Montagelöcher H1/H3** liegen im Abdeckbereich: Beide Schalen bekommen dort geschlossene
+    Hülsen, die dicht auf der Platine aufsitzen; die Befestigungsschraube der Platine läuft
+    durch die Hülse, ein Prüfdraht in der Hülse erreicht nur das kupferfreie Bohrloch (Regel
+    „mains_to_mounting_holes“, ≥ 3 mm). Alternativ verlegt der Benutzer H1/H3 beim Abstimmen
+    mit dem Gehäuse aus dem Abdeckbereich; die Hülsen entfallen dann.
+  - **Netzkabel**: Mantelleitung H05VV-F 2 × 0,75 mm² (Außendurchmesser am Muster messen,
+    typisch ca. 6 mm). Durchführung in der linken Wand als Rundloch aus zwei Halbschalen
+    (Durchmesser = gemessener Kabeldurchmesser + 0,3 mm), Mantel endet mindestens 5 mm innerhalb
+    der Abdeckung. Zugentlastung: Kabelbinder-Steg an der Unterschale außen. Der Klemmstecker
+    von J1 liegt ganz innen.
+  - **Werkstoff**: PC-Filament (Glasübergang ca. 110–145 °C, weit über 70 °C), bevorzugt eine
+    flammgeschützte Sorte (UL 94 V-0), sonst Standard-PC; das Metallgehäuse bleibt die
+    Brandschutzhülle.
+  - **Wärme**: IRM-10-5 bei ca. 0,5 A Last (R2 plus Lüfter) mit ca. 0,8 W Verlust. Erste
+    Version geschlossen; Abnahme misst die Gehäusetemperatur des Moduls unter der Abdeckung
+    bei Dauerlast (60 min). Liegt die Erwärmung gegenüber der Luft außerhalb der Abdeckung über
+    10 K, bekommt der Deckel Lüftungslamellen als Labyrinth (überlappend, kein gerader Weg zu
+    Netzspannung führenden Teilen).
+  - **Abbildung im Layout**: Board-only-Footprint **COV1** (`oven:Netzabdeckung_REVA`, nicht in
+    der Stückliste) mit Umriss der Schalen auf F.Fab/B.Fab, Sperrflächen (Rule Areas: keine
+    Footprints) entlang der Innenwand auf beiden Seiten, den NPTH-Bohrungen H5–H8 als Pads und
+    dem 3D-Modell der Schalen. DRC-Regel `cover_holes_to_mains`: Bohrungen von COV1 ≥ 6 mm
+    zu Netzklasse `Mains`. Bauteilhöhen unter dem Deckel ≤ 25 mm.
+  - **Modell**: Fusion 360 (Prinzip X), Quelle und Exporte unter `hardware/controller/cover/`
+    (`netzabdeckung.f3d`, `netzabdeckung_oben.step/.stl`, `netzabdeckung_unten.step/.stl`,
+    `README.md` mit Druckeinstellungen). Konstruiert gegen den STEP-Export der Platine; der
+    Umriss in COV1 und das Fusion-Modell werden gegeneinander geprüft.
+- **Rationale**: Ein geschlossenes Gehäuse aus zwei Schalen ist mit FDM sicher dicht
+  herstellbar, Stufenfugen und kleine Spalte halten den Prüfdraht zuverlässiger ab als
+  Lüftungsschlitze. Die Innenwand im ohnehin kupferfreien Isolationsband kostet keine
+  Platinenfläche. Kunststoffschrauben bringen kein leitfähiges Teil an die Oberfläche. Ein
+  Footprint macht die Abdeckung für DRC, 3D-Ansicht und STEP-Export sichtbar, sodass Bauteile
+  unter der Wand und zu hohe Teile auffallen.
+- **Alternatives considered**: Nur Oberschale (Lötstellen unten offen, verworfen in der Spec);
+  Rastnasen (ohne Werkzeug lösbar, bruchgefährdet); Metallschrauben (leitfähig an der
+  Oberfläche); Wand quer über das IRM-10-5 (nicht dicht); Lüftungsschlitze von Anfang an
+  (Schlitze < 1 mm im FDM-Druck unzuverlässig, erst nach Messung).
+- **Folgen für das Layout (vor T021)**: J5/U5 weiter vom IRM-10-5 abrücken (ohnehin offen in
+  T020, Wärme), damit Wand und Überstand an der rechten Modulkante Platz haben; die
+  Kleinspannungsbauteile an der Innenwand (J2, Q3–Q5, U7, C2, C3) so weit nach rechts, dass
+  Sperrfläche und H5–H8 passen.
 
 ## Stückliste (Auswahl T008, 2026-10-25)
 
@@ -427,6 +499,7 @@ pro Stück inkl. MwSt.
 | Relaisfassung | Finder 95.05 (Schraubmontage) | Reichelt/Mouser | ca. 4–8 € |
 | Antenne | U.FL → RP-SMA-Pigtail (ca. 15 cm, Durchführung) + 2,4-GHz-Stabantenne RP-SMA | Reichelt/Amazon | ca. 8 € |
 | Platinenlüfter | Noctua NF-A4x10 5V PWM (+ ggf. Verlängerung NA-SEC1) | offen | 15,90 € (2026-10-26) |
+| Netzabdeckung | Ober- und Unterschale aus PC-Filament (bevorzugt UL 94 V-0), Druck selbst; 4 + 2 Schrauben M3 Polyamid mit Muttern; Netzkabel H05VV-F 2 × 0,75 mm² | Druck / Reichelt | ca. 5 € |
 | Encoder | Alps EC11E15244G1 | Conrad 3523314 | 3,49 € |
 | Stopp-Taste | rot, Ø 16–19 mm, 1 Öffner + 1 Schließer | offen | – |
 | Thermoelemente (2×) | Typ K, Mantel Ø 1–1,5 mm, isolierte Messstelle, Mini-Stecker SMPW-K | offen | – |

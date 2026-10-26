@@ -40,7 +40,10 @@ Anschließend dasselbe mit Netzversorgung. Kein Lastteil angeschlossen.
 5. **Given** die Platine ist zusätzlich über USB verbunden, **When** die Netzversorgung
    eingeschaltet wird, **Then** läuft der Controller ohne Neustart weiter und der Rechner wird
    nicht aus dem Netzteil gespeist.
-6. **Given** die Platine läuft bei Raumtemperatur, **When** der Statusbereich angezeigt wird,
+6. **Given** die Netzabdeckung ist montiert und der Netzstecker eingesteckt, **When** im
+   Kleinspannungsbereich gemessen wird, **Then** ist kein Netzspannung führendes Teil mit der
+   Messspitze erreichbar (FR-039).
+7. **Given** die Platine läuft bei Raumtemperatur, **When** der Statusbereich angezeigt wird,
    **Then** dreht der Lüfter mit Mindestdrehzahl und die Firmware meldet eine plausible
    Drehzahl.
 
@@ -151,6 +154,10 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   Lastschalter dürfen sich ohne Schaden mitbewegen.
 - **Lüfter blockiert, abgezogen oder defekt**: Die Drehzahlrückmeldung bleibt aus bzw. zu
   niedrig; Heizung aus, verriegelnder Fehler mit eigenem Code (FR-037).
+- **Netzkabel wird bei montierter Abdeckung gezogen oder ein Leiter löst sich**: Die
+  Zugentlastung an der Schale hält das Kabel; ein gelöster Leiter bleibt unter der Abdeckung.
+  Der Stecker der Netzklemme wird nur bei abgenommener Abdeckung und gezogenem Netzstecker
+  abgezogen.
 - **Platine wird zu heiß, kühlt wieder ab**: Freigabe bleibt gelöscht, bis der Benutzer neu
   startet.
 - **Falsche Firmware für die Platine**: Erkennt die Firmware eine nicht unterstützte
@@ -269,6 +276,22 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   Im Netzspannung führenden Bereich DÜRFEN KEINE Test- oder Messpunkte vorhanden sein. Alle
   Anschlüsse am Platinenrand, nach Funktion gruppiert (Netz getrennt von Kleinspannung) und im
   Bestückungsdruck mit Funktion und Pinbelegung beschriftet.
+- **FR-039**: Alle Netzspannung führenden Teile der Platine MÜSSEN sich mit einer
+  abnehmbaren Abdeckung aus dem 3D-Drucker (PC-Filament) abdecken lassen, sodass bei
+  eingestecktem Netzstecker im Kleinspannungsbereich gemessen werden kann, auch mit der
+  Platine auf dem Tisch. Die Abdeckung besteht aus Ober- und Unterschale, die gemeinsam
+  verschraubt werden und auch die Lötstellen auf der Unterseite abdecken. Der Stecker der
+  Netzklemme liegt ganz unter der Abdeckung; das Netzkabel läuft durch eine passgenaue
+  Öffnung mit Zugentlastung an der Schale. Die Schalen werden mit durchgehenden
+  Kunststoffschrauben M3 (Polyamid) durch eigene Bohrungen ohne Kupfer im Netzbereich
+  befestigt (mindestens 6 mm Abstand zum Netzkupfer) und lassen sich nur mit Werkzeug lösen.
+  Mit montierter
+  Abdeckung DARF ein Prüfdraht von 1 mm Durchmesser kein Netzspannung führendes Teil erreichen
+  (Schutzart IPXXD); Öffnungen und Spalte der Abdeckung sind deshalb höchstens 1 mm breit. Die
+  Abdeckung ist ein zusätzlicher Berührungsschutz; die Kriech- und Luftstrecken nach FR-026
+  bleiben unverändert die Isolierung. Die Abdeckung gehört zu diesem Feature: Ihr 3D-Modell
+  liegt im Repository (Quelle sowie STEP und STL), sie wird vor dem ersten Netzbetrieb gedruckt
+  und mit dem Prüfdraht abgenommen.
 - **FR-029**: Die Kleinspannungsmasse der Platine DARF im Betrieb NICHT mit dem Schutzleiter
   verbunden sein; die Schirmanbindung der USB-Buchse MUSS per Bestückungsoption wählbar sein.
 - **FR-030**: Alle Bauteile MÜSSEN eine zulässige Betriebstemperatur von mindestens 70 °C
@@ -300,6 +323,8 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   Firmware).
 - **Messkanal**: Thermoelement (oben bzw. unten) mit Messbaustein; liefert Kammertemperatur,
   Vergleichsstellen-Temperatur (Platinentemperatur) und Fehlerstatus.
+- **Netzabdeckung**: abnehmbare Ober- und Unterschale aus PC über dem Netzbereich der Platine;
+  Berührungsschutz nach FR-039.
 - **Platinenlüfter**: 5-V-Lüfter in der Gehäusewand; Sollwert (PWM) von der Firmware,
   Istdrehzahl über die Drehzahlrückmeldung; Ausfall ist ein Fehler nach FR-037.
 - **Heizkreis**: Ober- bzw. Unterhitze mit eigenem Lastschalter; gemeinsame Zuleitung über das
@@ -327,6 +352,8 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   einbauen.
 - **SC-009**: Ein blockierter oder abgezogener Lüfter wird in jedem Betriebszustand innerhalb
   von 5 Sekunden erkannt und schaltet die Heizung ab.
+- **SC-010**: Bei montierter Netzabdeckung erreicht ein Prüfdraht von 1 mm Durchmesser an
+  keiner Stelle ein Netzspannung führendes Teil der Platine, weder von oben noch von unten.
 
 ## Assumptions
 
@@ -343,8 +370,8 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   zulässige Abweichung zwischen oben und unten sowie die Thermal-Runaway-Erkennung legt das
   Feature „Sichere Temperaturregelung" fest. Dieses Feature stellt die Hardware dafür bereit.
 - Lastteil (Kaltgerätebuchse, Sicherheitsrelais, SSRs, Verkabelung im Ofen), Montageblech und
-  Gehäuse sind nicht Teil der Platine; Abmessungen und Wärmevorgaben (Prinzip X) kommen aus dem
-  Feature „Controller-Gehäuse". Die Thermosicherung des Ofens bleibt in Reihe.
+  Gehäuse sind nicht Teil der Platine (die Netzabdeckung nach FR-039 schon); Abmessungen
+  und Wärmevorgaben (Prinzip X) kommen aus dem Feature „Controller-Gehäuse". Die Thermosicherung des Ofens bleibt in Reihe.
 - Drahtlose Firmware-Updates sind ein eigenes Firmware-Feature (nur im Leerlauf bei gelöschter
   Freigabe). Dieses Feature stellt nur WLAN mit externer Antenne und USB als Rückfallweg bereit.
 - Die Temperaturregelung selbst (Heizprofile, Regler, Thermal-Runaway-Logik) ist nicht Teil
@@ -388,3 +415,17 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   20 %, ab 35 °C stufenlos steigend bis 100 % bei 50 °C.
 - Q: Welches Lüftermodell soll eingeplant werden? → A: Noctua NF-A4x10 5V PWM (Betrieb
   −10…+70 °C laut Datenblatt, 15,90 €).
+- Q: Wovor soll die montierte Netzabdeckung schützen? → A: Gegen Draht und Messspitze: ein
+  Prüfdraht von 1 mm Durchmesser darf kein 230-V-Teil erreichen (IPXXD), Öffnungen und Spalte
+  höchstens 1 mm.
+- Q: Soll auch die Unterseite des Netzbereichs abgedeckt werden? → A: Ja, Ober- und
+  Unterschale, gemeinsam verschraubt; schützt auch beim Messen auf dem Tisch.
+- Q: Wie soll das Netzkabel an der Netzklemme durch die Abdeckung geführt werden? → A: Stecker
+  ganz unter der Abdeckung, Kabel durch passgenaue Öffnung (Spalt ≤ 1 mm) mit Zugentlastung an
+  der Schale; abziehen nur bei abgenommener Abdeckung und gezogenem Netzstecker.
+- Q: Wie sollen die beiden Schalen an der Platine befestigt werden? → A: Durchgehende
+  Kunststoffschrauben M3 (Polyamid) mit Mutter durch eigene Bohrungen ohne Kupfer, mindestens
+  6 mm vom Netzkupfer; Lösen nur mit Werkzeug.
+- Q: Wird die Netzabdeckung in diesem Feature konstruiert, gedruckt und abgenommen? → A: Ja,
+  Modell (Fusion 360, Export STEP und STL) im Repository, Druck und Prüfung mit dem Prüfdraht
+  vor dem ersten Netzbetrieb; das Gehäuse-Feature berücksichtigt sie als Bauraum.

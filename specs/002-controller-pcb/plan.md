@@ -1,6 +1,6 @@
 # Implementation Plan: Controller-Platine (PCB REV A)
 
-**Branch**: `002-controller-pcb` (Feature-Kennung; gearbeitet wird auf `main`) | **Date**: 2026-10-25, ergänzt 2026-10-26 (Platinenlüfter) | **Spec**: [spec.md](spec.md)
+**Branch**: `002-controller-pcb` (Feature-Kennung; gearbeitet wird auf `main`) | **Date**: 2026-10-25, ergänzt 2026-10-26 (Platinenlüfter, Netzabdeckung) | **Spec**: [spec.md](spec.md)
 
 **Input**: Feature specification from `specs/002-controller-pcb/spec.md`
 
@@ -14,7 +14,9 @@ TC6501, FAULT der MAX31856 und Watchdog/Spannungsüberwachung TPS3828) sowie die
 von zwei externen Panel-SSRs und einem Sicherheitsrelais. Encoder sitzt auf einem eigenen
 kleinen Träger in der Front. Ein Platinenlüfter (Noctua NF-A4x10 5V PWM in der Gehäusewand)
 wird über PWM nach der Platinentemperatur geregelt und über sein Drehzahlsignal überwacht
-([research.md R18](research.md#r18--platinenlüfter-fr-036-bis-fr-038)).
+([research.md R18](research.md#r18--platinenlüfter-fr-036-bis-fr-038)). Der Netzbereich bekommt
+eine verschraubte Ober- und Unterschale aus PC (3D-Druck), die bei eingestecktem Netzstecker
+Messungen im Kleinspannungsbereich erlaubt ([research.md R19](research.md#r19--netzabdeckung-fr-039-sc-010)).
 
 Der Schaltplan entsteht als Code mit SKiDL und wird als Netzliste in KiCad 10 eingelesen;
 Layout, ERC/DRC und Fertigungsdaten in KiCad 10 bzw. `kicad-cli`. Die Firmware bekommt eine
@@ -46,7 +48,9 @@ ausbleibendem Watchdog-Signal; Fühlerfehler ≤ 2 s erkannt; Lüfterausfall ≤
 
 **Constraints**: Platine ≤ 150 × 150 mm (Ziel ≤ 100 × 100 mm), Bauteilhöhe ≤ 40 mm, 2 Lagen,
 SMD einseitig, ≥ 0603/SOT-23, keine BGA; Bauteile ≥ 70 °C Betriebstemperatur; keine Testpunkte
-im 230-V-Bereich; Laststrom nicht über die Platine; Kleinspannungs-GND nicht an PE
+im 230-V-Bereich; Laststrom nicht über die Platine; Kleinspannungs-GND nicht an PE;
+Netzbereich unter einer Abdeckung (Prüfdraht 1 mm, Spalte ≤ 0,5 mm konstruktiv, Bauteile
+darunter ≤ 25 mm hoch, Befestigung ≥ 6 mm vom Netzkupfer)
 
 **Scale/Scope**: 2 Platinen (Hauptplatine, Encoder-Träger), ca. 120 Bauteile, 1 neue
 Board-Revision, ca. 10 neue Firmware-Interfaces, 9 neue Fehlercodes
@@ -61,13 +65,13 @@ Board-Revision, ca. 10 neue Firmware-Interfaces, 9 neue Fehlercodes
 | II. SOLID | ✅ | `OvenTemperatureMonitor` hängt künftig von `IThermocoupleReader` statt vom MAX31855-Rohwort ab (Open/Closed: neuer Wandler = neue Implementierung). Schmale Interfaces: `IHeaterOutputs`, `IEnableLatch`, `IStopButton`, `IExternalWatchdog`, `IRevisionStrap`, `IFanOutput`, `IFanTachometer`. |
 | III. HAL & Testbarkeit | ✅ | Decoder, Revisionserkennung, Platinentemperatur-Überwachung, Watchdog-Lebenszeichen, Lüfterkennlinie und Lüfterüberwachung sind host-testbar und werden testgetrieben entwickelt (sicherheitsrelevant). HIL: Sensorlesung beider Kanäle und Abschalten über jede Löschquelle; Ergebnis in `docs/compatibility.md`. |
 | IVa. Thermische Sicherheit | ✅ | Heizausgänge mit Pull-down, Freigabe nach Start gelöscht, Löschen vorrangig; Stopp-Öffner speist die Freigabe (Kabelbruch = Stopp); externer Watchdog + interner Watchdog + Brownout; PCB-Temperatur über CJ der MAX31856 (Begründung der Platzierung in [research.md R5](research.md#r5--platinentemperatur-über-die-vergleichsstelle)), Firmware-Grenze 60 °C, Hardware-Schwelle 65 °C (TC6501); Kammer-Übertemperatur per FAULT in Hardware; Sicherheitsrelais gegen kurzgeschlossene SSRs; Thermosicherung bleibt. Lüfterausfall → DISARM und verriegelnder Fehler E206; ohne Firmware (Reset, Absturz) läuft der Lüfter mit voller Drehzahl. Max. Heizdauer und Thermal-Runaway: Feature „Sichere Temperaturregelung". |
-| IVb. Elektrische Sicherheit | ✅ | Zertifiziertes, isolierendes Netzteilmodul; Kriech-/Luftstrecken und Fräsung laut [research.md R2](research.md#r2--netzeingang-netzteil-und-isolation); eigene Sicherung + Varistor; Laststrom über Panel-SSRs und Relais außerhalb der Platine; SSR- und Relais-Reserve in [research.md R8](research.md#r8--lastansteuerung-ssr-und-sicherheitsrelais); Montagelöcher ohne Kupfer (GND nicht an PE). Die Firmware setzt nur voraus, was im KiCad-Projekt dokumentiert ist. |
+| IVb. Elektrische Sicherheit | ✅ | Zertifiziertes, isolierendes Netzteilmodul; Kriech-/Luftstrecken und Fräsung laut [research.md R2](research.md#r2--netzeingang-netzteil-und-isolation); eigene Sicherung + Varistor; Laststrom über Panel-SSRs und Relais außerhalb der Platine; Netzabdeckung als zusätzlicher Berührungsschutz (IPXXD) mit Kunststoffschrauben, die Kriech- und Luftstrecken bleiben die Isolierung ([research.md R19](research.md#r19--netzabdeckung-fr-039-sc-010)); SSR- und Relais-Reserve in [research.md R8](research.md#r8--lastansteuerung-ssr-und-sicherheitsrelais); Montagelöcher ohne Kupfer (GND nicht an PE). Die Firmware setzt nur voraus, was im KiCad-Projekt dokumentiert ist. |
 | V. Ressourcen & Determinismus | ✅ | Neue Treiber statisch instanziiert, nicht blockierend (MAX31856 im Automatikmodus, nur Register lesen); USB-CDC-Log ohne Blockieren ([research.md R3](research.md#r3--controller-usb-und-antenne)). |
 | VI. Revisionskonsistenz | ✅ | `REV A` im Silkscreen; Revisionserkennung zur Laufzeit per Spannungsteiler am ADC; Firmware passt Laufzeit-Revision gegen Compile-Zeit-Board ab, unbekannt → sicherer Zustand + E204; Pins nur in `board_rev_a.h`; Kompatibilitätsmatrix wird ergänzt; Firmware 0.2.0. |
 | VII. Zentrale Konfiguration | ✅ | Grenzwerte (60 °C, Watchdog-Periode, Schwelle der Kammer-FAULT für die Inbetriebnahme, Lüfterkennlinie und Ausfallschwelle) als `constexpr` in `app_config.h`; Pins/Teiler/Encoder-Schritte in `board_rev_a.h`. Keine persistenten Daten. |
 | VIII. Zustandsmaschine | ✅ (Teilumfang) | Die Freigabe ist ein Hardware-Speicher, kein Firmware-Zustand. Die Betriebszustände des Ofens kommen mit „Sichere Temperaturregelung"; bis dahin bleibt der Ofen in „Idle, Heizung AUS". Die Inbetriebnahme-Firmware setzt die Freigabe nur in HIL-Tests. |
 | IX. Diagnose & Fehlercodes | ✅ | Neue Codes E106–E108 und E201–E206 zentral in `error_code.h`, dokumentiert in `docs/error-codes.md`; Log-Ereignisse für Freigabe, Löschquellen, Revision. |
-| X. Gehäuse | ✅ (Schnittstelle) | Platine liefert Maße, Bohrungen, Höhen und Anschlusslage an das Feature „Controller-Gehäuse" (STEP-Export). Aktive Lüftung: 40-mm-Lüfter in der Gehäusewand, Frischluft über die Platine; Lüfterausschnitt, Gitter und Abluftöffnungen legt das Gehäuse-Feature fest. Die Wärmeabnahme bei max. Ofentemperatur gehört zum Gehäuse-Feature. |
+| X. Gehäuse | ✅ (Schnittstelle) | Platine liefert Maße, Bohrungen, Höhen und Anschlusslage an das Feature „Controller-Gehäuse" (STEP-Export). Aktive Lüftung: 40-mm-Lüfter in der Gehäusewand, Frischluft über die Platine; Lüfterausschnitt, Gitter und Abluftöffnungen legt das Gehäuse-Feature fest. Netzabdeckung aus PC (Kunststoff im Elektronikbereich, Glasübergang ≥ 110 °C) als Fusion-360-Modell, gegen den STEP-Export der Platine geprüft; ihr Bauraum (ca. 27 mm über, 6 mm unter der Platine, 3 mm Überstand links und unten) geht an das Gehäuse-Feature. Die Wärmeabnahme bei max. Ofentemperatur gehört zum Gehäuse-Feature. |
 | Technologie-Stack | ✅ | KiCad-Projekt unter `hardware/` mit Schaltplan-Quelle, Layout, Footprints, BOM; PlatformIO-Umgebung `esp32s3_reva` zusätzlich zu `esp32_revdev` und `native`; CI baut beide Zielumgebungen. |
 
 **Ergebnis**: Gate bestanden, keine Abweichungen.
@@ -78,7 +82,9 @@ hält Modulgrenzen ein; jede Löschquelle wirkt ohne Firmware; alle sicherheitsr
 Logikteile sind host-testbar; die einzige Interface-Änderung (`OvenTemperatureMonitor`) ist
 durch Feature 001 abgedeckte Funktionalität und wird mit dessen Tests nachgezogen. Ergänzung
 2026-10-26 (Lüfter): erneut bestanden; der Lüfter hängt nicht in der Hardware-Löschkette,
-die Platinen-Übertemperatur (TC6501, 65 °C) schützt unabhängig von ihm.
+die Platinen-Übertemperatur (TC6501, 65 °C) schützt unabhängig von ihm. Ergänzung
+Netzabdeckung: erneut bestanden; keine leitfähigen Teile an der Oberfläche, Wärme des
+IRM-10-5 unter der Abdeckung wird gemessen (quickstart 4a).
 
 ## Project Structure
 
@@ -87,7 +93,7 @@ die Platinen-Übertemperatur (TC6501, 65 °C) schützt unabhängig von ihm.
 ```text
 specs/002-controller-pcb/
 ├── plan.md              # Dieser Plan
-├── research.md          # Phase 0: Entscheidungen R1–R18
+├── research.md          # Phase 0: Entscheidungen R1–R19
 ├── data-model.md        # Phase 1: Entitäten, Fehlercodes, Freigabe-Logik
 ├── quickstart.md        # Phase 1: Bring-up, HIL, Abnahme
 ├── contracts/
@@ -104,13 +110,15 @@ specs/002-controller-pcb/
 hardware/
 ├── README.md                         # Werkzeugkette, Build-Befehle, Prüfschritte
 ├── requirements.txt                  # SKiDL (Version fixiert)
-├── lib/                              # projekteigene Symbole/Footprints (.kicad_sym, .pretty)
+├── lib/                              # projekteigene Symbole/Footprints (.kicad_sym, .pretty),
+│                                     #   u. a. oven:Netzabdeckung_REVA (COV1)
 ├── controller/                       # Hauptplatine REV A
 │   ├── schematic/                    # SKiDL-Quellen, eine Datei je Block
 │   │   ├── main.py                   #   Einstieg, erzeugt controller.net
 │   │   ├── power.py  mcu.py  usb.py  thermocouple.py
 │   │   ├── safety.py  load.py  ui.py  misc.py
 │   ├── controller.kicad_pro / .kicad_pcb
+│   ├── cover/                        # Netzabdeckung: Fusion-Quelle, STEP/STL oben und unten, README
 │   ├── controller.net                # erzeugt (versioniert, Review-Grundlage)
 │   └── output/                       # Gerber, Bohrdaten, BOM, Bestückungsplan, STEP (erzeugt)
 └── encoder-carrier/                  # Encoder-Träger REV A (gleiche Struktur, klein)
@@ -162,6 +170,8 @@ ohne Python möglich sind. Das Layout entsteht in KiCad 10 aus der Netzliste
    nach [research.md R13](research.md#r13--layout-lagen-zonen-und-platzierung), Routing.
 4. DRC mit Projektregeln (Kriech-/Luftstrecken als Netzklassen-Regeln), `kicad-cli pcb drc`.
 5. Exporte per `kicad-cli`: Gerber, Bohrdaten, BOM, Bestückungsplan, STEP für das Gehäuse.
+   Netzabdeckung in Fusion 360 gegen den STEP-Export konstruieren, drucken, mit dem Prüfdraht
+   abnehmen ([research.md R19](research.md#r19--netzabdeckung-fr-039-sc-010)).
 6. Review gegen Spec, Plan und Verfassung (`/speckit-checklist` für IVa/IVb), dann Bestellung.
 
 ## Dokumentation, die mit diesem Feature entsteht oder geändert wird
