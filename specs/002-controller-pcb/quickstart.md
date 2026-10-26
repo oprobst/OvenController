@@ -50,6 +50,7 @@ pio run -d firmware -e esp32s3_reva -t upload
 | 3.4 | Encoder drehen/drücken, Stopp drücken | Menü reagiert; Log zeigt Stopp | US1-4 |
 | 3.5 | Fühler oben/unten bei Raumtemperatur | beide ≤ 3 °C vom Referenzthermometer, ≤ 2 °C voneinander | US1-3, SC-005 |
 | 3.6 | Fühler abziehen | „E101 oben" bzw. „unten" innerhalb 2 s | SC-006 |
+| 3.7 | Lüfter an J10, Start beobachten | während Reset/Boot volle Drehzahl, danach ca. 20 % (≈ 1050 U/min); Log `mod=cooling msg="fan" duty=20 rpm=…` | US1-6, FR-038 |
 
 ## 4. Host- und HIL-Tests
 
@@ -67,6 +68,7 @@ Automatische HIL-Tests (ohne Netz, Last nicht nötig):
 |---|---|---|
 | `test_hil_revision` | Teilerspannung im Fenster REV A | FR-007 |
 | `test_hil_max31856` | Konfiguration, beide Kanäle lesen, CJ plausibel | FR-013, FR-015 |
+| `test_hil_fan` · Drehzahl | 20 %, 50 %, 100 % ansteuern → Drehzahl steigt monoton, 20 % ≥ 800 U/min | FR-036, FR-038 |
 | `test_hil_enable_chain` · Start | Q nach Start gelöscht | US2-1, FR-020 |
 | · ARM/DISARM | ARM setzt Q, DISARM löscht in ≤ 1 ms | FR-022, FR-023 |
 | · Watchdog | Herzschlag stoppen → Q gelöscht in ≤ 2,6 s | US2-4, SC-002 |
@@ -81,6 +83,9 @@ Manuelle HIL-Schritte (Test fordert per Log dazu auf und prüft das Ergebnis):
 | M2 | Freigabe setzen, Bedienteil-Kabel abziehen | Q gelöscht | US2-3 |
 | M3 | Freigabe setzen, TC6501 mit Heißluft (< 100 °C) erwärmen | Q gelöscht bei ca. 65 °C, bleibt nach Abkühlen gelöscht | US2-5 |
 | M4 | Freigabe setzen, 3,3 V über Labornetzteil absenken (Testaufbau) oder Brownout simulieren | Q gelöscht | FR-021 |
+| M5 | Freigabe setzen, Lüfter festhalten bzw. J10 abziehen | „E206" innerhalb 5 s, Q gelöscht, Fehler bleibt bis zur Quittierung | US2-9, FR-037, SC-009 |
+| M6 | Ohne Freigabe Lüfter abziehen | „E206" angezeigt | FR-037 |
+| M7 | Platine mit Heißluft auf ca. 40 / 50 °C (CJ) erwärmen | Drehzahl steigt, bei ≥ 50 °C volle Drehzahl | FR-038 |
 
 Ergebnis in `docs/compatibility.md` eintragen (Prinzip III).
 

@@ -13,6 +13,8 @@ graph TD
     app --> heater
     app --> board
     app --> temperature
+    app --> cooling
+    cooling --> diagnostics
     board --> temperature
     board --> diagnostics
     heater --> platform
@@ -21,6 +23,7 @@ graph TD
     hal_esp32 -.implementiert.-> heater
     hal_esp32 -.implementiert.-> board
     hal_esp32 -.implementiert.-> temperature
+    hal_esp32 -.implementiert.-> cooling
 ```
 
 Zyklenfrei; `hal_esp32` ist weiterhin das einzige Modul mit Arduino-/ESP-IDF-Abhängigkeiten.
@@ -148,6 +151,45 @@ public:
 `OvenTemperature` (Feature 001) bekommt das Feld `coldJunction`, damit
 `PcbTemperatureMonitor` nur `ITemperatureSensor` braucht.
 
+## cooling (neu)
+
+```cpp
+/// PWM output for the board fan (HAL). 25 kHz; the HAL handles the inverting MOSFET stage.
+class IFanOutput {
+public:
+    virtual ~IFanOutput() = default;
+    /// @param dutyPercent 0..100, values above 100 are clamped
+    virtual void setDutyPercent(uint8_t dutyPercent) = 0;
+};
+
+/// Tachometer of the board fan (HAL), 2 pulses per revolution.
+class IFanTachometer {
+public:
+    virtual ~IFanTachometer() = default;
+    /// @return pulses counted since the previous call (non-blocking)
+    virtual uint32_t takePulseCount() = 0;
+};
+
+/// Fan curve from FR-038 (pure function, host-tested).
+uint8_t fanDutyPercent(bool pcbTemperatureValid, Celsius pcbTemperature);
+
+/// Sets the duty from the PCB temperature and detects a stalled fan (FR-037).
+class FanMonitor {
+public:
+    FanMonitor(IFanOutput& output, IFanTachometer& tachometer, ILogger& logger);
+    /// Call once per second from the main loop.
+    void update(Milliseconds now, bool pcbTemperatureValid, Celsius pcbTemperature);
+    /// @return None or FanFailure (206); latched until acknowledge()
+    ErrorCode status() const;
+    uint16_t rpm() const;
+    /// Clears the latched failure if the fan turns again.
+    void acknowledge();
+};
+```
+
+`app` verdrahtet `FanMonitor::status()` wie `PcbTemperatureMonitor`: E206 löst DISARM aus und
+wird angezeigt.
+
 ## Log-Ereignisse (neu)
 
 Format wie [Feature 001 log-format](../../001-startup-status-menu/contracts/log-format.md):
@@ -159,4 +201,6 @@ Format wie [Feature 001 log-format](../../001-startup-status-menu/contracts/log-
 | Freigabe gelöscht (Firmware) | `lvl=INFO mod=heater msg="disarmed" reason=fault code=E201` |
 | Hardware-Abschaltung | `lvl=WARN mod=heater msg="hardware trip" code=E205 cause=stop` |
 | Platinentemperatur | `lvl=WARN mod=board msg="pcb over temperature" code=E201 celsius=61.2` |
+| Lüfter | `lvl=INFO mod=cooling msg="fan" duty=35 rpm=1720 pcb_c=38.5` |
+| Lüfterausfall | `lvl=ERROR mod=cooling msg="fan failure" code=E206 duty=20 rpm=0` |
 | Messbaustein-Konfiguration | `lvl=ERROR mod=temp msg="config mismatch" ch=top code=E105` |

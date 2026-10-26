@@ -329,6 +329,54 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
 | Elkos | 105-°C-Typen wählen | Auswahlregel |
 | Steckverbinder, Klemmen, USB-C | ≥ 85 °C (prüfen) | Auswahlregel |
 | Summer | ≥ 70 °C (prüfen) | Auswahlregel |
+| Lüfter Noctua NF-A4x10 5V PWM | 70 °C (Datenblatt) | ✅ Grenze, sitzt im Frischluftstrom |
+| Lüfterstecker Molex 47053-1000 | ≥ 85 °C (prüfen) | Auswahlregel |
+
+## R18 – Platinenlüfter (FR-036 bis FR-038)
+
+Quelle: Noctua PWM specifications white paper (gilt für alle 4-Pin-Lüfter mit 5 V, 12 V und
+24 V von Noctua) und Produktdaten NF-A4x10 5V PWM.
+
+- **Decision**:
+  - **Lüfter**: Noctua NF-A4x10 5V PWM in der Gehäusewand, bläst Außenluft über die Platine.
+    5 V, ca. 0,3 W (≈ 60 mA), 0–5000 U/min, ca. 1050 U/min bei 20 % PWM, Betrieb −10…+70 °C.
+  - **Stecker J10**: 4-poliger Lüfter-Wannenstecker Molex 47053-1000 (Raster 2,54 mm, mit
+    Verpolschutz-Steg), Footprint `Connector:FanPinHeader_1x04_P2.54mm_Vertical`. Belegung nach
+    Intel-4-Draht-Standard: 1 GND, 2 +5V, 3 Drehzahl, 4 PWM. Der Lüfter steckt direkt oder mit
+    Verlängerung NA-SEC1 (30 cm).
+  - **Versorgung**: Lüfter dauerhaft an +5V (Dioden-ODER-Schiene, ca. 4,5 V); 10 µF und 100 nF
+    am Stecker. Der Lüfter läuft auch bei reiner USB-Versorgung.
+  - **PWM**: GPIO 38 → N-MOSFET BSS138 (Gate 100 kΩ nach GND) → PWM-Pin; **1 kΩ Pull-up nach
+    +5V** am Drain. 25 kHz über LEDC mit invertiertem Ausgang (GPIO high = PWM low). Das
+    Whitepaper verlangt VIL ≤ 0,8 V, max. 5,25 V und rät von Open-Collector-Stufen ohne
+    externen Pull-up ab, weil der interne Pull-up des Lüfters schwach ist; mit 1 kΩ steigt die
+    Flanke in ca. 1 µs (Periode 40 µs). Kein direkter Anschluss an den GPIO: der interne Pull-up
+    des Lüfters zieht bis 5 V, der ESP32-S3 verträgt nur 3,6 V.
+  - **Fail-safe**: Im Reset, beim Booten und bei hochohmigem GPIO sperrt der MOSFET; der PWM-Pin
+    liegt dann auf 5 V und der Lüfter läuft mit voller Drehzahl (Whitepaper: ohne PWM-Signal
+    volle Drehzahl).
+  - **Drehzahl**: Open-Collector-Ausgang, 2 Pulse je Umdrehung, max. 5 mA. 10 kΩ Pull-up nach
+    3,3 V, 1 kΩ Serie und 1 nF nach GND vor GPIO 37; Zählung mit dem Pulszähler (PCNT).
+    5000 U/min = 167 Hz. Blockierter Rotor und abgezogener Stecker liefern einen festen Pegel,
+    also 0 Hz.
+  - **Testpunkt** TP12 FAN_TACH (Kleinspannung) für die Inbetriebnahme.
+  - **Firmware**: neues Modul `cooling` (siehe [contracts/interfaces.md](contracts/interfaces.md#cooling-neu)).
+    Kennlinie nach FR-038: 20 % bis 35 °C, linear bis 100 % bei 50 °C; Platinentemperatur
+    ungültig (E202) → 100 %. Überwachung nach FR-037: Ausfall, wenn die Drehzahl 3 s lang
+    unter 500 U/min liegt (Messfenster 1 s, Erkennung ≤ 4 s < SC-009), neuer Fehlercode
+    **E206 `FanFailure`**: DISARM, verriegelnder Fehler, Anzeige auch ohne Heizvorgang.
+- **Rationale**: Ein MOSFET mit externem Pull-up ist die einfachste Stufe, die den Pegel des
+  Lüfters sauber auf 5 V hebt, den GPIO schützt und bei stehender Firmware volle Kühlung
+  liefert. BSS138 und die passiven Bauteile sind im Magazin. Die Mindestdrehzahl von 20 % liegt
+  an der unteren Grenze des Intel-Standards; darunter bleibt der Noctua stehen, die Kennlinie
+  geht deshalb nie unter 20 %. Die Ausfallschwelle von 500 U/min liegt mit Abstand unter
+  1050 U/min bei 20 %.
+- **Alternatives considered**: GPIO direkt an PWM (Überspannung am GPIO durch den Pull-up des
+  Lüfters); Pegelwandler 74AHCT1G125 an 5 V (sauberer Gegentakt, aber zusätzliches Bauteil und
+  ohne Pull-up kein definierter Zustand im Reset); Lüfterversorgung über Low-Side-MOSFET
+  (3-Draht-Steuerung, verfälscht das Drehzahlsignal); eigene Platinentemperatur-Messung für den
+  Lüfter (die CJ-Werte der MAX31856 reichen, R5).
+- **Freie Pins danach**: 3, 45, 46 (Strapping, nicht beschalten) und 48.
 
 ## Stückliste (Auswahl T008, 2026-10-25)
 
@@ -358,6 +406,8 @@ pro Stück inkl. MwSt.
 | MOSFET P | AO3401A (2×) | `Package_TO_SOT_SMD:SOT-23` | Magazin | – |
 | Schottky klein | MBR0530 (4×: Relais, Summer, FAULT oben/unten) | `Diode_SMD:D_SOD-123` | Magazin (Bestand prüfen) | – |
 | Summer | passiver Magnet-Summer 5 V, ≤ 30 mA, Betriebstemperatur ≥ 70 °C | `Buzzer_Beeper:` (prüfen) | offen | ca. 1 € |
+| Lüfterstecker J10 | Molex 47053-1000 (4-polig, 2,54 mm, mit Steg) | `Connector:FanPinHeader_1x04_P2.54mm_Vertical` | Mouser/Reichelt | ca. 0,50 € (prüfen) |
+| Lüfter-Ansteuerung | BSS138 (2. Stück), 1 kΩ Pull-up an +5V, 100 kΩ Gate; Drehzahl 10 kΩ / 1 kΩ / 1 nF; 10 µF + 100 nF am Stecker | `Package_TO_SOT_SMD:SOT-23`, 0603/0805 | Magazin | – |
 | LED | grün, 0805 | `LED_SMD:LED_0805_2012Metric` | Mouser/Reichelt | ca. 0,10 € |
 | Netzklemme | Phoenix MSTBA 2,5/2-G-5,08 + Stecker MSTB 2,5/2-ST-5,08 | `Connector_Phoenix_MSTB:PhoenixContact_MSTBA_2,5_2-G-5,08_1x02_P5.08mm_Horizontal` | Reichelt/Mouser | ca. 2 € |
 | Lastteil-Klemme | Phoenix MC 1,5/6-G-3,81 + Stecker MC 1,5/6-ST-3,81 | `Connector_Phoenix_MC:` 1x06 P3.81 mm horizontal | Reichelt/Mouser | ca. 2,50 € |
@@ -376,6 +426,7 @@ pro Stück inkl. MwSt.
 | Sicherheitsrelais | Finder 40.61.9.005.0000 | Reichelt/Mouser | ca. 6–10 € |
 | Relaisfassung | Finder 95.05 (Schraubmontage) | Reichelt/Mouser | ca. 4–8 € |
 | Antenne | U.FL → RP-SMA-Pigtail (ca. 15 cm, Durchführung) + 2,4-GHz-Stabantenne RP-SMA | Reichelt/Amazon | ca. 8 € |
+| Platinenlüfter | Noctua NF-A4x10 5V PWM (+ ggf. Verlängerung NA-SEC1) | offen | 15,90 € (2026-10-26) |
 | Encoder | Alps EC11E15244G1 | Conrad 3523314 | 3,49 € |
 | Stopp-Taste | rot, Ø 16–19 mm, 1 Öffner + 1 Schließer | offen | – |
 | Thermoelemente (2×) | Typ K, Mantel Ø 1–1,5 mm, isolierte Messstelle, Mini-Stecker SMPW-K | offen | – |

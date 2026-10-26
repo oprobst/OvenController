@@ -96,6 +96,19 @@ je Kanal eigene Instanz.
 Regeln: `celsius ≥ 60 °C` → E201; kein gültiger Wert → E202. Beide lösen DISARM aus. Die Meldung
 wird erst gelöscht, wenn der Wert 5 s lang unter 55 °C liegt (Hysterese).
 
+## Platinenlüfter
+
+| Feld | Bedeutung |
+|---|---|
+| `dutyPercent` | Sollwert 20–100 % aus der Kennlinie |
+| `rpm` | gemessene Drehzahl (Pulse je Sekunde × 60 ÷ 2) |
+| `status` | `None`, E206 |
+
+Kennlinie (FR-038): `celsius ≤ 35` → 20 %; `35 < celsius < 50` → linear 20…100 %;
+`celsius ≥ 50` → 100 %; Platinentemperatur ungültig (E202) → 100 %. Überwachung (FR-037):
+`rpm < 500` für 3 s → E206, DISARM, verriegelnd bis zur Quittierung (Anlaufzeit: die ersten 3 s
+nach dem Start werden nicht bewertet). Grenzwerte als `constexpr` in `app_config.h`.
+
 ## Heizkreis
 
 | Feld | Bedeutung |
@@ -118,6 +131,7 @@ die Firmware `commanded` nur in HIL-Tests.
 | E203 | `EnableLatchMismatch` | Freigabe verhält sich anders als angesteuert |
 | E204 | `UnsupportedPcbRevision` | Revision unbekannt oder passt nicht zur Firmware |
 | E205 | `HardwareTrip` | Freigabe durch eine Hardware-Löschquelle gelöscht |
+| E206 | `FanFailure` | Platinenlüfter steht oder dreht zu langsam (blockiert, abgezogen, defekt) |
 
 Anzeige mit Kanal, wo zutreffend: „E101 oben", „E107 unten".
 

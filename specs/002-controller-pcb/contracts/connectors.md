@@ -79,6 +79,19 @@ U.FL am Modul (Modulkante), Pigtail zur RP-SMA-Durchführung.
 
 Pinleiste 3-polig: 1 GND, 2 TX (GPIO 43), 3 RX (GPIO 44).
 
+## J10 – Platinenlüfter
+
+4-poliger Lüfter-Wannenstecker Molex 47053-1000 (2,54 mm, Steg gegen Verpolen), Belegung nach
+Intel-4-Draht-Standard; passt direkt zum Stecker des Noctua NF-A4x10 5V PWM
+([research.md R18](../research.md#r18--platinenlüfter-fr-036-bis-fr-038)).
+
+| Pin | Signal | Aderfarbe Noctua |
+|---|---|---|
+| 1 | GND | schwarz |
+| 2 | +5V (dauernd) | gelb |
+| 3 | FAN_TACH (Open Collector, 2 Pulse/Umdrehung) | grün |
+| 4 | FAN_PWM (25 kHz, 5-V-Pegel) | blau |
+
 ## Pinbelegung ESP32-S3 (REV A)
 
 | Signal | GPIO | Richtung | Beschaltung |
@@ -106,16 +119,18 @@ Pinleiste 3-polig: 1 GND, 2 TX (GPIO 43), 3 RX (GPIO 44).
 | CLR_SENSE | 36 | Ein | 10 kΩ Serie von der Löschleitung |
 | ENC_A / ENC_B / ENC_SW | 39 / 40 / 41 | Ein | 10 kΩ Pull-up, 10 kΩ Serie, 10 nF |
 | STOP_NO | 42 | Ein | 10 kΩ Pull-up, 10 kΩ Serie, 10 nF |
+| FAN_TACH | 37 | Ein (PCNT) | 10 kΩ Pull-up an 3,3 V, 1 kΩ Serie, 1 nF |
+| FAN_PWM | 38 | Aus (PWM, invertiert) | BSS138, 100 kΩ Gate-Pull-down, 1 kΩ Pull-up an +5V am Drain |
 | LATCH_Q | 47 | Ein | |
 | UART TX / RX | 43 / 44 | – | J9 |
 | BOOT | 0 | Ein | Taster nach GND |
-| frei | 3, 37, 38, 45, 46, 48 | – | 3, 45, 46 Strapping: nicht beschalten |
+| frei | 3, 45, 46, 48 | – | 3, 45, 46 Strapping: nicht beschalten |
 
 ## Testpunkte
 
 TP1 5V, TP2 3V3, TP3 und TP11 GND, TP4 LATCH_Q, TP5 CLR, TP6 ARM, TP7 HEAT_TOP, TP8 HEAT_BOT,
-TP9 +5V_SSR, TP10 WDI. Keine Testpunkte im Netzbereich. Steckverbinder und Testpunkte tragen im
-Schaltplan genau diese Referenzen (J1–J7, J9, TP1–TP11); die übrigen Referenzen vergibt SKiDL.
+TP9 +5V_SSR, TP10 WDI, TP12 FAN_TACH. Keine Testpunkte im Netzbereich. Steckverbinder und Testpunkte tragen im
+Schaltplan genau diese Referenzen (J1–J7, J9, J10, TP1–TP12); die übrigen Referenzen vergibt SKiDL.
 
 ## Mechanik
 

@@ -70,7 +70,8 @@ nicht konkret ausgewählt.
 | Freigabe-Latch | TI SN74LVC74AD (SOIC-14, D-Flipflop mit asynchronem Löschen) | Mouser | ca. 0,50 € (Richtwert) |
 | PCB-Temperatur (Firmware) | Vergleichsstellen-Temperatur (CJ) der MAX31856, kein eigener Sensor | – | – |
 | PCB-Übertemperatur (Hardware) | Microchip TC6501P065VCTTR (SOT-23-5, Schwelle 65 °C ab Werk, Open-Drain aktiv low), Hysterese 10 °C | DigiKey 412996 | ca. 0,75 € (Richtwert) |
-| Lüfter | entfällt (Entscheidung 2026-10-24) | – | – |
+| Umluftlüfter (Garraum) | entfällt (Entscheidung 2026-10-24) | – | – |
+| Platinenlüfter | **Noctua NF-A4x10 5V PWM** (40 × 40 × 10 mm, 5 V, ca. 0,3 W, 0–5000 U/min, 4-Pin mit PWM und Drehzahlsignal, Betrieb −10…+70 °C laut Datenblatt) in der Gehäusewand des Bedienschachts, bläst Außenluft über die Platine (spec FR-036–FR-038, Entscheidung 2026-10-26) | offen | 15,90 € (2026-10-26) |
 | Netzteil | Mean Well IRM-10-5 (230 V → 5 V / 2 A, 10 W, Printmodul) mit Feinsicherung T 500 mA und Varistor S07K275 (siehe „Versorgung") | [Reichelt IRM-10-5](https://www.reichelt.de/de/de/shop/search/irm-10-5) | 8,10 € (2026-10-24) |
 | 3,3-V-Regler | LDO Diodes AP7361C-33E-13 (1 A, SOT-223) mit Kupferfläche. Die vorhandenen 1117-33 (ohne Datenblatt) nur für Versuche (siehe „Abgleich mit dem Bauteil-Magazin") | Mouser | ca. 0,50 € (Richtwert) |
 | Programmierung | Im Betrieb per OTA. Dazu USB-C-Buchse GCT USB4085-GF-A (Durchsteckmontage) direkt am nativen USB des ESP32-S3 (kein USB-UART-Chip), ESD-Schutz, VBUS über Schottky-Diode, Taster BOOT und RESET | Mouser | ca. 1 € (prüfen) |
@@ -428,7 +429,9 @@ auf 70 °C. FAULT-Schwelle der Kammer und zulässige Abweichung oben/unten legt 
   ESP32-DevKitC V4. Der Wechsel betrifft laut Verfassung nur HAL, Board-Konfiguration und
   PlatformIO-Umgebung; er wird im Plan des Features „Controller-Platine" festgehalten
   (Feature 001, research.md R1 nennt noch den ESP32).
-- **Kein Lüfter**, dafür eine **Debug-LED** auf der Platine.
+- **Kein Umluftlüfter**, dafür eine **Debug-LED** auf der Platine. Nachtrag 2026-10-26: Ein
+  Platinenlüfter (PWM und Drehzahlsignal) kommt hinzu: FAN_TACH an GPIO 37, FAN_PWM an GPIO 38
+  (Plan Feature 002, research R18).
 
 ### Pins, die frei bleiben
 
@@ -438,8 +441,7 @@ auf 70 °C. FAULT-Schwelle der Kammer und zulässige Abweichung oben/unten legt 
 | 19, 20 | natives USB |
 | 26–32 | SPI-Flash des Moduls |
 | 43, 44 | UART0: Boot-Meldungen, Reserve als Debug-Pinleiste |
-| 38, 48 | auf dem DevKitC-1 an der RGB-LED (WS2812, je nach Board-Version); Reserve |
-| 36, 37 | Reserve |
+| 48 | auf dem DevKitC-1 an der RGB-LED (WS2812, je nach Board-Version); Reserve |
 
 ### Belegung REV A (Entwurf)
 
@@ -470,6 +472,8 @@ auf 70 °C. FAULT-Schwelle der Kammer und zulässige Abweichung oben/unten legt 
 | Stopp-Schließer (Rücklesen) | 42 | externer Pull-up |
 | Latch Q (Rücklesen) | 47 | |
 | Löschleitung (Rücklesen, `CLR_SENSE`) | 36 | über 10 kΩ; ergänzt im Plan von Feature 002 (research R6) |
+| Lüfter Drehzahl (`FAN_TACH`) | 37 | 10 kΩ Pull-up an 3,3 V, Pulszähler; ergänzt 2026-10-26 (research R18) |
+| Lüfter PWM (`FAN_PWM`) | 38 | BSS138 mit 1 kΩ Pull-up an 5 V, invertiert; ohne Firmware volle Drehzahl (research R18) |
 
 Verbindliche Belegung und Steckverbinder: `specs/002-controller-pcb/contracts/connectors.md`.
 
@@ -499,6 +503,7 @@ Glitches beim Einschalten (Tabelle 2-2), jeweils ca. 60 µs:
 | 18 | Low und High | DISARM (→ /MR, aktiv low) | Low löscht höchstens den Latch, High ist inaktiv: **sicher** |
 | 19, 20 | High | USB | – |
 | 21, 35, 39–42, 47 | keiner | WDI, Buzzer, Encoder, Stopp, Latch Q | – |
+| 37, 38 | gegen Tabelle 2-2 prüfen | FAN_TACH, FAN_PWM | unkritisch: ein Glitch ändert höchstens kurz die Lüfterdrehzahl |
 
 Boot-Modus: GPIO 0 = 1 → Start aus dem Flash; GPIO 0 = 0 und GPIO 46 = 0 → Download.
 GPIO 45 wählt die Flash-Spannung (Pull-down = Standard), darf also keinen externen Pull-up

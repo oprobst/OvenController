@@ -40,6 +40,9 @@ Anschließend dasselbe mit Netzversorgung. Kein Lastteil angeschlossen.
 5. **Given** die Platine ist zusätzlich über USB verbunden, **When** die Netzversorgung
    eingeschaltet wird, **Then** läuft der Controller ohne Neustart weiter und der Rechner wird
    nicht aus dem Netzteil gespeist.
+6. **Given** die Platine läuft bei Raumtemperatur, **When** der Statusbereich angezeigt wird,
+   **Then** dreht der Lüfter mit Mindestdrehzahl und die Firmware meldet eine plausible
+   Drehzahl.
 
 ---
 
@@ -79,6 +82,8 @@ auslösen und prüfen, dass die Last abschaltet und die Freigabe gelöscht bleib
    Firmware die Freigabe setzen will, **Then** bleibt die Freigabe gelöscht.
 8. **Given** ein elektronischer Lastschalter ist durchlegiert (Kurzschluss), **When** die
    Freigabe gelöscht wird, **Then** trennt das Sicherheitsrelais die Heizungszuleitung.
+9. **Given** die Heizung ist freigegeben, **When** der Lüfter festgehalten oder abgezogen wird,
+   **Then** schaltet die Firmware die Heizung ab und zeigt den Lüfterfehler an (FR-037).
 
 ---
 
@@ -144,6 +149,8 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   gelöscht; kein automatisches Weiterheizen.
 - **USB angeschlossen, kein Netz**: Controller läuft, Lastkreise sind stromlos; Relais und
   Lastschalter dürfen sich ohne Schaden mitbewegen.
+- **Lüfter blockiert, abgezogen oder defekt**: Die Drehzahlrückmeldung bleibt aus bzw. zu
+  niedrig; Heizung aus, verriegelnder Fehler mit eigenem Code (FR-037).
 - **Platine wird zu heiß, kühlt wieder ab**: Freigabe bleibt gelöscht, bis der Benutzer neu
   startet.
 - **Falsche Firmware für die Platine**: Erkennt die Firmware eine nicht unterstützte
@@ -228,12 +235,29 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
 - **FR-025**: Heizausgänge und Freigabe-Setzen MÜSSEN auf Controller-Pins liegen, deren
   Einschaltverhalten weder einen Heizausgang einschalten noch die Freigabe setzen kann.
 
+**Platinenkühlung**
+
+- **FR-036**: Die Platine MUSS einen steckbaren Anschluss für einen 5-V-Lüfter mit
+  Drehzahlsteuerung (PWM) und Drehzahlrückmeldung haben. Der Lüfter sitzt in der Gehäusewand
+  des Bedienschachts, saugt Außenluft an und bläst sie über die Platine; Luftweg und Öffnungen
+  legt das Gehäuse-Feature fest (Prinzip X).
+- **FR-037**: Die Firmware MUSS die Lüfterdrehzahl überwachen. Steht der Lüfter oder dreht er
+  trotz Ansteuerung zu langsam, MUSS sie die Heizung abschalten, in den verriegelnden
+  Fehlerzustand mit eigenem Fehlercode wechseln (Prinzip IVa/VIII/IX) und den Fehler auch ohne
+  laufenden Heizvorgang anzeigen. Die Platinen-Übertemperaturabschaltung (FR-024) bleibt davon
+  unabhängig wirksam.
+- **FR-038**: Die Firmware MUSS die Lüfterdrehzahl stufenlos nach der Platinentemperatur
+  (FR-015) einstellen: Der Lüfter läuft immer mit einer Mindestdrehzahl (ca. 20 %), damit ein
+  Ausfall jederzeit erkennbar ist; ab 35 °C steigt die Drehzahl stetig bis 100 % bei 50 °C.
+  Die Schwellen sind Compile-Zeit-Konstanten (Prinzip VII) und werden bei der Wärmemessung im
+  Dauerbetrieb (Prinzip X) überprüft.
+
 **Elektrische Sicherheit und Mechanik**
 
 - **FR-026**: Netzspannung führende Bereiche der Platine MÜSSEN normgerechte Kriech- und
   Luftstrecken zur Kleinspannungsseite einhalten (Prinzip IVb); der Laststrom der Heizung DARF
   NICHT über die Platine fließen.
-- **FR-027**: Alle externen Verbindungen (Netz, Lastteil, Display, Bedienteil, Fühler, USB)
+- **FR-027**: Alle externen Verbindungen (Netz, Lastteil, Display, Bedienteil, Fühler, Lüfter, USB)
   MÜSSEN steckbar sein.
 - **FR-028**: Die Platine MUSS in den Bedienschacht neben dem Garraum passen (senkrecht zur
   Front) und auf einem Montageblech befestigt werden können: Außenmaße höchstens
@@ -262,8 +286,8 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   (SOIC, TSSOP, SOT) gibt.
 - **FR-035**: Zum Feature gehört die Inbetriebnahme-Firmware für REV A: Board-Konfiguration
   REV A, Build-Umgebung für den neuen Controller, Treiber für beide Messkanäle,
-  Heizungsfreigabe, externen Watchdog, Heizausgänge und Revisionserkennung sowie die HIL-Tests
-  nach FR-032. Die Funktionen aus Feature 001 MÜSSEN danach auf REV A laufen.
+  Heizungsfreigabe, externen Watchdog, Heizausgänge, Lüfter (Ansteuerung und Überwachung) und
+  Revisionserkennung sowie die HIL-Tests nach FR-032. Die Funktionen aus Feature 001 MÜSSEN danach auf REV A laufen.
 
 ### Key Entities
 
@@ -276,6 +300,8 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   Firmware).
 - **Messkanal**: Thermoelement (oben bzw. unten) mit Messbaustein; liefert Kammertemperatur,
   Vergleichsstellen-Temperatur (Platinentemperatur) und Fehlerstatus.
+- **Platinenlüfter**: 5-V-Lüfter in der Gehäusewand; Sollwert (PWM) von der Firmware,
+  Istdrehzahl über die Drehzahlrückmeldung; Ausfall ist ein Fehler nach FR-037.
 - **Heizkreis**: Ober- bzw. Unterhitze mit eigenem Lastschalter; gemeinsame Zuleitung über das
   Sicherheitsrelais.
 
@@ -299,6 +325,8 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   Gehäusewand aufspielen; der Ofen erreicht das WLAN am Aufstellort mit geschlossenem Gehäuse.
 - **SC-008**: Die Platine lässt sich in weniger als 10 Minuten ohne Löten aus- und wieder
   einbauen.
+- **SC-009**: Ein blockierter oder abgezogener Lüfter wird in jedem Betriebszustand innerhalb
+  von 5 Sekunden erkannt und schaltet die Heizung ab.
 
 ## Assumptions
 
@@ -321,7 +349,10 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
   Freigabe). Dieses Feature stellt nur WLAN mit externer Antenne und USB als Rückfallweg bereit.
 - Die Temperaturregelung selbst (Heizprofile, Regler, Thermal-Runaway-Logik) ist nicht Teil
   dieses Features; die Inbetriebnahme-Firmware nach FR-035 schaltet Heizausgänge nur für Tests.
-- Kein Umluftlüfter (Entscheidung 2026-10-24).
+- Kein Umluftlüfter im Garraum (Entscheidung 2026-10-24); davon unabhängig kühlt ein
+  Platinenlüfter die Elektronik (FR-036, Entscheidung 2026-10-26). Das gewählte Modell (40 mm,
+  5 V, Betrieb bis 70 °C, erfüllt FR-030) steht in `docs/hardware-umbau.md`; Anschluss und
+  Drehzahlsignal legt der Plan fest.
 - Die Platine wird bei einem Platinenhersteller gefertigt und vom Benutzer von Hand bestückt
   (siehe FR-033). Im Gehäuse ist genug Platz; Miniaturisierung ist kein Ziel.
 
@@ -344,3 +375,16 @@ Firmware-Übertragung über USB von außen prüfen; Platine abklemmen und ausbau
 - Q: Wie viel Firmware gehört zu diesem Platinen-Feature? → A: Hardware plus
   Inbetriebnahme-Firmware (Board-Konfiguration, Treiber, HIL-Tests); Regelung folgt im Feature
   „Sichere Temperaturregelung".
+
+### Session 2026-10-26
+
+- Q: Wo soll der Platinenlüfter sitzen und wie soll die Luft strömen? → A: In der Gehäusewand
+  des Bedienschachts, saugt Außenluft an und bläst sie über die Platine; per Kabel an einen
+  Stecker am Platinenrand.
+- Q: Was soll passieren, wenn die Drehzahlrückmeldung einen Lüfterausfall meldet? → A: Eigener
+  Fehlercode, Heizung aus, verriegelnder Fehlerzustand bis zur Quittierung; ohne Heizung nur
+  Anzeige des Fehlers.
+- Q: Wie soll die Lüfterdrehzahl von der Platinentemperatur abhängen? → A: Immer mindestens ca.
+  20 %, ab 35 °C stufenlos steigend bis 100 % bei 50 °C.
+- Q: Welches Lüftermodell soll eingeplant werden? → A: Noctua NF-A4x10 5V PWM (Betrieb
+  −10…+70 °C laut Datenblatt, 15,90 €).
