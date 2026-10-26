@@ -10,8 +10,98 @@
 		(comment 1 "Generated with SKiDL")
 	)
 	(lib_symbols)
-	(sheet (at 139.7 50.8) (size 33.02 17.78) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced yes) (stroke (width 0.1524) (type solid)) (fill (color 0 0 0 0)) (uuid "f9999682-1a8c-57fe-b092-aa8da806f2d4") (property "Sheetname" "Leistung und Sicherheit" (at 139.7 50.09 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27)) (justify left bottom))) (property "Sheetfile" "controller_leistung.kicad_sch" (at 139.7 69.29 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27)) (justify left top))) (instances (project "controller" (path "/f6c377e1-c2d3-48a7-80fe-934442d40b76" (page "2")))))
-	(sheet (at 139.7 81.28) (size 33.02 17.78) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced yes) (stroke (width 0.1524) (type solid)) (fill (color 0 0 0 0)) (uuid "a04cc551-8861-5ea4-a9c5-b19cbf34bbca") (property "Sheetname" "Steuerung und Messung" (at 139.7 80.57 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27)) (justify left bottom))) (property "Sheetfile" "controller_steuerung.kicad_sch" (at 139.7 99.77 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27)) (justify left top))) (instances (project "controller" (path "/f6c377e1-c2d3-48a7-80fe-934442d40b76" (page "3")))))
+	(sheet
+		(at 139.7 81.28)
+		(size 33.02 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "a04cc551-8861-5ea4-a9c5-b19cbf34bbca")
+		(property "Sheetname" "Steuerung und Messung"
+			(at 139.7 80.57 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controller_steuerung.kicad_sch"
+			(at 139.7 99.77 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "controller"
+				(path "/f6c377e1-c2d3-48a7-80fe-934442d40b76"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 139.7 50.8)
+		(size 33.02 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "f9999682-1a8c-57fe-b092-aa8da806f2d4")
+		(property "Sheetname" "Leistung und Sicherheit"
+			(at 139.7 50.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controller_leistung.kicad_sch"
+			(at 139.7 69.29 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "controller"
+				(path "/f6c377e1-c2d3-48a7-80fe-934442d40b76"
+					(page "2")
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")

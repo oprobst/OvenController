@@ -56,7 +56,7 @@ HEADER_TO_NET = {
     "kPinThermocoupleSck": "TC_SCK", "kPinThermocoupleMosi": "TC_MOSI",
     "kPinThermocoupleCsTop": "TC_CS_TOP", "kPinThermocoupleCsBottom": "TC_CS_BOT",
     "kPinBuzzer": "BUZZER", "kPinEncoderA": "ENC_A", "kPinEncoderB": "ENC_B",
-    "kPinEncoderButton": "ENC_SW",
+    "kPinEncoderButton": "ENC_SW", "kPinFanTach": "FAN_TACH", "kPinFanPwm": "FAN_PWM",
 }
 
 

@@ -876,7 +876,7 @@
         "uuid": "f6c377e1-c2d3-48a7-80fe-934442d40b76"
       }
     ],
-    "used_designators": "",
+    "used_designators": "#PWR142-143",
     "variants": []
   },
   "sheets": [
@@ -885,32 +885,12 @@
       "controller"
     ],
     [
-      "8374acfa-d9f0-556b-9301-93bf172940e7",
-      "Thermoelemente"
-    ],
-    [
-      "73c8522a-88af-5800-b496-052a7b1aea06",
-      "Sicherheit"
-    ],
-    [
-      "5a92f105-c0e8-5644-8326-88cd863c0780",
-      "Bedienung"
-    ],
-    [
       "f9999682-1a8c-57fe-b092-aa8da806f2d4",
-      "Netzteil"
-    ],
-    [
-      "89b90433-8d4f-5816-bae0-7e38544d08ae",
-      "Last"
-    ],
-    [
-      "3b2918f7-23a4-515a-b46d-845b671b3104",
-      "USB"
+      "Leistung und Sicherheit"
     ],
     [
       "a04cc551-8861-5ea4-a9c5-b19cbf34bbca",
-      "MCU"
+      "Steuerung und Messung"
     ]
   ],
   "text_variables": {},

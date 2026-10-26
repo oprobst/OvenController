@@ -57,4 +57,10 @@ constexpr int8_t kPinEncoderB = 40;
 constexpr int8_t kPinEncoderButton = 41;
 constexpr int32_t kEncoderStepsPerDetent = 2;  // 15 pulses / 30 detents: half a cycle per detent
 
+// Board fan Noctua NF-A4x10 5V PWM at J10 (research.md R18).
+constexpr int8_t kPinFanTach = 37;  // open collector, 10k pull-up to 3.3 V, counted by PCNT
+constexpr int8_t kPinFanPwm = 38;   // inverting BSS138 stage: GPIO HIGH = fan PWM LOW
+constexpr uint32_t kFanPwmHz = 25000;
+constexpr uint8_t kFanPulsesPerRevolution = 2;
+
 }  // namespace board
