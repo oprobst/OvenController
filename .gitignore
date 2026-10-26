@@ -38,3 +38,6 @@ desktop.ini
 
 # SKiDL-Logdateien der Schaltplan-Skripte
 hardware/**/*.log
+
+# Datenblätter der Bauteile (lokal, nicht versioniert)
+docs/Component-Specs/

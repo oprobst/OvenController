@@ -103,8 +103,13 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
   - Eingang: Mini-Thermoelement-Buchse Typ K (Printversion, Kontakte aus Thermoelement-Material)
     direkt neben dem IC, Eingangsfilter nach Datenblatt (Differenzkondensator, ggf. Ferrite).
     Buchsen und ICs auf einer gemeinsamen Kupferfläche, ohne Wärmequellen in der Nähe.
-  - Umsetzung (T013): BIAS an T−, 10 nF differenziell zwischen T+ und T−. Beides beim nächsten
-    Zugriff auf das Originaldatenblatt (Typical Application Circuit) bestätigen.
+  - Umsetzung (T013): BIAS an T−, 10 nF differenziell zwischen T+ und T−.
+  - **Geprüft am Originaldatenblatt (Maxim MAX31856, „Typical Application Circuit", 2026-10-26):**
+    BIAS an T− bestätigt. Der Eingangsfilter ist dort **0,1 µF differenziell** zwischen T+ und T−
+    plus **je 0,01 µF von T+ und T− nach GND** (Gleichtaktfilter). **Umgesetzt 2026-10-26:** C14/C17
+    auf 100 nF, C27–C30 (je 10 nF, T+ bzw. T− nach GND) ergänzt, Referenznetzliste im selben
+    Commit neu exportiert. AVDD und DVDD je 0,1 µF bestätigt. SPI: beide Taktpolaritäten, max.
+    5 MHz. Betrieb −55…+125 °C.
   - Die Firmware liest Register zyklisch zurück und vergleicht sie mit der Soll-Konfiguration;
     Abweichung → Fehler E105 und DISARM.
 - **Rationale**: 50-Hz-Filter gegen Einstreuung aus den getakteten 230-V-Leitungen; FAULT als
@@ -139,8 +144,10 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
     1,2 mA, daher nicht 1 kΩ). Pegel bei geschlossenem Öffner: 3,3 V × 100/104,7 ≈ 3,15 V.
     Open-Drain-Quellen direkt auf der Leitung: TPS3828 /RESET und TC6501. Die FAULT-Ausgänge
     beider MAX31856 gehen je über eine **Schottky-Diode MBR0530** (Kathode am FAULT-Pin) auf
-    die Leitung: Ob FAULT Open-Drain oder Push-Pull ist, ließ sich in T009 nicht am
-    Originaldatenblatt klären; mit der Diode funktioniert beides (Low-Pegel auf der Leitung ca.
+    die Leitung. Laut Originaldatenblatt (geprüft 2026-10-26) ist FAULT **Push-Pull** (aktiver
+    High-Pegel, kein Open-Drain erwähnt, in der Anwendungsschaltung ohne Pull-up); ohne Diode
+    würde FAULT die Löschleitung im Normalzustand gegen die anderen Quellen treiben. Mit der Diode
+    funktioniert es (Low-Pegel auf der Leitung ca.
     0,3 V < 0,8 V Eingangsschwelle des 74LVC74). 1 nF gegen GND gegen Störspitzen aus dem Kabel;
     ESD-Schutz am Steckverbinder (R9).
   - Rücklesen: **Q** an GPIO 47, **Löschleitung** über 10 kΩ an GPIO 36 (`CLR_SENSE`, neu),
@@ -341,7 +348,7 @@ pro Stück inkl. MwSt.
 | Controller | Espressif ESP32-S3-WROOM-1U-N8 | `RF_Module:ESP32-S3-WROOM-1U` | Benutzer bestellt | ca. 4 € |
 | USB-C | GCT USB4085-GF-A (Durchsteckmontage, USB 2.0) | `Connector_USB:USB_C_Receptacle_GCT_USB4085` | Mouser | ca. 1 € (prüfen) |
 | ESD | ST USBLC6-2SC6 (4×: USB, 3 × Bedienteil) | `Package_TO_SOT_SMD:SOT-23-6` | Magazin (Bestand prüfen) | – |
-| Thermoelement | Analog Devices MAX31856MUD+ (2×) | `Package_SO:TSSOP-14_4.4x5mm_P0.65mm` | Mouser | ca. 9 € |
+| Thermoelement | Analog Devices MAX31856MUD+ (2×) | `Package_SO:TSSOP-14_4.4x5mm_P0.65mm` | Mouser 700-MAX31856MUD+ | 12,26 € (2026-10-26) |
 | Fühlerbuchse | Omega PCC-SMP-K (Print, Typ K, −29…+180 °C), Packung 5 = PCC-SMP-K-5 | eigener (hardware/lib) | Farnell 3794917 | prüfen |
 | Flipflop | TI SN74LVC74AD | `Package_SO:SOIC-14_3.9x8.7mm_P1.27mm` | Mouser | ca. 0,50 € |
 | Watchdog | TI TPS3828-33DBVR | `Package_TO_SOT_SMD:SOT-23-5` | Mouser | ca. 1 € |

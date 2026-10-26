@@ -61,7 +61,7 @@ nicht konkret ausgewählt.
 |---|---|---|---|
 | Mikrocontroller | ESP32-S3-WROOM-1U-N8 (8 MB Flash, **ohne PSRAM**, 85 °C, **externe Antenne** über U.FL), natives USB. Prototyp: ESP32-S3-DevKitC-1-N8. Bisheriger Prototyp REV DEV auf ESP32-DevKitC V4 (Feature 001) (siehe „Mikrocontroller und Pinbelegung") | wird bestellt (Benutzer) | offen |
 | WLAN-Antenne | U.FL-Pigtail auf Gehäusedurchführung (z. B. RP-SMA) und 2,4-GHz-Antenne außen am Gehäuse | offen | offen |
-| Temperaturmessung | 2 Kanäle (oben, unten) mit je MAX31856MUD+ (TSSOP-14, 50-Hz-Filter, FAULT-Ausgang). Prototyp REV DEV: MAX31855-Breakout (siehe „Sensorik") | Mouser | ca. 9 € je IC (Richtwert) |
+| Temperaturmessung | 2 Kanäle (oben, unten) mit je MAX31856MUD+ (TSSOP-14, 50-Hz-Filter, FAULT-Ausgang Push-Pull). Prototyp REV DEV: MAX31855-Breakout (siehe „Sensorik") | Mouser 700-MAX31856MUD+ | 12,26 € je IC (2026-10-26) |
 | Thermoelemente | 2 × Typ K, Mantel Ø 1–1,5 mm, **isolierte Messstelle** | offen | offen |
 | Thermoelement-Buchse | 2 × Omega PCC-SMP-K (Mini-TC Typ K, Print, −29…+180 °C), je neben ihrem MAX31856 | Farnell 3794917 (PCC-SMP-K-5, 5 Stück) | prüfen |
 | Heizung schalten | 2 × Sensata Crydom **D2425** (Panel-SSR, nullspannungsschaltend, 25 A, Steuereingang 3–32 V DC, max. 12 mA), nicht auf der Platine. Getrennt für Ober- und Unterhitze (siehe „Lastseite"). Nicht Carlo Gavazzi RM1A (Steuereingang erst ab 4,25 V) | Mouser/Reichelt | ca. 45–60 € je Stück (Richtwert) |

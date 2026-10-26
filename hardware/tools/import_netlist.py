@@ -4,8 +4,9 @@ Run with KiCad's bundled Python:
     "D:/hobby/Elektronik/KiCad/10.0/bin/python.exe" hardware/tools/import_netlist.py hardware/controller/controller.net hardware/controller/controller.kicad_pcb
 
 - Footprints are matched by their symbol path (sheet path + symbol UUID).
-- --relink-by-ref: footprints whose symbol path is unknown are matched by reference instead and
-  get the new path (once, when the source of the netlist changes, e.g. SKiDL -> KiCad schematic).
+- A footprint whose symbol path is unknown but whose reference still exists is relinked (gets the
+  new path, keeps its placement) instead of being removed and added again. Symbol UUIDs change
+  when a symbol is replaced or pasted in KiCad. Every relink is printed.
 - Existing footprints keep position, side and rotation; reference, value, fields and nets are
   updated. A changed footprint ID is reported, not swapped (do that in KiCad).
 - New footprints are placed in a row below the board; footprints whose symbol is gone are
@@ -51,7 +52,7 @@ def symbol_path(comp):
     return prefix + value(comp, "tstamps")
 
 
-def main(netlist, board_path, relink_by_ref=False):
+def main(netlist, board_path):
     board_path = Path(board_path)
     pro = board_path.with_suffix(".kicad_pro")
     pro_backup = pro.read_bytes()
@@ -70,10 +71,11 @@ def main(netlist, board_path, relink_by_ref=False):
         path = symbol_path(comp)
         wanted[path] = ref
         fp = existing.get(path)
-        if fp is None and relink_by_ref and ref in by_old_ref:
+        if fp is None and ref in by_old_ref and by_old_ref[ref][0] in existing:
             old_path, fp = by_old_ref[ref]
             fp.SetPath(pcbnew.KIID_PATH(path))
             existing[path] = existing.pop(old_path)
+            print(f"relinked {ref} (new symbol UUID, placement kept)")
             relinked += 1
         if fp is None:
             fp = load_footprint(fp_id)
@@ -127,4 +129,4 @@ def main(netlist, board_path, relink_by_ref=False):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2], relink_by_ref="--relink-by-ref" in sys.argv[3:])
+    main(sys.argv[1], sys.argv[2])

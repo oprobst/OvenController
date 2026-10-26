@@ -1,197 +1,341 @@
-(kicad_sch
-  (version 20250114)
-  (generator "skidl")
-  (generator_version "0.2.0")
-  (uuid f6c377e1-c2d3-48a7-80fe-934442d40b76)
-  (paper "A4")
-  (title_block
-    (title "Controller REV A")
-    (date "2026-10-25")
-    (company "")
-    (comment 1 "Generated with SKiDL")
-    (comment 2 "")
-    (comment 3 "")
-    (comment 4 ""))
-  (lib_symbols)
-  (sheet
-    (at 137.41 163.83)
-    (size 22.35 17.78)
-    (exclude_from_sim no)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (stroke
-      (width 0.1524)
-      (type solid))
-    (fill
-      (color 0 0 0 0.0))
-    (uuid 5a92f105-c0e8-5644-8326-88cd863c0780)
-    (property "Sheetname" "Bedienung"
-      (at 137.41 163.12 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left bottom)))
-    (property "Sheetfile" "controller_bedienung.kicad_sch"
-      (at 137.41 182.19 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left top))))
-  (sheet
-    (at 137.92 27.94)
-    (size 21.34 17.78)
-    (exclude_from_sim no)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (stroke
-      (width 0.1524)
-      (type solid))
-    (fill
-      (color 0 0 0 0.0))
-    (uuid f9999682-1a8c-57fe-b092-aa8da806f2d4)
-    (property "Sheetname" "Netzteil"
-      (at 137.92 27.23 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left bottom)))
-    (property "Sheetfile" "controller_netzteil.kicad_sch"
-      (at 137.92 46.3 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left top))))
-  (sheet
-    (at 139.7 96.52)
-    (size 17.78 17.78)
-    (exclude_from_sim no)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (stroke
-      (width 0.1524)
-      (type solid))
-    (fill
-      (color 0 0 0 0.0))
-    (uuid a04cc551-8861-5ea4-a9c5-b19cbf34bbca)
-    (property "Sheetname" "MCU"
-      (at 139.7 95.81 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left bottom)))
-    (property "Sheetfile" "controller_mcu.kicad_sch"
-      (at 139.7 114.88 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left top))))
-  (sheet
-    (at 139.7 50.8)
-    (size 17.78 17.78)
-    (exclude_from_sim no)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (stroke
-      (width 0.1524)
-      (type solid))
-    (fill
-      (color 0 0 0 0.0))
-    (uuid 3b2918f7-23a4-515a-b46d-845b671b3104)
-    (property "Sheetname" "USB"
-      (at 139.7 50.09 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left bottom)))
-    (property "Sheetfile" "controller_usb.kicad_sch"
-      (at 139.7 69.16 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left top))))
-  (sheet
-    (at 134.87 118.11)
-    (size 27.43 17.78)
-    (exclude_from_sim no)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (stroke
-      (width 0.1524)
-      (type solid))
-    (fill
-      (color 0 0 0 0.0))
-    (uuid 8374acfa-d9f0-556b-9301-93bf172940e7)
-    (property "Sheetname" "Thermoelemente"
-      (at 134.87 117.4 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left bottom)))
-    (property "Sheetfile" "controller_thermoelemente.kicad_sch"
-      (at 134.87 136.47 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left top))))
-  (sheet
-    (at 136.91 73.66)
-    (size 23.37 17.78)
-    (exclude_from_sim no)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (stroke
-      (width 0.1524)
-      (type solid))
-    (fill
-      (color 0 0 0 0.0))
-    (uuid 73c8522a-88af-5800-b496-052a7b1aea06)
-    (property "Sheetname" "Sicherheit"
-      (at 136.91 72.95 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left bottom)))
-    (property "Sheetfile" "controller_sicherheit.kicad_sch"
-      (at 136.91 92.02 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left top))))
-  (sheet
-    (at 139.45 140.97)
-    (size 18.29 17.78)
-    (exclude_from_sim no)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (stroke
-      (width 0.1524)
-      (type solid))
-    (fill
-      (color 0 0 0 0.0))
-    (uuid 89b90433-8d4f-5816-bae0-7e38544d08ae)
-    (property "Sheetname" "Last"
-      (at 139.45 140.26 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left bottom)))
-    (property "Sheetfile" "controller_last.kicad_sch"
-      (at 139.45 159.33 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left top)))))
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "f6c377e1-c2d3-48a7-80fe-934442d40b76")
+	(paper "A4")
+	(title_block
+		(title "Controller REV A")
+		(date "2026-10-25")
+		(comment 1 "Generated with SKiDL")
+	)
+	(lib_symbols)
+	(sheet
+		(at 139.7 50.8)
+		(size 17.78 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "3b2918f7-23a4-515a-b46d-845b671b3104")
+		(property "Sheetname" "USB"
+			(at 139.7 50.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controller_usb.kicad_sch"
+			(at 139.7 69.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "controller"
+				(path "/f6c377e1-c2d3-48a7-80fe-934442d40b76"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 137.41 163.83)
+		(size 22.35 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "5a92f105-c0e8-5644-8326-88cd863c0780")
+		(property "Sheetname" "Bedienung"
+			(at 137.41 163.12 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controller_bedienung.kicad_sch"
+			(at 137.41 182.19 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "controller"
+				(path "/f6c377e1-c2d3-48a7-80fe-934442d40b76"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 136.91 73.66)
+		(size 23.37 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "73c8522a-88af-5800-b496-052a7b1aea06")
+		(property "Sheetname" "Sicherheit"
+			(at 136.91 72.95 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controller_sicherheit.kicad_sch"
+			(at 136.91 92.02 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "controller"
+				(path "/f6c377e1-c2d3-48a7-80fe-934442d40b76"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 134.87 118.11)
+		(size 27.43 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "8374acfa-d9f0-556b-9301-93bf172940e7")
+		(property "Sheetname" "Thermoelemente"
+			(at 134.87 117.4 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controller_thermoelemente.kicad_sch"
+			(at 134.87 136.47 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "controller"
+				(path "/f6c377e1-c2d3-48a7-80fe-934442d40b76"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 139.45 140.97)
+		(size 18.29 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "89b90433-8d4f-5816-bae0-7e38544d08ae")
+		(property "Sheetname" "Last"
+			(at 139.45 140.26 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controller_last.kicad_sch"
+			(at 139.45 159.33 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "controller"
+				(path "/f6c377e1-c2d3-48a7-80fe-934442d40b76"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 139.7 96.52)
+		(size 17.78 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "a04cc551-8861-5ea4-a9c5-b19cbf34bbca")
+		(property "Sheetname" "MCU"
+			(at 139.7 95.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controller_mcu.kicad_sch"
+			(at 139.7 114.88 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "controller"
+				(path "/f6c377e1-c2d3-48a7-80fe-934442d40b76"
+					(page "8")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 137.92 27.94)
+		(size 21.34 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "f9999682-1a8c-57fe-b092-aa8da806f2d4")
+		(property "Sheetname" "Netzteil"
+			(at 137.92 27.23 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controller_netzteil.kicad_sch"
+			(at 137.92 46.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "controller"
+				(path "/f6c377e1-c2d3-48a7-80fe-934442d40b76"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

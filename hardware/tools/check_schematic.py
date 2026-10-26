@@ -4,6 +4,7 @@ Usage (normal Python; kicad-cli is called for the export):
     python hardware/tools/check_schematic.py controller
     python hardware/tools/check_schematic.py encoder-carrier
 
+0. Checks the file format of every sheet (no raw newline inside a quoted string).
 1. Exports the netlist of hardware/<board>/<board>.kicad_sch with kicad-cli.
 2. Compares it with hardware/<board>/<board>.ref.net (the netlist verified in feature 002,
    generated from the former SKiDL source):
@@ -151,14 +152,38 @@ def check_board_header(sch_nets):
     return errors
 
 
+def open_string_lines(text):
+    """Line numbers where a quoted string is still open. kicad-cli accepts raw newlines inside
+    strings, the KiCad editor refuses to load the sheet."""
+    bad, inside, escaped = [], False, False
+    for lineno, line in enumerate(text.split("\n"), start=1):
+        for ch in line:
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == '"':
+                inside = not inside
+        if inside:
+            bad.append(lineno)
+    return bad
+
+
 def main(board):
     board_dir = REPO / "hardware" / board
+    format_errors = []
+    for sheet in sorted(board_dir.glob("*.kicad_sch")):
+        lines = open_string_lines(sheet.read_text(encoding="utf-8"))
+        if lines:
+            format_errors.append(f"{sheet.name}: string not closed on line(s) {lines[:5]} "
+                                 "(KiCad cannot open the sheet)")
     with tempfile.TemporaryDirectory() as tmp:
         out = Path(tmp) / f"{board}.net"
         export_netlist(board_dir / f"{board}.kicad_sch", out)
         sch = read_netlist(out)
     ref = read_netlist(board_dir / f"{board}.ref.net")
     errors, notes = compare(ref, sch, netclass_patterns(board_dir, board))
+    errors = format_errors + errors
     if board == "controller":
         errors += check_board_header(sch[1])
     for n in notes:

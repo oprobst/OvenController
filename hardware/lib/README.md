@@ -19,7 +19,7 @@ Datenblatt geprüft und hier eingetragen sind.
 | Bauteil | Symbol / Footprint | Quelle (Datenblatt) | Ergebnis | Geprüft am |
 |---|---|---|---|---|
 | ESP32-S3-WROOM-1U-N8 | `RF_Module:ESP32-S3-WROOM-1` / `RF_Module:ESP32-S3-WROOM-1U` | Espressif ESP32-S3-WROOM-1/1U Datasheet v1.8, Tab. 3-1 | alle 41 Pins stimmen | 2026-10-25 |
-| MAX31856 | `Sensor_Temperature:MAX31856` / `Package_SO:TSSOP-14_4.4x5mm_P0.65mm` | KiCad-Symbol und zweite Quelle (Pin-Tabelle LCSC/Flux) | 14 Pins stimmen; Originaldatenblatt war nicht abrufbar. Ausgangstyp FAULT unklar → Anbindung über Schottky-Diode (research R6) | 2026-10-25 |
+| MAX31856 | `Sensor_Temperature:MAX31856` / `Package_SO:TSSOP-14_4.4x5mm_P0.65mm` | Maxim MAX31856 Datenblatt (lokal in `docs/Component-Specs/`), Pin Description S. 10 | 14 Pins stimmen; FAULT ist Push-Pull → Anbindung über Schottky-Diode richtig (research R6); Eingangsfilter laut Anwendungsschaltung abweichend (research R4) | 2026-10-26 |
 | TPS3828-33 | `oven:TPS3828-33DBV` / `Package_TO_SOT_SMD:SOT-23-5` | TI SLVS165O (März 2025), Pin-Tabelle DBV | 1 ~RESET, 2 GND, 3 ~MR, 4 WDI, 5 VDD | 2026-10-25 |
 | TC6501P065 | `oven:TC6501` / `Package_TO_SOT_SMD:SOT-23-5` | Microchip DS21451E, „Package Types" | 1 GND, 2 GND, 3 HYST, 4 VCC, 5 ~TOVER (Open-Drain) | 2026-10-25 |
 | SN74LVC74A | `74xx:74HC74` (pinkompatibel) / `Package_SO:SOIC-14_3.9x8.7mm_P1.27mm` | TI SN74LVC74A, Tab. 4-1 | 1 1CLR, 2 1D, 3 1CLK, 4 1PRE, 5 1Q, 6 1Q̄, 7 GND, 8 2Q̄, 9 2Q, 10 2PRE, 11 2CLK, 12 2D, 13 2CLR, 14 VCC | 2026-10-25 |

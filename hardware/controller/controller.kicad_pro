@@ -479,6 +479,7 @@
       "duplicate_sheet_names": "error",
       "endpoint_off_grid": "warning",
       "extra_units": "error",
+      "field_name_whitespace": "warning",
       "footprint_filter": "ignore",
       "footprint_link_issues": "warning",
       "four_way_junction": "ignore",
@@ -872,12 +873,46 @@
       {
         "filename": "controller.kicad_sch",
         "name": "controller",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "uuid": "f6c377e1-c2d3-48a7-80fe-934442d40b76"
       }
     ],
-    "used_designators": ""
+    "used_designators": "",
+    "variants": []
   },
-  "sheets": [],
+  "sheets": [
+    [
+      "f6c377e1-c2d3-48a7-80fe-934442d40b76",
+      "controller"
+    ],
+    [
+      "8374acfa-d9f0-556b-9301-93bf172940e7",
+      "Thermoelemente"
+    ],
+    [
+      "73c8522a-88af-5800-b496-052a7b1aea06",
+      "Sicherheit"
+    ],
+    [
+      "5a92f105-c0e8-5644-8326-88cd863c0780",
+      "Bedienung"
+    ],
+    [
+      "f9999682-1a8c-57fe-b092-aa8da806f2d4",
+      "Netzteil"
+    ],
+    [
+      "89b90433-8d4f-5816-bae0-7e38544d08ae",
+      "Last"
+    ],
+    [
+      "3b2918f7-23a4-515a-b46d-845b671b3104",
+      "USB"
+    ],
+    [
+      "a04cc551-8861-5ea4-a9c5-b19cbf34bbca",
+      "MCU"
+    ]
+  ],
   "text_variables": {},
   "time_domain_parameters": {
     "delay_profiles_user_defined": [],

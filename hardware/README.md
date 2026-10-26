@@ -83,8 +83,9 @@ Normalerweise in KiCad mit F8. Skriptweise (z. B. nach dem Wechsel der Quelle):
 "D:/hobby/Elektronik/KiCad/10.0/bin/python.exe" hardware/tools/import_netlist.py hardware/controller/output/controller.net hardware/controller/controller.kicad_pcb
 ```
 
-`--relink-by-ref` verknüpft Footprints einmalig über die Referenz mit neuen Symbolen (so geschehen
-beim Wechsel SKiDL → KiCad-Schaltplan, Platzierung blieb erhalten). Die Montagelöcher H1–H4
+Hat ein Symbol eine neue UUID bekommen (z. B. nach Ersetzen oder Einfügen in KiCad), verknüpft das
+Skript den Footprint über die Referenz neu, statt ihn zu löschen; die Platzierung bleibt erhalten
+und jede Neuverknüpfung wird ausgegeben. Die Montagelöcher H1–H4
 sind „nur Platine" und haben kein Symbol. Der DRC mit `--schematic-parity` prüft, dass Platine
 und Schaltplan zusammenpassen.
 
