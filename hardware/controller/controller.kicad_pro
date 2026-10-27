@@ -292,7 +292,12 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [],
+    "erc_exclusions": [
+      [
+        "pin_to_pin|4953000|990600|d94dafed-46c2-57b3-a155-1391cda4e33d|d81a2369-a525-5233-88a4-086a51369f71|/f6c377e1-c2d3-48a7-80fe-934442d40b76/a04cc551-8861-5ea4-a9c5-b19cbf34bbca|/f6c377e1-c2d3-48a7-80fe-934442d40b76/a04cc551-8861-5ea4-a9c5-b19cbf34bbca|/f6c377e1-c2d3-48a7-80fe-934442d40b76/a04cc551-8861-5ea4-a9c5-b19cbf34bbca",
+        "SDO von U5 und U6 (MAX31856) ist Tristate und nur bei CS low aktiv; beide teilen sich MISO (research R4)"
+      ]
+    ],
     "meta": {
       "version": 0
     },
@@ -829,7 +834,7 @@
       "intersheets_ref_own_page": false,
       "intersheets_ref_prefix": "",
       "intersheets_ref_short": false,
-      "intersheets_ref_show": false,
+      "intersheets_ref_show": true,
       "intersheets_ref_suffix": "",
       "junction_size_choice": 2,
       "label_size_ratio": 0.3,
@@ -876,7 +881,7 @@
         "uuid": "f6c377e1-c2d3-48a7-80fe-934442d40b76"
       }
     ],
-    "used_designators": "#PWR142-143",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
