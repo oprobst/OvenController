@@ -66,8 +66,8 @@ Taster S2 an GND, S1 = ENC_SW), J2 = JST-XH 1×4 für die Litzen der Stopp-Taste
 
 ## J5, J6 – Thermoelemente
 
-Mini-Thermoelement-Buchse Typ K, Print, gelb. J5 = oben, J6 = unten, Polarität (+/−) im
-Bestückungsdruck.
+Mini-Thermoelement-Buchse Typ K, Print, IEC grün (RS PRO 381-7564, mit Schraube M2,5 auf der
+Platine befestigt). J5 = oben, J6 = unten, Polarität (+/−) im Bestückungsdruck.
 
 ## J7 – USB-C
 

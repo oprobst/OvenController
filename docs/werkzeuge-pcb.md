@@ -68,3 +68,24 @@ typischerweise Fehler.
   Skripten nicht über `GetNumber()` finden, nur über die Position.
 - **Rule Areas in Footprints** („keine Footprints“) melden Bauteile, deren Courtyard hineinragt
   (`items_not_allowed`); so zeigt der Footprint der Netzabdeckung (COV1) Bauteile unter ihrer Wand.
+
+## Autorouter Freerouting (T021, 2026-10-27)
+
+- **Version 1.9.0 nehmen** (`freerouting-1.9.0.jar`, läuft mit Java 17+):
+  `java -jar freerouting-1.9.0.jar -de board.dsn -do board.ses -mp 40`. Sie beachtet die
+  Durchlaufgrenze und schreibt die Sitzung erst nach Routing und Optimierung (hier ca. 2,5 min).
+- Nicht geeignet: **2.5.0** (JAR braucht Java 25; das Windows-CLI-Paket stürzt nach dem Einlesen
+  mit einem GraalVM-Serialisierungsfehler ab) und **2.1.0** (ignoriert `-mp` und
+  `--router.max_passes`, rechnet endlos; mit `--router.job_timeout` speichert es einen
+  Zwischenstand mitten im Durchlauf, in KiCad fehlen dann 60–70 Verbindungen, obwohl Freerouting
+  nur 4 offene meldet). 2.x sendet ohne `--usage_and_diagnostic_data.disable_analytics=true`
+  Nutzungsdaten.
+- Ablauf mit KiCads Python: Netz von Hand routen und sperren, vorübergehende Rule Areas
+  „keine Leiterbahnen/Vias“ über den Netzbereich legen (Freerouting kennt nur die
+  Netzklassen-Abstände, nicht die 6-mm-Regel aus `.kicad_dru`), `pcbnew.ExportSpecctraDSN`,
+  routen, `pcbnew.ImportSpecctraSES`, Sperrflächen entfernen, Zonen füllen, DRC.
+- Breite Netzklassen kommen nicht an feine Pins: Power mit 0,6 mm erreicht TSSOP-/SOT-Pins
+  nicht. Für den Export die Breite im DSN auf 0,4 mm setzen (Netzklasse in KiCad bleibt).
+- GND als Fläche auf beiden Lagen: Freerouting hält GND über die Fläche für verbunden. Danach
+  Inseln mit Durchkontaktierungen anbinden; SMD-Pads voll an die Fläche (Zone: „nur THT mit
+  Wärmefalle“), sonst bleiben Pads hinter zu schmalen Stegen hängen.

@@ -16,8 +16,11 @@ from pathlib import Path
 TEMPLATE = Path(r"D:\hobby\Elektronik\KiCad\10.0\share\kicad\demos\stickhub\StickHub.kicad_pro")
 
 MAINS_NETS = ["L_IN", "N_IN", "L_FUSED"]
-POWER_NETS = ["+5V", "+5V_PSU", "+3V3", "GND", "VBUS", "+5V_SSR", "RELAY_N", "SSR_TOP_N",
+POWER_NETS = ["+5V", "+5V_PSU", "+3V3", "GND", "+5V_SSR", "RELAY_N", "SSR_TOP_N",
               "SSR_BOT_N", "BUZZER_N", "TFT_BL"]
+# USB-C J7 (GCT USB4085): 0.7 mm pads at 0.85 mm pitch, traces reach the inner pins only with
+# 0.15 mm clearance (T021).
+USB_NETS = ["VBUS", "USB_DP", "USB_DN", "Net-(J7-CC1)", "Net-(J7-CC2)"]
 
 
 def netclass(base, name, clearance, track, via_d, via_drill, priority):
@@ -42,15 +45,17 @@ def main(target):
         netclass(default, "Default", 0.2, 0.25, 0.6, 0.3, 2147483647),
         netclass(default, "Power", 0.2, 0.6, 0.8, 0.4, 1),
         netclass(default, "Mains", 3.0, 1.0, 0.8, 0.4, 0),
+        netclass(default, "USB", 0.15, 0.25, 0.6, 0.3, 2),
     ]
     ns["netclass_patterns"] = (
         [{"netclass": "Mains", "pattern": n} for n in MAINS_NETS]
         + [{"netclass": "Power", "pattern": n} for n in POWER_NETS]
+        + [{"netclass": "USB", "pattern": n} for n in USB_NETS]
     )
 
     ds = pro["board"]["design_settings"]
     ds["rules"].update(
-        min_clearance=0.2, min_track_width=0.2, min_via_diameter=0.6,
+        min_clearance=0.15, min_track_width=0.2, min_via_diameter=0.6,
         min_through_hole_diameter=0.3, min_via_annular_width=0.13, min_hole_to_hole=0.25,
         min_copper_edge_clearance=0.5, min_hole_clearance=0.25, min_silk_clearance=0.0,
         min_text_height=0.8, min_text_thickness=0.15,
