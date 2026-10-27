@@ -81,6 +81,25 @@ User-Story-Phasen enthalten Firmware, Inbetriebnahme und Abnahme der jeweiligen 
     Montagelöcher mit dem Gehäuse abstimmen, Wärmeabstand J5/U5 zum IRM-10-5 prüfen;
     nach T073 J10 am Rand der Logikzone (Kabel zur Gehäusewand) mit BSS138 und Widerständen
     daneben platzieren.
+  - Stand 2026-10-27 (nach T084): Kleinteile (R, C, D, Q, kleine ICs, Testpunkte) per lokaler
+    Optimierung um höchstens 2 mm verschoben und in 90°-Schritten gedreht, damit die Luftlinien
+    kürzer werden (Summe der Luftlinien dieser Teile 1525 → 1182 mm). Dabei mindestens 0,5 mm
+    zwischen den Courtyards (Handbestückung), nichts in den Sperrflächen von COV1. Bestückungsdruck:
+    Werte auf F.Fab, Referenzen 0,8 mm (Steckverbinder und große ICs 1 mm) aufrecht neben dem
+    Bauteil und frei von Pads und Kante; 19 Referenzen ohne freien Platz nur auf F.Fab (C7, C19,
+    C20, C22, C23, C25, C31, C32, J10, Q8, R8, R12, R14, R15, R23, R28, R33, R35, R41); J10 bekommt
+    seine Beschriftung „FAN 5V“ mit T021. DRC `--schematic-parity`: nur offene Verbindungen und
+    2 Hinweise zur U1-Silkscreen an der Kante (Footprint-Grafik). Offen: Montagelöcher mit dem
+    Gehäuse abstimmen, Steckbarkeit J10 neben dem U.FL-Anschluss prüfen.
+  - Buchsenwechsel 2026-10-27: J5/J6 von Omega PCC-SMP-K auf RS PRO 381-7564 umgestellt (Preis,
+    Einzelbezug, Maßzeichnung im Datenblatt; Footprint `oven:RS_381-7564_Horizontal`, siehe
+    `hardware/lib/README.md`). Schaltplanfelder Footprint/MPN/Source geändert,
+    `controller.ref.net` neu exportiert (übernimmt dabei auch die Netznamen nach der
+    Label-Bereinigung, Verbindungen unverändert: Abgleich 0 Fehler, 0 Hinweise). Auf der
+    Platine: Stifte unter U5/U6 (x 62,8 / 82,6), Steckseite 0,6 mm vor der Unterkante, Loch
+    Ø 2,7 mm für eine Schraube M2,5; zwischen J5 und J6 jetzt 2,7 mm statt 0,4 mm. Parity ohne
+    Abweichung. Offen: Polarität und Maße am Musterteil prüfen, Breite der Stecker
+    (Mittenabstand 19,8 mm).
 - [X] T071 Schaltplan in KiCad übernehmen und ab dann als Quelle nutzen (Entscheidung 2026-10-25, research R1):
   - Erledigt: SKiDL-Netzlisten als `controller.ref.net` / `encoder-carrier.ref.net` eingefroren; Vorlage aus SKiDL erzeugt (Blätter Netzteil, MCU, USB, Thermoelemente, Sicherheit, Last, Bedienung; Träger: Encoder); Generatorfehler behoben (ENC_B_RAW/ENC_SW_RAW kurzgeschlossen, Zeichensatz der MPN-Felder, fehlende Labels BOOT, LED_DIAG, L_FUSED); `hardware/tools/check_schematic.py` mit 0 Fehlern für beide Platinen; Platine per `import_netlist.py --relink-by-ref` neu verknüpft (Platzierung unverändert), DRC `--schematic-parity` ohne Abweichung; SKiDL-Code nach `hardware/archive/skidl/`
   - Gewollte Änderung 2026-10-26: Eingangsfilter nach MAX31856-Datenblatt (C14/C17 100 nF, C27–C30 10 nF nach GND), Referenznetzliste neu exportiert; C27–C30 liegen auf der Platine noch unterhalb des Umrisses und kommen bei der Feinplatzierung (T020) an U5/U6

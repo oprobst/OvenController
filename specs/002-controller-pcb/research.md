@@ -495,7 +495,7 @@ pro Stück inkl. MwSt.
 | USB-C | GCT USB4085-GF-A (Durchsteckmontage, USB 2.0) | `Connector_USB:USB_C_Receptacle_GCT_USB4085` | Mouser | ca. 1 € (prüfen) |
 | ESD | ST USBLC6-2SC6 (4×: USB, 3 × Bedienteil) | `Package_TO_SOT_SMD:SOT-23-6` | Magazin (Bestand prüfen) | – |
 | Thermoelement | Analog Devices MAX31856MUD+ (2×) | `Package_SO:TSSOP-14_4.4x5mm_P0.65mm` | Mouser 700-MAX31856MUD+ | 12,26 € (2026-10-26) |
-| Fühlerbuchse | Omega PCC-SMP-K (Print, Typ K, −29…+180 °C), Packung 5 = PCC-SMP-K-5 | eigener (hardware/lib) | Farnell 3794917 | prüfen |
+| Fühlerbuchse | RS PRO 381-7564 (Print, Typ K, IEC grün, Kontakte NiCr/Ni, bis 220 °C), ersetzt Omega PCC-SMP-K (46 € je 5er-Pack) am 2026-10-27 | eigener (hardware/lib) | RS 381-7564 | 5,27 € netto (2026-10-27) |
 | Flipflop | TI SN74LVC74AD | `Package_SO:SOIC-14_3.9x8.7mm_P1.27mm` | Mouser | ca. 0,50 € |
 | Watchdog | TI TPS3828-33DBVR | `Package_TO_SOT_SMD:SOT-23-5` | Mouser | ca. 1 € |
 | Thermostat | Microchip TC6501P065VCTTR | `Package_TO_SOT_SMD:SOT-23-5` | DigiKey 412996 | ca. 0,75 € |

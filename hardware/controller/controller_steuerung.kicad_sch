@@ -8323,6 +8323,16 @@
 	)
 	(wire
 		(pts
+			(xy 125.73 137.16) (xy 125.73 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7788bfa7-92cc-4702-947c-c570802477e1")
+	)
+	(wire
+		(pts
 			(xy 59.69 92.71) (xy 110.49 92.71)
 		)
 		(stroke
@@ -12571,7 +12581,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "oven:Omega_PCC-SMP_Horizontal"
+		(property "Footprint" "oven:RS_381-7564_Horizontal"
 			(at 372.11 124.46 90)
 			(hide yes)
 			(show_name no)
@@ -12604,7 +12614,7 @@
 				)
 			)
 		)
-		(property "MPN" "Omega PCC-SMP-K"
+		(property "MPN" "RS PRO 381-7564"
 			(at 367.03 124.46 90)
 			(hide yes)
 			(show_name no)
@@ -12615,7 +12625,7 @@
 				)
 			)
 		)
-		(property "Source" "Farnell 3794917"
+		(property "Source" "RS 381-7564"
 			(at 365.76 124.46 90)
 			(hide yes)
 			(show_name no)
@@ -14626,7 +14636,7 @@
 		(dnp no)
 		(uuid "2b05fc08-c5e8-586d-844b-aeb2219327e8")
 		(property "Reference" "U12"
-			(at 80.01 276.86 180)
+			(at 82.296 270.002 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14637,7 +14647,7 @@
 			)
 		)
 		(property "Value" "USBLC6-2SC6"
-			(at 62.738 270.256 0)
+			(at 63.754 270.002 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -21530,7 +21540,7 @@
 		(dnp no)
 		(uuid "9729a9ef-5d86-5efe-92df-f5059a0fa1f2")
 		(property "Reference" "U10"
-			(at 69.85 220.98 180)
+			(at 74.422 218.948 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22469,7 +22479,7 @@
 		(dnp no)
 		(uuid "b12b298a-7676-51cb-baca-0b537a9d4abe")
 		(property "Reference" "U11"
-			(at 80.01 325.12 0)
+			(at 85.09 317.754 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -22480,7 +22490,7 @@
 			)
 		)
 		(property "Value" "USBLC6-2SC6"
-			(at 76.708 318.262 0)
+			(at 78.232 317.5 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -24865,7 +24875,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 125.73 135.89 0)
+		(at 125.73 137.16 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim yes)
@@ -24873,10 +24883,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "e226d796-05c4-54b9-81d3-56ae8369e303")
 		(property "Reference" "#PWR060"
-			(at 125.73 134.62 0)
+			(at 125.73 135.89 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24887,7 +24896,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 125.73 132.08 0)
+			(at 125.984 141.478 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -24897,7 +24906,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 125.73 135.89 0)
+			(at 125.73 137.16 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24908,7 +24917,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 125.73 135.89 0)
+			(at 125.73 137.16 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24919,7 +24928,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 125.73 135.89 0)
+			(at 125.73 137.16 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -25802,7 +25811,7 @@
 				)
 			)
 		)
-		(property "Footprint" "oven:Omega_PCC-SMP_Horizontal"
+		(property "Footprint" "oven:RS_381-7564_Horizontal"
 			(at 461.01 123.19 90)
 			(hide yes)
 			(show_name no)
@@ -25835,7 +25844,7 @@
 				)
 			)
 		)
-		(property "MPN" "Omega PCC-SMP-K"
+		(property "MPN" "RS PRO 381-7564"
 			(at 455.93 123.19 90)
 			(hide yes)
 			(show_name no)
@@ -25846,7 +25855,7 @@
 				)
 			)
 		)
-		(property "Source" "Farnell 3794917"
+		(property "Source" "RS 381-7564"
 			(at 454.66 123.19 90)
 			(hide yes)
 			(show_name no)

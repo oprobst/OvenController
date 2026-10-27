@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "D:\\git\\oven\\hardware\\controller\\controller.kicad_sch")
-		(date "2026-10-26T18:27:08")
+		(date "2026-10-27T18:18:47")
 		(tool "Eeschema 10.0.3")
 		(sheet
 			(number "1")
@@ -183,6 +183,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -234,6 +242,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "CP_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -287,6 +303,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -338,6 +362,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -391,6 +423,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -442,6 +482,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -495,6 +543,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -546,6 +602,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -599,6 +663,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -650,6 +722,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "diode Schottky")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TO-???* *_Diode_* *SingleDiode* D_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -703,6 +783,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "diode Schottky")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TO-???* *_Diode_* *SingleDiode* D_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -754,6 +842,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "diode Schottky")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TO-???* *_Diode_* *SingleDiode* D_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -807,6 +903,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "fuse")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*Fuse*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -859,6 +963,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -910,6 +1022,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -981,6 +1101,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "P-Channel MOSFET")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -1041,6 +1169,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "N-Channel MOSFET")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -1103,6 +1239,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "N-Channel MOSFET")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -1163,6 +1307,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "N-Channel MOSFET")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -1225,6 +1377,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "N-Channel MOSFET")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -1280,6 +1440,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -1331,6 +1499,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -1384,6 +1560,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -1436,63 +1620,19 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
 			)
 			(tstamps "e200571b-9dc1-5281-8d11-b7dbb9bda715")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "R16")
-			(value "220")
-			(footprint "Resistor_SMD:R_0603_1608Metric")
-			(description "Resistor")
-			(fields
-				(field
-					(name "Source") "Magazin")
-				(field
-					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description") "Resistor")
-			)
-			(libsource
-				(lib "Device")
-				(part "R")
-				(description "Resistor")
-			)
-			(property
-				(name "Source")
-				(value "Magazin")
-			)
-			(property
-				(name "Sheetname")
-				(value "Leistung und Sicherheit")
-			)
-			(property
-				(name "Sheetfile")
-				(value "controller_leistung.kicad_sch")
-			)
-			(sheetpath
-				(names "/Leistung und Sicherheit/")
-				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
-			)
-			(tstamps "eb67600e-8f05-5992-aeb7-d31dd9eb7204")
 			(units
 				(unit
 					(name "A")
@@ -1539,6 +1679,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -1592,6 +1740,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -1643,6 +1799,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -1696,6 +1860,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -1747,6 +1919,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -1800,6 +1980,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -1851,6 +2039,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -1904,6 +2100,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -1955,6 +2159,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -2008,6 +2220,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "VDR resistance")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "RV_* Varistor*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -2054,6 +2274,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -2096,6 +2324,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -2140,6 +2376,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -2182,6 +2426,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -2226,6 +2478,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -2268,6 +2528,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -2312,6 +2580,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -2354,6 +2630,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -2398,6 +2682,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -2441,6 +2733,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -2483,6 +2783,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -2538,6 +2846,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "Miniature Module-type Power Supply MeanWell")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Converter*ACDC*MeanWell*IRM*10*THT*")
 			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
@@ -2603,6 +2919,14 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "linear regulator ldo fixed positive")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?223*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -2664,11 +2988,19 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "TTL DFF")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP*W7.62mm*")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
 			)
-			(tstamps "ff79d87b-fff8-5565-bdb4-6fb2149f47ef" "df74831f-3ee7-5501-b69c-4225178c5b55"
+			(tstamps "df74831f-3ee7-5501-b69c-4225178c5b55" "ff79d87b-fff8-5565-bdb4-6fb2149f47ef"
 				"29784ef7-0c6d-5643-94a8-1101d80ce3e9"
 			)
 			(units
@@ -2770,6 +3102,10 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "supervisor watchdog reset open-drain TPS3828")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -2837,6 +3173,10 @@
 				(name "Sheetfile")
 				(value "controller_leistung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "temperature switch thermostat TC6501P065")
+			)
 			(sheetpath
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
@@ -2898,6 +3238,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "quartz resonator ceramic")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "*Buzzer*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -2949,6 +3297,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -3002,6 +3358,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -3053,6 +3417,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "CP_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -3106,6 +3478,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -3157,6 +3537,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -3210,6 +3598,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -3261,6 +3657,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -3314,6 +3718,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -3365,6 +3777,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -3418,6 +3838,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -3469,6 +3897,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -3522,6 +3958,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -3573,6 +4017,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -3626,6 +4078,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -3677,6 +4137,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -3730,6 +4198,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -3781,6 +4257,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -3834,6 +4318,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -3885,6 +4377,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -3938,6 +4438,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -3989,6 +4497,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -4042,6 +4558,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -4093,6 +4617,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -4146,6 +4678,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -4191,6 +4731,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "LED diode")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "LED* LED_SMD:* LED_THT:*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -4244,6 +4792,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "diode Schottky")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TO-???* *_Diode_* *SingleDiode* D_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -4295,6 +4851,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "diode Schottky")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TO-???* *_Diode_* *SingleDiode* D_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -4348,6 +4912,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "diode Schottky")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TO-???* *_Diode_* *SingleDiode* D_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -4399,6 +4971,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_2x??_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -4476,6 +5056,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_2x??_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -4516,15 +5104,15 @@
 		(comp
 			(ref "J5")
 			(value "TC top")
-			(footprint "oven:Omega_PCC-SMP_Horizontal")
+			(footprint "oven:RS_381-7564_Horizontal")
 			(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			(fields
 				(field
-					(name "MPN") "Omega PCC-SMP-K")
+					(name "MPN") "RS PRO 381-7564")
 				(field
-					(name "Source") "Farnell 3794917")
+					(name "Source") "RS 381-7564")
 				(field
-					(name "Footprint") "oven:Omega_PCC-SMP_Horizontal")
+					(name "Footprint") "oven:RS_381-7564_Horizontal")
 				(field
 					(name "Datasheet")
 				)
@@ -4538,11 +5126,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "Omega PCC-SMP-K")
+				(value "RS PRO 381-7564")
 			)
 			(property
 				(name "Source")
-				(value "Farnell 3794917")
+				(value "RS 381-7564")
 			)
 			(property
 				(name "Sheetname")
@@ -4551,6 +5139,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -4574,15 +5170,15 @@
 		(comp
 			(ref "J6")
 			(value "TC bot")
-			(footprint "oven:Omega_PCC-SMP_Horizontal")
+			(footprint "oven:RS_381-7564_Horizontal")
 			(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			(fields
 				(field
-					(name "MPN") "Omega PCC-SMP-K")
+					(name "MPN") "RS PRO 381-7564")
 				(field
-					(name "Source") "Farnell 3794917")
+					(name "Source") "RS 381-7564")
 				(field
-					(name "Footprint") "oven:Omega_PCC-SMP_Horizontal")
+					(name "Footprint") "oven:RS_381-7564_Horizontal")
 				(field
 					(name "Datasheet")
 				)
@@ -4596,11 +5192,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "Omega PCC-SMP-K")
+				(value "RS PRO 381-7564")
 			)
 			(property
 				(name "Source")
-				(value "Farnell 3794917")
+				(value "RS 381-7564")
 			)
 			(property
 				(name "Sheetname")
@@ -4609,6 +5205,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -4667,6 +5271,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "usb universal serial bus type-C USB2.0")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "USB*C*Receptacle*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -4758,6 +5370,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -4880,6 +5500,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "P-Channel MOSFET")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -4940,6 +5568,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "N-Channel MOSFET")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -5002,6 +5638,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "N-Channel MOSFET")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -5057,6 +5701,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -5108,6 +5760,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -5161,6 +5821,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -5212,6 +5880,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -5265,6 +5941,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -5316,6 +6000,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -5369,6 +6061,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -5420,6 +6120,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -5482,6 +6190,14 @@
 			(property
 				(name "dnp")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -5533,6 +6249,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -5586,11 +6310,79 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
 			)
 			(tstamps "16c066b7-f799-5030-a8fc-b1545d360de9")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R16")
+			(value "220")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Source") "Magazin")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Source")
+				(value "Magazin")
+			)
+			(property
+				(name "Sheetname")
+				(value "Steuerung und Messung")
+			)
+			(property
+				(name "Sheetfile")
+				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/Steuerung und Messung/")
+				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
+			)
+			(tstamps "2fd2a73b-3671-499e-8e79-956ed6b73194")
 			(units
 				(unit
 					(name "A")
@@ -5637,6 +6429,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -5690,6 +6490,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -5741,6 +6549,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -5794,6 +6610,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -5845,6 +6669,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -5898,6 +6730,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -5949,6 +6789,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -6002,6 +6850,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -6053,6 +6909,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -6106,6 +6970,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -6157,6 +7029,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -6210,6 +7090,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -6261,6 +7149,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -6314,6 +7210,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -6365,6 +7269,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -6418,6 +7330,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -6469,6 +7389,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -6522,6 +7450,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -6567,6 +7503,10 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "switch normally-open pushbutton push-button")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -6614,6 +7554,10 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "switch normally-open pushbutton push-button")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -6659,6 +7603,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -6714,6 +7666,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "RF Radio BT ESP ESP32-S3 Espressif onboard PCB antenna")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "ESP32?S3?WROOM?1*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -6890,6 +7850,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "usb ethernet video")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -6959,6 +7927,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "Thermocouple converter serial")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TSSOP*14*4.4x5mm*P0.65mm*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -7054,6 +8030,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "Thermocouple converter serial")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "TSSOP*14*4.4x5mm*P0.65mm*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -7148,6 +8132,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "usb ethernet video")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -7217,6 +8209,14 @@
 			(property
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "usb ethernet video")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -7288,6 +8288,14 @@
 				(name "Sheetfile")
 				(value "controller_steuerung.kicad_sch")
 			)
+			(property
+				(name "ki_keywords")
+				(value "usb ethernet video")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
@@ -7328,6 +8336,9 @@
 			(part "74HC74")
 			(description "Dual D Flip-flop, Set & Reset")
 			(docs "https://assets.nexperia.com/documents/data-sheet/74HC_HCT74.pdf")
+			(footprints
+				(fp "DIP*W7.62mm*")
+			)
 			(fields
 				(field
 					(name "Reference") "U")
@@ -7418,6 +8429,10 @@
 			(lib "Connector")
 			(part "TestPoint")
 			(description "test point")
+			(footprints
+				(fp "Pin*")
+				(fp "Test*")
+			)
 			(fields
 				(field
 					(name "Reference") "TP")
@@ -7445,6 +8460,9 @@
 			(part "USB_C_Receptacle_USB2.0_16P")
 			(description "USB 2.0-only 16P Type-C Receptacle connector")
 			(docs "https://www.usb.org/sites/default/files/documents/usb_type-c.zip")
+			(footprints
+				(fp "USB*C*Receptacle*")
+			)
 			(fields
 				(field
 					(name "Reference") "J")
@@ -7550,6 +8568,9 @@
 			(lib "Connector_Generic")
 			(part "Conn_01x02")
 			(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(footprints
+				(fp "Connector*:*_1x??_*")
+			)
 			(fields
 				(field
 					(name "Reference") "J")
@@ -7581,6 +8602,9 @@
 			(lib "Connector_Generic")
 			(part "Conn_01x03")
 			(description "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(footprints
+				(fp "Connector*:*_1x??_*")
+			)
 			(fields
 				(field
 					(name "Reference") "J")
@@ -7661,6 +8685,9 @@
 			(lib "Connector_Generic")
 			(part "Conn_01x06")
 			(description "Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(footprints
+				(fp "Connector*:*_1x??_*")
+			)
 			(fields
 				(field
 					(name "Reference") "J")
@@ -7712,6 +8739,9 @@
 			(lib "Connector_Generic")
 			(part "Conn_02x04_Odd_Even")
 			(description "Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(footprints
+				(fp "Connector*:*_2x??_*")
+			)
 			(fields
 				(field
 					(name "Reference") "J")
@@ -7773,6 +8803,9 @@
 			(lib "Connector_Generic")
 			(part "Conn_02x05_Odd_Even")
 			(description "Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(footprints
+				(fp "Connector*:*_2x??_*")
+			)
 			(fields
 				(field
 					(name "Reference") "J")
@@ -7845,14 +8878,16 @@
 			(part "IRM-10-5")
 			(description "5V, 2A, 10W, Isolated, AC-DC, 222A(IRM10)")
 			(docs "https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF")
+			(footprints
+				(fp "Converter*ACDC*MeanWell*IRM*10*THT*")
+			)
 			(fields
 				(field
 					(name "Reference") "U")
 				(field
 					(name "Value") "IRM-10-5")
 				(field
-					(name "Footprint")
-				)
+					(name "Footprint") "Converter_ACDC:Converter_ACDC_MeanWell_IRM-10-xx_THT")
 				(field
 					(name "Datasheet") "https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF")
 				(field
@@ -7885,6 +8920,9 @@
 			(lib "Device")
 			(part "Buzzer")
 			(description "Buzzer, polarized")
+			(footprints
+				(fp "*Buzzer*")
+			)
 			(fields
 				(field
 					(name "Reference") "BZ")
@@ -7916,6 +8954,9 @@
 			(lib "Device")
 			(part "C")
 			(description "Unpolarized capacitor")
+			(footprints
+				(fp "C_*")
+			)
 			(fields
 				(field
 					(name "Reference") "C")
@@ -7947,6 +8988,9 @@
 			(lib "Device")
 			(part "C_Polarized")
 			(description "Polarized capacitor")
+			(footprints
+				(fp "CP_*")
+			)
 			(fields
 				(field
 					(name "Reference") "C")
@@ -7978,6 +9022,12 @@
 			(lib "Device")
 			(part "D_Schottky")
 			(description "Schottky diode")
+			(footprints
+				(fp "TO-???*")
+				(fp "*_Diode_*")
+				(fp "*SingleDiode*")
+				(fp "D_*")
+			)
 			(fields
 				(field
 					(name "Reference") "D")
@@ -8009,6 +9059,9 @@
 			(lib "Device")
 			(part "Fuse")
 			(description "Fuse")
+			(footprints
+				(fp "*Fuse*")
+			)
 			(fields
 				(field
 					(name "Reference") "F")
@@ -8040,6 +9093,11 @@
 			(lib "Device")
 			(part "LED")
 			(description "Light emitting diode")
+			(footprints
+				(fp "LED*")
+				(fp "LED_SMD:*")
+				(fp "LED_THT:*")
+			)
 			(fields
 				(field
 					(name "Reference") "D")
@@ -8053,6 +9111,8 @@
 				)
 				(field
 					(name "Description") "Light emitting diode")
+				(field
+					(name "Sim.Pins") "1=K 2=A")
 			)
 			(pins
 				(pin
@@ -8071,6 +9131,9 @@
 			(lib "Device")
 			(part "R")
 			(description "Resistor")
+			(footprints
+				(fp "R_*")
+			)
 			(fields
 				(field
 					(name "Reference") "R")
@@ -8102,6 +9165,10 @@
 			(lib "Device")
 			(part "Varistor")
 			(description "Voltage dependent resistor")
+			(footprints
+				(fp "RV_*")
+				(fp "Varistor*")
+			)
 			(fields
 				(field
 					(name "Reference") "RV")
@@ -8115,6 +9182,16 @@
 				)
 				(field
 					(name "Description") "Voltage dependent resistor")
+				(field
+					(name "Sim.Name") "kicad_builtin_varistor")
+				(field
+					(name "Sim.Device") "SUBCKT")
+				(field
+					(name "Sim.Pins") "1=A 2=B")
+				(field
+					(name "Sim.Params") "threshold=1k")
+				(field
+					(name "Sim.Library") "${KICAD9_SYMBOL_DIR}/Simulation_SPICE.sp")
 			)
 			(pins
 				(pin
@@ -8134,14 +9211,16 @@
 			(part "USBLC6-2SC6")
 			(description "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
 			(docs "https://www.st.com/resource/en/datasheet/usblc6-2.pdf")
+			(footprints
+				(fp "SOT?23*")
+			)
 			(fields
 				(field
 					(name "Reference") "U")
 				(field
 					(name "Value") "USBLC6-2SC6")
 				(field
-					(name "Footprint")
-				)
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-6")
 				(field
 					(name "Datasheet") "https://www.st.com/resource/en/datasheet/usblc6-2.pdf")
 				(field
@@ -8185,14 +9264,16 @@
 			(part "ESP32-S3-WROOM-1")
 			(description "RF Module, ESP32-S3 SoC, Wi-Fi 802.11b/g/n, Bluetooth, BLE, 32-bit, 3.3V, onboard antenna, SMD")
 			(docs "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf")
+			(footprints
+				(fp "ESP32?S3?WROOM?1*")
+			)
 			(fields
 				(field
 					(name "Reference") "U")
 				(field
 					(name "Value") "ESP32-S3-WROOM-1")
 				(field
-					(name "Footprint")
-				)
+					(name "Footprint") "RF_Module:ESP32-S3-WROOM-1")
 				(field
 					(name "Datasheet") "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf")
 				(field
@@ -8411,14 +9492,16 @@
 			(part "AP7361C-33E")
 			(description "1A Low Dropout regulator, positive, 3.3V fixed output, SOT-223")
 			(docs "https://www.diodes.com/assets/Datasheets/AP7361C.pdf")
+			(footprints
+				(fp "SOT?223*")
+			)
 			(fields
 				(field
 					(name "Reference") "U")
 				(field
 					(name "Value") "AP7361C-33E")
 				(field
-					(name "Footprint")
-				)
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-223-3_TabPin2")
 				(field
 					(name "Datasheet") "https://www.diodes.com/assets/Datasheets/AP7361C.pdf")
 				(field
@@ -8447,14 +9530,16 @@
 			(part "MAX31856")
 			(description "Precision Thermocouple to Digital Converter with Linearization, TSSOP-14")
 			(docs "https://datasheets.maximintegrated.com/en/ds/MAX31856.pdf")
+			(footprints
+				(fp "TSSOP*14*4.4x5mm*P0.65mm*")
+			)
 			(fields
 				(field
 					(name "Reference") "U")
 				(field
 					(name "Value") "MAX31856")
 				(field
-					(name "Footprint")
-				)
+					(name "Footprint") "Package_SO:TSSOP-14_4.4x5mm_P0.65mm")
 				(field
 					(name "Datasheet") "https://datasheets.maximintegrated.com/en/ds/MAX31856.pdf")
 				(field
@@ -8569,14 +9654,16 @@
 			(part "AO3400A")
 			(description "30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23")
 			(docs "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf")
+			(footprints
+				(fp "SOT?23*")
+			)
 			(fields
 				(field
 					(name "Reference") "Q")
 				(field
 					(name "Value") "AO3400A")
 				(field
-					(name "Footprint")
-				)
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23")
 				(field
 					(name "Datasheet") "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf")
 				(field
@@ -8605,14 +9692,16 @@
 			(part "AO3401A")
 			(description "-4.0A Id, -30V Vds, P-Channel MOSFET, SOT-23")
 			(docs "http://www.aosmd.com/pdfs/datasheet/AO3401A.pdf")
+			(footprints
+				(fp "SOT?23*")
+			)
 			(fields
 				(field
 					(name "Reference") "Q")
 				(field
 					(name "Value") "AO3401A")
 				(field
-					(name "Footprint")
-				)
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23")
 				(field
 					(name "Datasheet") "http://www.aosmd.com/pdfs/datasheet/AO3401A.pdf")
 				(field
@@ -8647,8 +9736,7 @@
 				(field
 					(name "Value") "TC6501")
 				(field
-					(name "Footprint")
-				)
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-5")
 				(field
 					(name "Datasheet") "Microchip DS21451E")
 				(field
@@ -8693,8 +9781,7 @@
 				(field
 					(name "Value") "TPS3828-33DBV")
 				(field
-					(name "Footprint")
-				)
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-5")
 				(field
 					(name "Datasheet") "https://www.ti.com/lit/ds/symlink/tps3823.pdf")
 				(field
@@ -9177,105 +10264,27 @@
 		)
 		(net
 			(code "5")
-			(name "/Steuerung und Messung/ENC_A_RAW")
+			(name "/Steuerung und Messung/BUZZER_G")
 			(class "Default")
 			(node
-				(ref "J4")
+				(ref "Q7")
 				(pin "1")
-				(pinfunction "Pin_1_1")
-				(pintype "passive")
+				(pinfunction "G_1")
+				(pintype "input")
 			)
 			(node
-				(ref "R30")
+				(ref "R38")
 				(pin "2")
 				(pintype "passive")
 			)
 			(node
-				(ref "R31")
+				(ref "R39")
 				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U10")
-				(pin "1")
-				(pinfunction "I/O1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U10")
-				(pin "6")
-				(pinfunction "I/O1_6")
 				(pintype "passive")
 			)
 		)
 		(net
 			(code "6")
-			(name "/Steuerung und Messung/ENC_B_RAW")
-			(class "Default")
-			(node
-				(ref "J4")
-				(pin "3")
-				(pinfunction "Pin_3_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "R32")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R33")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U10")
-				(pin "3")
-				(pinfunction "I/O2_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "U10")
-				(pin "4")
-				(pinfunction "I/O2_4")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "7")
-			(name "/Steuerung und Messung/ENC_SW_RAW")
-			(class "Default")
-			(node
-				(ref "J4")
-				(pin "4")
-				(pinfunction "Pin_4_4")
-				(pintype "passive")
-			)
-			(node
-				(ref "R34")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R35")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U11")
-				(pin "1")
-				(pinfunction "I/O1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U11")
-				(pin "6")
-				(pinfunction "I/O1_6")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "8")
 			(name "/Steuerung und Messung/FAN_PWM_5V")
 			(class "Default")
 			(node
@@ -9297,7 +10306,7 @@
 			)
 		)
 		(net
-			(code "9")
+			(code "7")
 			(name "/Steuerung und Messung/FAN_TACH_RAW")
 			(class "Default")
 			(node
@@ -9318,40 +10327,7 @@
 			)
 		)
 		(net
-			(code "10")
-			(name "/Steuerung und Messung/STOP_NO_RAW")
-			(class "Default")
-			(node
-				(ref "J4")
-				(pin "7")
-				(pinfunction "Pin_7_7")
-				(pintype "passive")
-			)
-			(node
-				(ref "R36")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R37")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U11")
-				(pin "3")
-				(pinfunction "I/O2_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "U11")
-				(pin "4")
-				(pinfunction "I/O2_4")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "11")
+			(code "8")
 			(name "ARM")
 			(class "Default")
 			(node
@@ -9379,7 +10355,7 @@
 			)
 		)
 		(net
-			(code "12")
+			(code "9")
 			(name "BOOT")
 			(class "Default")
 			(node
@@ -9401,7 +10377,7 @@
 			)
 		)
 		(net
-			(code "13")
+			(code "10")
 			(name "BUZZER")
 			(class "Default")
 			(node
@@ -9417,28 +10393,7 @@
 			)
 		)
 		(net
-			(code "14")
-			(name "BUZZER_G")
-			(class "Default")
-			(node
-				(ref "Q7")
-				(pin "1")
-				(pinfunction "G_1")
-				(pintype "input")
-			)
-			(node
-				(ref "R38")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R39")
-				(pin "1")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "15")
+			(code "11")
 			(name "BUZZER_N")
 			(class "Default")
 			(node
@@ -9461,7 +10416,7 @@
 			)
 		)
 		(net
-			(code "16")
+			(code "12")
 			(name "CLR")
 			(class "Default")
 			(node
@@ -9522,7 +10477,7 @@
 			)
 		)
 		(net
-			(code "17")
+			(code "13")
 			(name "CLR_SENSE")
 			(class "Default")
 			(node
@@ -9538,7 +10493,7 @@
 			)
 		)
 		(net
-			(code "18")
+			(code "14")
 			(name "DISARM")
 			(class "Default")
 			(node
@@ -9555,7 +10510,7 @@
 			)
 		)
 		(net
-			(code "19")
+			(code "15")
 			(name "EN")
 			(class "Default")
 			(node
@@ -9582,7 +10537,7 @@
 			)
 		)
 		(net
-			(code "20")
+			(code "16")
 			(name "ENC_A")
 			(class "Default")
 			(node
@@ -9603,7 +10558,7 @@
 			)
 		)
 		(net
-			(code "21")
+			(code "17")
 			(name "ENC_B")
 			(class "Default")
 			(node
@@ -9624,7 +10579,7 @@
 			)
 		)
 		(net
-			(code "22")
+			(code "18")
 			(name "ENC_SW")
 			(class "Default")
 			(node
@@ -9645,7 +10600,7 @@
 			)
 		)
 		(net
-			(code "23")
+			(code "19")
 			(name "FAN_PWM")
 			(class "Default")
 			(node
@@ -9667,7 +10622,7 @@
 			)
 		)
 		(net
-			(code "24")
+			(code "20")
 			(name "FAN_TACH")
 			(class "Default")
 			(node
@@ -9694,7 +10649,7 @@
 			)
 		)
 		(net
-			(code "25")
+			(code "21")
 			(name "GND")
 			(class "Default")
 			(node
@@ -10176,7 +11131,7 @@
 			)
 		)
 		(net
-			(code "26")
+			(code "22")
 			(name "HEAT_BOT")
 			(class "Default")
 			(node
@@ -10198,28 +11153,7 @@
 			)
 		)
 		(net
-			(code "27")
-			(name "HEAT_BOT_G")
-			(class "Default")
-			(node
-				(ref "Q4")
-				(pin "1")
-				(pinfunction "G_1")
-				(pintype "input")
-			)
-			(node
-				(ref "R22")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R23")
-				(pin "1")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "28")
+			(code "23")
 			(name "HEAT_TOP")
 			(class "Default")
 			(node
@@ -10241,28 +11175,7 @@
 			)
 		)
 		(net
-			(code "29")
-			(name "HEAT_TOP_G")
-			(class "Default")
-			(node
-				(ref "Q3")
-				(pin "1")
-				(pinfunction "G_1")
-				(pintype "input")
-			)
-			(node
-				(ref "R20")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R21")
-				(pin "1")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "30")
+			(code "24")
 			(name "LATCH_Q")
 			(class "Default")
 			(node
@@ -10301,28 +11214,7 @@
 			)
 		)
 		(net
-			(code "31")
-			(name "LATCH_Q_G")
-			(class "Default")
-			(node
-				(ref "Q5")
-				(pin "1")
-				(pinfunction "G_1")
-				(pintype "input")
-			)
-			(node
-				(ref "R24")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R25")
-				(pin "1")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "32")
+			(code "25")
 			(name "LED_DIAG")
 			(class "Default")
 			(node
@@ -10338,7 +11230,7 @@
 			)
 		)
 		(net
-			(code "33")
+			(code "26")
 			(name "L_FUSED")
 			(class "Default")
 			(node
@@ -10359,7 +11251,7 @@
 			)
 		)
 		(net
-			(code "34")
+			(code "27")
 			(name "L_IN")
 			(class "Default")
 			(node
@@ -10375,7 +11267,7 @@
 			)
 		)
 		(net
-			(code "35")
+			(code "28")
 			(name "N_IN")
 			(class "Default")
 			(node
@@ -10397,7 +11289,7 @@
 			)
 		)
 		(net
-			(code "36")
+			(code "29")
 			(name "Net-(D3-A)")
 			(class "Default")
 			(node
@@ -10413,7 +11305,7 @@
 			)
 		)
 		(net
-			(code "37")
+			(code "30")
 			(name "Net-(D4-K)")
 			(class "Default")
 			(node
@@ -10430,7 +11322,7 @@
 			)
 		)
 		(net
-			(code "38")
+			(code "31")
 			(name "Net-(D5-K)")
 			(class "Default")
 			(node
@@ -10447,7 +11339,7 @@
 			)
 		)
 		(net
-			(code "39")
+			(code "32")
 			(name "Net-(J3-Pin_3)")
 			(class "Default")
 			(node
@@ -10463,7 +11355,7 @@
 			)
 		)
 		(net
-			(code "40")
+			(code "33")
 			(name "Net-(J3-Pin_5)")
 			(class "Default")
 			(node
@@ -10479,7 +11371,167 @@
 			)
 		)
 		(net
-			(code "41")
+			(code "34")
+			(name "Net-(J4-Pin_1)")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "1")
+				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R30")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R31")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U10")
+				(pin "1")
+				(pinfunction "I/O1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U10")
+				(pin "6")
+				(pinfunction "I/O1_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "35")
+			(name "Net-(J4-Pin_3)")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "3")
+				(pinfunction "Pin_3_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "R32")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R33")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U10")
+				(pin "3")
+				(pinfunction "I/O2_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "U10")
+				(pin "4")
+				(pinfunction "I/O2_4")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "36")
+			(name "Net-(J4-Pin_4)")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "4")
+				(pinfunction "Pin_4_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "R34")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R35")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U11")
+				(pin "1")
+				(pinfunction "I/O1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U11")
+				(pin "6")
+				(pinfunction "I/O1_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "37")
+			(name "Net-(J4-Pin_5)")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "5")
+				(pinfunction "Pin_5_5")
+				(pintype "passive")
+			)
+			(node
+				(ref "R16")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U12")
+				(pin "1")
+				(pinfunction "I/O1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U12")
+				(pin "6")
+				(pinfunction "I/O1_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "38")
+			(name "Net-(J4-Pin_7)")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "7")
+				(pinfunction "Pin_7_7")
+				(pintype "passive")
+			)
+			(node
+				(ref "R36")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R37")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U11")
+				(pin "3")
+				(pinfunction "I/O2_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "U11")
+				(pin "4")
+				(pinfunction "I/O2_4")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "39")
 			(name "Net-(J7-CC1)")
 			(class "Default")
 			(node
@@ -10495,7 +11547,7 @@
 			)
 		)
 		(net
-			(code "42")
+			(code "40")
 			(name "Net-(J7-CC2)")
 			(class "Default")
 			(node
@@ -10511,7 +11563,7 @@
 			)
 		)
 		(net
-			(code "43")
+			(code "41")
 			(name "Net-(J7-SHIELD)")
 			(class "Default")
 			(node
@@ -10537,7 +11589,92 @@
 			)
 		)
 		(net
+			(code "42")
+			(name "Net-(Q1-G)")
+			(class "Default")
+			(node
+				(ref "Q1")
+				(pin "1")
+				(pinfunction "G_1")
+				(pintype "input")
+			)
+			(node
+				(ref "Q2")
+				(pin "3")
+				(pinfunction "D_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "R19")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "43")
+			(name "Net-(Q3-G)")
+			(class "Default")
+			(node
+				(ref "Q3")
+				(pin "1")
+				(pinfunction "G_1")
+				(pintype "input")
+			)
+			(node
+				(ref "R20")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R21")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
 			(code "44")
+			(name "Net-(Q4-G)")
+			(class "Default")
+			(node
+				(ref "Q4")
+				(pin "1")
+				(pinfunction "G_1")
+				(pintype "input")
+			)
+			(node
+				(ref "R22")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R23")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "45")
+			(name "Net-(Q5-G)")
+			(class "Default")
+			(node
+				(ref "Q5")
+				(pin "1")
+				(pinfunction "G_1")
+				(pintype "input")
+			)
+			(node
+				(ref "R24")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R25")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "46")
 			(name "RELAY_N")
 			(class "Default")
 			(node
@@ -10560,7 +11697,7 @@
 			)
 		)
 		(net
-			(code "45")
+			(code "47")
 			(name "REV_STRAP")
 			(class "Default")
 			(node
@@ -10586,7 +11723,7 @@
 			)
 		)
 		(net
-			(code "46")
+			(code "48")
 			(name "SSR_BOT_N")
 			(class "Default")
 			(node
@@ -10603,29 +11740,7 @@
 			)
 		)
 		(net
-			(code "47")
-			(name "SSR_EN_N")
-			(class "Default")
-			(node
-				(ref "Q1")
-				(pin "1")
-				(pinfunction "G_1")
-				(pintype "input")
-			)
-			(node
-				(ref "Q2")
-				(pin "3")
-				(pinfunction "D_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "R19")
-				(pin "2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "48")
+			(code "49")
 			(name "SSR_TOP_N")
 			(class "Default")
 			(node
@@ -10638,34 +11753,6 @@
 				(ref "Q3")
 				(pin "3")
 				(pinfunction "D_3")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "49")
-			(name "STOP_NC_OUT")
-			(class "Default")
-			(node
-				(ref "J4")
-				(pin "5")
-				(pinfunction "Pin_5_5")
-				(pintype "passive")
-			)
-			(node
-				(ref "R16")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U12")
-				(pin "1")
-				(pinfunction "I/O1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U12")
-				(pin "6")
-				(pinfunction "I/O1_6")
 				(pintype "passive")
 			)
 		)

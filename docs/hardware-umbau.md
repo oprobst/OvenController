@@ -63,7 +63,7 @@ nicht konkret ausgewählt.
 | WLAN-Antenne | U.FL-Pigtail auf Gehäusedurchführung (z. B. RP-SMA) und 2,4-GHz-Antenne außen am Gehäuse | offen | offen |
 | Temperaturmessung | 2 Kanäle (oben, unten) mit je MAX31856MUD+ (TSSOP-14, 50-Hz-Filter, FAULT-Ausgang Push-Pull). Prototyp REV DEV: MAX31855-Breakout (siehe „Sensorik") | Mouser 700-MAX31856MUD+ | 12,26 € je IC (2026-10-26) |
 | Thermoelemente | 2 × Typ K, Mantel Ø 1–1,5 mm, **isolierte Messstelle** | offen | offen |
-| Thermoelement-Buchse | 2 × Omega PCC-SMP-K (Mini-TC Typ K, Print, −29…+180 °C), je neben ihrem MAX31856 | Farnell 3794917 (PCC-SMP-K-5, 5 Stück) | prüfen |
+| Thermoelement-Buchse | 2 × RS PRO 381-7564 (Mini-TC Typ K, IEC, Print, Kontakte NiCr/Ni, bis 220 °C), je neben ihrem MAX31856, mit Schraube M2,5 befestigt | RS 381-7564 | 5,27 € netto |
 | Heizung schalten | 2 × Sensata Crydom **D2425** (Panel-SSR, nullspannungsschaltend, 25 A, Steuereingang 3–32 V DC, max. 12 mA), nicht auf der Platine. Getrennt für Ober- und Unterhitze (siehe „Lastseite"). Nicht Carlo Gavazzi RM1A (Steuereingang erst ab 4,25 V) | Mouser/Reichelt | ca. 45–60 € je Stück (Richtwert) |
 | Sicherheitsrelais | Finder **40.61.9.005.0000** (16 A, 1 Schließer genutzt, Standardspule 5 V: 38 Ω, 130 mA, Anzug ab 3,65 V) in Fassung 95.05 (10 A), angeschraubt (keine Hutschiene). Nicht die empfindliche Spule 40.61.7.005 (Anzug erst ab 4,0 V) | Reichelt/Mouser | Relais ca. 6–10 €, Fassung ca. 4–8 € (Richtwert) |
 | Externer Watchdog | TI TPS3828-33DBVR (SOT-23-5, Open-Drain-Reset, Watchdog 0,9/1,6/2,5 s) in der Löschkette des Freigabe-Latch; WDI mit 2,2 kΩ Pull-down (offener WDI schaltet den Watchdog ab) | Mouser | ca. 1 € (Richtwert) |
