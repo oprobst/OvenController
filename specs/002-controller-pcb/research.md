@@ -467,6 +467,14 @@ nächsten Kleinspannungsbauteile beginnen bei x ≈ 23 mm.
   T020, Wärme), damit Wand und Überstand an der rechten Modulkante Platz haben; die
   Kleinspannungsbauteile an der Innenwand (J2, Q3–Q5, U7, C2, C3) so weit nach rechts, dass
   Sperrfläche und H5–H8 passen.
+- **Ergebnis T084 (2026-10-27)**: COV1 liegt im Ursprung der Platine; die Wandlage aus T083
+  passt unverändert. **H8 liegt innen** bei (46,5 / 96) unter dem IRM-10-5, als Dom an der
+  Innenseite der rechten Wand: Außen hätte der Flansch die Thermoelement-Buchsen blockiert, weil
+  J5 und J6 nebeneinander die ganze Unterkante zwischen Wand und H4 brauchen. Abstand zum
+  Netzkupfer > 30 mm. H5–H7 bleiben außen. Verschoben: J2 (+2 mm), U2, U9 (TC6501) und J5/J6
+  (+1,8 / +0,6 mm); J5 liegt 4 mm neben dem IRM-10-5, dazwischen die Wand. Q3–Q5, U7, C2 und C3
+  mussten nicht verschoben werden. DRC mit Schaltplanabgleich: keine Verletzung durch COV1; die
+  Gegenprobe (J5 in die Wand geschoben) meldet `items_not_allowed`.
 
 ## Stückliste (Auswahl T008, 2026-10-25)
 

@@ -37,7 +37,10 @@ SCREWS = {            # >= 6 mm from mains copper (DRC rule cover_holes_to_mains
     "H5": (20.8, 7.0),
     "H6": (20.8, 56.0),
     "H7": (55.0, 61.0),
-    "H8": (55.0, 96.0),
+    # Inside the cover below the IRM-10-5 (boss on the inner side of the right wall): outside,
+    # the flange would block the thermocouple sockets J5/J6, which need the whole bottom edge
+    # between the wall and H4 (T084).
+    "H8": (46.5, 96.0),
 }
 SLEEVES = {"H1": (4.0, 4.0), "H3": (4.0, 96.0)}  # mounting holes inside the cover
 SLEEVE_R = 3.5
