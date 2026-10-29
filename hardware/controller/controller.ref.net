@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "D:\\git\\oven\\hardware\\controller\\controller.kicad_sch")
-		(date "2026-10-27T18:18:47")
+		(date "2026-10-29T22:57:38")
 		(tool "Eeschema 10.0.3")
 		(sheet
 			(number "1")
@@ -873,13 +873,13 @@
 		(comp
 			(ref "F1")
 			(value "T500mA")
-			(footprint "Fuse:Fuseholder_Cylinder-5x20mm_Schurter_FAB_0031-355x_Horizontal_Closed")
+			(footprint "Fuse:Fuseholder_Cylinder-5x20mm_Schurter_0031_8201_Horizontal_Open")
 			(description "Fuse")
 			(fields
 				(field
-					(name "MPN") "Schurter FAB 0031.355x + 5x20 T500mA")
+					(name "MPN") "Schurter OGN 0031.8201 + 5x20 T500mA")
 				(field
-					(name "Footprint") "Fuse:Fuseholder_Cylinder-5x20mm_Schurter_FAB_0031-355x_Horizontal_Closed")
+					(name "Footprint") "Fuse:Fuseholder_Cylinder-5x20mm_Schurter_0031_8201_Horizontal_Open")
 				(field
 					(name "Datasheet")
 				)
@@ -893,7 +893,7 @@
 			)
 			(property
 				(name "MPN")
-				(value "Schurter FAB 0031.355x + 5x20 T500mA")
+				(value "Schurter OGN 0031.8201 + 5x20 T500mA")
 			)
 			(property
 				(name "Sheetname")
@@ -4942,27 +4942,27 @@
 		(comp
 			(ref "J3")
 			(value "DISPLAY")
-			(footprint "Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical")
-			(description "Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(footprint "Connector_JST:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical")
+			(description "Generic connector, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			(fields
 				(field
-					(name "MPN") "Wannenstecker 2x5 RM2.54")
+					(name "MPN") "JST B10B-XH-A")
 				(field
-					(name "Footprint") "Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical")
+					(name "Footprint") "Connector_JST:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+					(name "Description") "Generic connector, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			)
 			(libsource
 				(lib "Connector_Generic")
-				(part "Conn_02x05_Odd_Even")
-				(description "Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+				(part "Conn_01x10")
+				(description "Generic connector, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			)
 			(property
 				(name "MPN")
-				(value "Wannenstecker 2x5 RM2.54")
+				(value "JST B10B-XH-A")
 			)
 			(property
 				(name "Sheetname")
@@ -4978,7 +4978,7 @@
 			)
 			(property
 				(name "ki_fp_filters")
-				(value "Connector*:*_2x??_*")
+				(value "Connector*:*_1x??_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -4993,28 +4993,28 @@
 							(num "1")
 						)
 						(pin
-							(num "3")
-						)
-						(pin
-							(num "5")
-						)
-						(pin
-							(num "7")
-						)
-						(pin
-							(num "9")
-						)
-						(pin
 							(num "2")
+						)
+						(pin
+							(num "3")
 						)
 						(pin
 							(num "4")
 						)
 						(pin
+							(num "5")
+						)
+						(pin
 							(num "6")
 						)
 						(pin
+							(num "7")
+						)
+						(pin
 							(num "8")
+						)
+						(pin
+							(num "9")
 						)
 						(pin
 							(num "10")
@@ -5025,28 +5025,28 @@
 		)
 		(comp
 			(ref "J4")
-			(value "PANEL")
-			(footprint "Connector_IDC:IDC-Header_2x04_P2.54mm_Vertical")
-			(description "Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(value "ENCODER")
+			(footprint "Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
+			(description "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			(fields
 				(field
-					(name "MPN") "Wannenstecker 2x4 RM2.54")
+					(name "MPN") "JST B5B-XH-A")
 				(field
-					(name "Footprint") "Connector_IDC:IDC-Header_2x04_P2.54mm_Vertical")
+					(name "Footprint") "Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+					(name "Description") "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			)
 			(libsource
 				(lib "Connector_Generic")
-				(part "Conn_02x04_Odd_Even")
-				(description "Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+				(part "Conn_01x05")
+				(description "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			)
 			(property
 				(name "MPN")
-				(value "Wannenstecker 2x4 RM2.54")
+				(value "JST B5B-XH-A")
 			)
 			(property
 				(name "Sheetname")
@@ -5062,7 +5062,7 @@
 			)
 			(property
 				(name "ki_fp_filters")
-				(value "Connector*:*_2x??_*")
+				(value "Connector*:*_1x??_*")
 			)
 			(sheetpath
 				(names "/Steuerung und Messung/")
@@ -5077,25 +5077,16 @@
 							(num "1")
 						)
 						(pin
-							(num "3")
-						)
-						(pin
-							(num "5")
-						)
-						(pin
-							(num "7")
-						)
-						(pin
 							(num "2")
+						)
+						(pin
+							(num "3")
 						)
 						(pin
 							(num "4")
 						)
 						(pin
-							(num "6")
-						)
-						(pin
-							(num "8")
+							(num "5")
 						)
 					)
 				)
@@ -5441,6 +5432,72 @@
 				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
 			)
 			(tstamps "4f8fd95d-8c03-4cc6-bab4-a068f43402fb")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "J11")
+			(value "STOP")
+			(footprint "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical")
+			(description "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(fields
+				(field
+					(name "MPN") "JST B4B-XH-A")
+				(field
+					(name "Footprint") "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(libsource
+				(lib "Connector_Generic")
+				(part "Conn_01x04")
+				(description "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(property
+				(name "MPN")
+				(value "JST B4B-XH-A")
+			)
+			(property
+				(name "Sheetname")
+				(value "Steuerung und Messung")
+			)
+			(property
+				(name "Sheetfile")
+				(value "controller_steuerung.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
+			)
+			(sheetpath
+				(names "/Steuerung und Messung/")
+				(tstamps "/a04cc551-8861-5ea4-a9c5-b19cbf34bbca/")
+			)
+			(tstamps "fd7bfa65-9dd5-403b-b542-d6d81b2aaa19")
 			(units
 				(unit
 					(name "A")
@@ -8683,6 +8740,55 @@
 		)
 		(libpart
 			(lib "Connector_Generic")
+			(part "Conn_01x05")
+			(description "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(footprints
+				(fp "Connector*:*_1x??_*")
+			)
+			(fields
+				(field
+					(name "Reference") "J")
+				(field
+					(name "Value") "Conn_01x05")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "Pin_1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "Pin_2")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "Pin_3")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "Pin_4")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "Pin_5")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Connector_Generic")
 			(part "Conn_01x06")
 			(description "Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			(footprints
@@ -8737,16 +8843,16 @@
 		)
 		(libpart
 			(lib "Connector_Generic")
-			(part "Conn_02x04_Odd_Even")
-			(description "Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(part "Conn_01x10")
+			(description "Generic connector, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			(footprints
-				(fp "Connector*:*_2x??_*")
+				(fp "Connector*:*_1x??_*")
 			)
 			(fields
 				(field
 					(name "Reference") "J")
 				(field
-					(name "Value") "Conn_02x04_Odd_Even")
+					(name "Value") "Conn_01x10")
 				(field
 					(name "Footprint")
 				)
@@ -8754,71 +8860,7 @@
 					(name "Datasheet")
 				)
 				(field
-					(name "Description") "Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
-			)
-			(pins
-				(pin
-					(num "1")
-					(name "Pin_1")
-					(type "passive")
-				)
-				(pin
-					(num "2")
-					(name "Pin_2")
-					(type "passive")
-				)
-				(pin
-					(num "3")
-					(name "Pin_3")
-					(type "passive")
-				)
-				(pin
-					(num "4")
-					(name "Pin_4")
-					(type "passive")
-				)
-				(pin
-					(num "5")
-					(name "Pin_5")
-					(type "passive")
-				)
-				(pin
-					(num "6")
-					(name "Pin_6")
-					(type "passive")
-				)
-				(pin
-					(num "7")
-					(name "Pin_7")
-					(type "passive")
-				)
-				(pin
-					(num "8")
-					(name "Pin_8")
-					(type "passive")
-				)
-			)
-		)
-		(libpart
-			(lib "Connector_Generic")
-			(part "Conn_02x05_Odd_Even")
-			(description "Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
-			(footprints
-				(fp "Connector*:*_2x??_*")
-			)
-			(fields
-				(field
-					(name "Reference") "J")
-				(field
-					(name "Value") "Conn_02x05_Odd_Even")
-				(field
-					(name "Footprint")
-				)
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description") "Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)")
+					(name "Description") "Generic connector, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)")
 			)
 			(pins
 				(pin
@@ -10285,6 +10327,105 @@
 		)
 		(net
 			(code "6")
+			(name "/Steuerung und Messung/ENC_A_IN")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "1")
+				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R30")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R31")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U10")
+				(pin "1")
+				(pinfunction "I/O1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U10")
+				(pin "6")
+				(pinfunction "I/O1_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "7")
+			(name "/Steuerung und Messung/ENC_B_IN")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "3")
+				(pinfunction "Pin_3_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "R32")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R33")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U10")
+				(pin "3")
+				(pinfunction "I/O2_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "U10")
+				(pin "4")
+				(pinfunction "I/O2_4")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "8")
+			(name "/Steuerung und Messung/ENC_SW_IN")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "4")
+				(pinfunction "Pin_4_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "R34")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R35")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U11")
+				(pin "1")
+				(pinfunction "I/O1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U11")
+				(pin "6")
+				(pinfunction "I/O1_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "9")
 			(name "/Steuerung und Messung/FAN_PWM_5V")
 			(class "Default")
 			(node
@@ -10306,7 +10447,7 @@
 			)
 		)
 		(net
-			(code "7")
+			(code "10")
 			(name "/Steuerung und Messung/FAN_TACH_RAW")
 			(class "Default")
 			(node
@@ -10327,7 +10468,100 @@
 			)
 		)
 		(net
-			(code "8")
+			(code "11")
+			(name "/Steuerung und Messung/STOP_NC_OUT")
+			(class "Default")
+			(node
+				(ref "J11")
+				(pin "1")
+				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R16")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U12")
+				(pin "1")
+				(pinfunction "I/O1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U12")
+				(pin "6")
+				(pinfunction "I/O1_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "12")
+			(name "/Steuerung und Messung/STOP_NO_IN")
+			(class "Default")
+			(node
+				(ref "J11")
+				(pin "3")
+				(pinfunction "Pin_3_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "R36")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R37")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U11")
+				(pin "3")
+				(pinfunction "I/O2_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "U11")
+				(pin "4")
+				(pinfunction "I/O2_4")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "13")
+			(name "/Steuerung und Messung/TFT_MOSI")
+			(class "Default")
+			(node
+				(ref "J3")
+				(pin "5")
+				(pinfunction "Pin_5_5")
+				(pintype "passive")
+			)
+			(node
+				(ref "R27")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "14")
+			(name "/Steuerung und Messung/TFT_SCK")
+			(class "Default")
+			(node
+				(ref "J3")
+				(pin "3")
+				(pinfunction "Pin_3_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "R26")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "15")
 			(name "ARM")
 			(class "Default")
 			(node
@@ -10355,7 +10589,7 @@
 			)
 		)
 		(net
-			(code "9")
+			(code "16")
 			(name "BOOT")
 			(class "Default")
 			(node
@@ -10377,7 +10611,7 @@
 			)
 		)
 		(net
-			(code "10")
+			(code "17")
 			(name "BUZZER")
 			(class "Default")
 			(node
@@ -10393,7 +10627,7 @@
 			)
 		)
 		(net
-			(code "11")
+			(code "18")
 			(name "BUZZER_N")
 			(class "Default")
 			(node
@@ -10416,7 +10650,7 @@
 			)
 		)
 		(net
-			(code "12")
+			(code "19")
 			(name "CLR")
 			(class "Default")
 			(node
@@ -10477,7 +10711,7 @@
 			)
 		)
 		(net
-			(code "13")
+			(code "20")
 			(name "CLR_SENSE")
 			(class "Default")
 			(node
@@ -10493,7 +10727,7 @@
 			)
 		)
 		(net
-			(code "14")
+			(code "21")
 			(name "DISARM")
 			(class "Default")
 			(node
@@ -10510,7 +10744,7 @@
 			)
 		)
 		(net
-			(code "15")
+			(code "22")
 			(name "EN")
 			(class "Default")
 			(node
@@ -10537,7 +10771,7 @@
 			)
 		)
 		(net
-			(code "16")
+			(code "23")
 			(name "ENC_A")
 			(class "Default")
 			(node
@@ -10558,7 +10792,7 @@
 			)
 		)
 		(net
-			(code "17")
+			(code "24")
 			(name "ENC_B")
 			(class "Default")
 			(node
@@ -10579,7 +10813,7 @@
 			)
 		)
 		(net
-			(code "18")
+			(code "25")
 			(name "ENC_SW")
 			(class "Default")
 			(node
@@ -10600,7 +10834,7 @@
 			)
 		)
 		(net
-			(code "19")
+			(code "26")
 			(name "FAN_PWM")
 			(class "Default")
 			(node
@@ -10622,7 +10856,7 @@
 			)
 		)
 		(net
-			(code "20")
+			(code "27")
 			(name "FAN_TACH")
 			(class "Default")
 			(node
@@ -10649,7 +10883,7 @@
 			)
 		)
 		(net
-			(code "21")
+			(code "28")
 			(name "GND")
 			(class "Default")
 			(node
@@ -10820,6 +11054,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "J11")
+				(pin "4")
+				(pinfunction "Pin_4_4")
+				(pintype "passive")
+			)
+			(node
 				(ref "J2")
 				(pin "6")
 				(pinfunction "Pin_6_6")
@@ -10851,8 +11091,8 @@
 			)
 			(node
 				(ref "J4")
-				(pin "8")
-				(pinfunction "Pin_8_8")
+				(pin "5")
+				(pinfunction "Pin_5_5")
 				(pintype "passive")
 			)
 			(node
@@ -11131,7 +11371,7 @@
 			)
 		)
 		(net
-			(code "22")
+			(code "29")
 			(name "HEAT_BOT")
 			(class "Default")
 			(node
@@ -11153,7 +11393,7 @@
 			)
 		)
 		(net
-			(code "23")
+			(code "30")
 			(name "HEAT_TOP")
 			(class "Default")
 			(node
@@ -11175,7 +11415,7 @@
 			)
 		)
 		(net
-			(code "24")
+			(code "31")
 			(name "LATCH_Q")
 			(class "Default")
 			(node
@@ -11214,7 +11454,7 @@
 			)
 		)
 		(net
-			(code "25")
+			(code "32")
 			(name "LED_DIAG")
 			(class "Default")
 			(node
@@ -11230,7 +11470,7 @@
 			)
 		)
 		(net
-			(code "26")
+			(code "33")
 			(name "L_FUSED")
 			(class "Default")
 			(node
@@ -11251,7 +11491,7 @@
 			)
 		)
 		(net
-			(code "27")
+			(code "34")
 			(name "L_IN")
 			(class "Default")
 			(node
@@ -11267,7 +11507,7 @@
 			)
 		)
 		(net
-			(code "28")
+			(code "35")
 			(name "N_IN")
 			(class "Default")
 			(node
@@ -11289,7 +11529,7 @@
 			)
 		)
 		(net
-			(code "29")
+			(code "36")
 			(name "Net-(D3-A)")
 			(class "Default")
 			(node
@@ -11305,7 +11545,7 @@
 			)
 		)
 		(net
-			(code "30")
+			(code "37")
 			(name "Net-(D4-K)")
 			(class "Default")
 			(node
@@ -11322,7 +11562,7 @@
 			)
 		)
 		(net
-			(code "31")
+			(code "38")
 			(name "Net-(D5-K)")
 			(class "Default")
 			(node
@@ -11336,198 +11576,6 @@
 				(pin "13")
 				(pinfunction "~{FAULT}_13")
 				(pintype "output")
-			)
-		)
-		(net
-			(code "32")
-			(name "Net-(J3-Pin_3)")
-			(class "Default")
-			(node
-				(ref "J3")
-				(pin "3")
-				(pinfunction "Pin_3_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "R26")
-				(pin "2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "33")
-			(name "Net-(J3-Pin_5)")
-			(class "Default")
-			(node
-				(ref "J3")
-				(pin "5")
-				(pinfunction "Pin_5_5")
-				(pintype "passive")
-			)
-			(node
-				(ref "R27")
-				(pin "2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "34")
-			(name "Net-(J4-Pin_1)")
-			(class "Default")
-			(node
-				(ref "J4")
-				(pin "1")
-				(pinfunction "Pin_1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R30")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R31")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U10")
-				(pin "1")
-				(pinfunction "I/O1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U10")
-				(pin "6")
-				(pinfunction "I/O1_6")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "35")
-			(name "Net-(J4-Pin_3)")
-			(class "Default")
-			(node
-				(ref "J4")
-				(pin "3")
-				(pinfunction "Pin_3_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "R32")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R33")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U10")
-				(pin "3")
-				(pinfunction "I/O2_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "U10")
-				(pin "4")
-				(pinfunction "I/O2_4")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "36")
-			(name "Net-(J4-Pin_4)")
-			(class "Default")
-			(node
-				(ref "J4")
-				(pin "4")
-				(pinfunction "Pin_4_4")
-				(pintype "passive")
-			)
-			(node
-				(ref "R34")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R35")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U11")
-				(pin "1")
-				(pinfunction "I/O1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U11")
-				(pin "6")
-				(pinfunction "I/O1_6")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "37")
-			(name "Net-(J4-Pin_5)")
-			(class "Default")
-			(node
-				(ref "J4")
-				(pin "5")
-				(pinfunction "Pin_5_5")
-				(pintype "passive")
-			)
-			(node
-				(ref "R16")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U12")
-				(pin "1")
-				(pinfunction "I/O1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U12")
-				(pin "6")
-				(pinfunction "I/O1_6")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "38")
-			(name "Net-(J4-Pin_7)")
-			(class "Default")
-			(node
-				(ref "J4")
-				(pin "7")
-				(pinfunction "Pin_7_7")
-				(pintype "passive")
-			)
-			(node
-				(ref "R36")
-				(pin "2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R37")
-				(pin "1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U11")
-				(pin "3")
-				(pinfunction "I/O2_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "U11")
-				(pin "4")
-				(pinfunction "I/O2_4")
-				(pintype "passive")
 			)
 		)
 		(net
@@ -11761,9 +11809,9 @@
 			(name "STOP_NC_RET")
 			(class "Default")
 			(node
-				(ref "J4")
-				(pin "6")
-				(pinfunction "Pin_6_6")
+				(ref "J11")
+				(pin "2")
+				(pinfunction "Pin_2_2")
 				(pintype "passive")
 			)
 			(node

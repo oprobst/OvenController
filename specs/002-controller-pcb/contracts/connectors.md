@@ -32,36 +32,51 @@ Steckbare Schraubklemme 6-polig, Raster 3,81 mm.
 
 ## J3 – Display
 
-IDC 2×5, Raster 2,54 mm, Flachbandkabel ≤ 20 cm.
+JST XH 1×10, Raster 2,5 mm, stehend (B10B-XH-A), Kabel ≤ 20 cm; die Adern in Pin-Reihenfolge
+eng zusammenführen (gern Flachband AWG 28 in XH-Kontakten), damit SCK und MOSI je eine GND-Ader
+als Nachbarn behalten.
 
-| Pin | Signal | Pin | Signal |
-|---|---|---|---|
-| 1 | 3V3 | 2 | GND |
-| 3 | TFT_SCK | 4 | GND |
-| 5 | TFT_MOSI | 6 | GND |
-| 7 | TFT_CS | 8 | TFT_DC |
-| 9 | TFT_RST | 10 | TFT_BL (geschaltete 3,3 V) |
+| Pin | Signal |
+|---|---|
+| 1 | 3V3 |
+| 2 | GND |
+| 3 | TFT_SCK |
+| 4 | GND |
+| 5 | TFT_MOSI |
+| 6 | GND |
+| 7 | TFT_CS |
+| 8 | TFT_DC |
+| 9 | TFT_RST |
+| 10 | TFT_BL (geschaltete 3,3 V) |
 
-## J4 – Bedienteil (Encoder-Träger und Stopp-Taste)
+## J4 – Encoder (Encoder-Träger)
 
-IDC 2×4, Raster 2,54 mm. Gegenstück gleicher Belegung auf dem Encoder-Träger.
+JST XH 1×5, Raster 2,5 mm, stehend (B5B-XH-A). Gegenstück gleicher Belegung auf dem Encoder-Träger
+(Kabel 1:1). Die Reihenfolge folgt den Anschlüssen des Encoders (A, C, B, S1, S2).
 
-| Pin | Signal | Pin | Signal |
-|---|---|---|---|
-| 1 | ENC_A | 2 | GND |
-| 3 | ENC_B | 4 | ENC_SW |
-| 5 | STOP_NC_OUT (3,3 V zum Öffner) | 6 | STOP_NC_RET (vom Öffner zur Löschleitung) |
-| 7 | STOP_NO (Schließer → GPIO) | 8 | GND |
-
-Auf dem Encoder-Träger (`hardware/encoder-carrier`): J1 = IDC 2×4 mit derselben Belegung wie J4
-(Flachbandkabel 1:1, Pin 1 auf Pin 1), SW1 = Alps EC11E15244G1 (A, B, gemeinsamer Anschluss C und
-Taster S2 an GND, S1 = ENC_SW), J2 = JST-XH 1×4 für die Litzen der Stopp-Taste:
-
-| J2 Pin | Signal | Kontakt |
+| Pin | Signal | Encoder |
 |---|---|---|
-| 1 | STOP_NC_OUT | Öffner, Seite 1 |
-| 2 | STOP_NC_RET | Öffner, Seite 2 |
-| 3 | STOP_NO | Schließer, Seite 1 |
+| 1 | ENC_A | A |
+| 2 | GND | C (gemeinsam) |
+| 3 | ENC_B | B |
+| 4 | ENC_SW | S1 (Taster) |
+| 5 | GND | S2 (Taster) |
+
+Auf dem Encoder-Träger (`hardware/encoder-carrier`): J1 = JST XH 1×5 mit derselben Belegung,
+SW1 = Alps EC11E15244G1.
+
+## J11 – Stopp-Taste
+
+JST XH 1×4, Raster 2,5 mm, stehend (B4B-XH-A); die Litzen der Stopp-Taste gehen direkt an die
+Hauptplatine (nicht mehr über den Encoder-Träger). Andere Polzahl als J4, damit die Stecker nicht
+vertauscht werden können. Ist der Stecker abgezogen, ist der Öffner-Kreis offen und die
+Löschleitung aktiv: Ein fehlender Stecker wirkt wie eine gedrückte Stopp-Taste.
+
+| Pin | Signal | Kontakt |
+|---|---|---|
+| 1 | STOP_NC_OUT (3,3 V zum Öffner) | Öffner, Seite 1 |
+| 2 | STOP_NC_RET (vom Öffner zur Löschleitung) | Öffner, Seite 2 |
+| 3 | STOP_NO (Schließer → GPIO) | Schließer, Seite 1 |
 | 4 | GND | Schließer, Seite 2 |
 
 ## J5, J6 – Thermoelemente
@@ -132,7 +147,7 @@ Intel-4-Draht-Standard; passt direkt zum Stecker des Noctua NF-A4x10 5V PWM
 
 TP1 5V, TP2 3V3, TP3 und TP11 GND, TP4 LATCH_Q, TP5 CLR, TP6 ARM, TP7 HEAT_TOP, TP8 HEAT_BOT,
 TP9 +5V_SSR, TP10 WDI, TP12 FAN_TACH. Keine Testpunkte im Netzbereich. Steckverbinder und Testpunkte tragen im
-Schaltplan genau diese Referenzen (J1–J7, J9, J10, TP1–TP12); die übrigen Referenzen vergibt SKiDL.
+Schaltplan genau diese Referenzen (J1–J7, J9–J11, TP1–TP12); die übrigen Referenzen vergibt SKiDL.
 
 ## Mechanik
 

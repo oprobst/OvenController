@@ -395,15 +395,16 @@ auf 70 °C. FAULT-Schwelle der Kammer und zulässige Abweichung oben/unten legt 
 |---|---|---|
 | Netz 230 V | L, N für das Netzteil | steckbare Schraubklemme, 2-polig, Raster 5,08 mm |
 | Lastteil (Kleinspannung) | +5 V geschaltet, SSR oben −, SSR unten −, Relaisspule +/−, GND | steckbare Schraubklemme, 6-polig, Raster 3,81 mm |
-| Display | 3,3 V, SCK, MOSI, CS, DC, RST, BL, mehrere GND | eigenes Flachbandkabel, IDC 2×5 |
-| Encoder + Stopp | A, B, SW, Stopp-Öffner (2 Adern), Stopp-Schließer, GND | IDC 2×4 oder JST-XH |
+| Display | 3,3 V, SCK, MOSI, CS, DC, RST, BL, mehrere GND | eigenes Kabel, JST XH 1×10 (J3) |
+| Encoder | A, B, SW, GND | JST XH 1×5 (J4) zum Encoder-Träger |
+| Stopp-Taste | Öffner (2 Adern), Schließer, GND | JST XH 1×4 (J11), direkt |
 | Thermoelemente | oben, unten | Mini-TC-Buchsen Typ K |
 | USB-C | über Panel-Verlängerung zur Gehäusewand | USB-C-Buchse an der Platinenkante |
 | Debug-UART | TX (43), RX (44), GND | 3-polige Pinleiste, optional bestückt |
 
 - **Display mit eigenem Kabel:** SPI mit 40–80 MHz über 10–20 cm Flachband ist störanfällig. Mit
   zusätzlichen GND-Adern und ggf. reduzierter Taktrate (ca. 20–27 MHz) ist es robust. Encoder
-  und Stopp-Taste teilen sich einen eigenen Stecker; der Buzzer sitzt auf der Hauptplatine.
+  und Stopp-Taste haben je eine eigene Buchse mit verschiedener Polzahl (Entscheidung 2026-10-29); der Buzzer sitzt auf der Hauptplatine.
 - **USB-Panel-Buchse mit Kunststoffgehäuse** (Schirm nicht mit der Gehäusewand verbunden). So
   entsteht im Betrieb keine Verbindung zwischen Platinen-GND und Schutzleiter, und Störströme
   vom Schutzleiter (SSR-Schalten, Netzfilter) laufen nicht über die Masse der

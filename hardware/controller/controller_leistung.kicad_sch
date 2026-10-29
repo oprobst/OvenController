@@ -6851,7 +6851,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Fuse:Fuseholder_Cylinder-5x20mm_Schurter_FAB_0031-355x_Horizontal_Closed"
+		(property "Footprint" "Fuse:Fuseholder_Cylinder-5x20mm_Schurter_0031_8201_Horizontal_Open"
 			(at 52.07 130.81 90)
 			(hide yes)
 			(show_name no)
@@ -6884,7 +6884,7 @@
 				)
 			)
 		)
-		(property "MPN" "Schurter FAB 0031.355x + 5x20 T500mA"
+		(property "MPN" "Schurter OGN 0031.8201 + 5x20 T500mA"
 			(at 52.07 135.89 90)
 			(hide yes)
 			(show_name no)

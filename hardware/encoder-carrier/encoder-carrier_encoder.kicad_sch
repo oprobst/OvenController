@@ -850,134 +850,252 @@
             (effects
               (font
                 (size 1.27 1.27))))))
-      (embedded_fonts no)))
-  (symbol
-    (lib_id "Connector_Generic:Conn_02x04_Odd_Even")
-    (at 147.32 101.6 0)
-    (unit 1)
-    (exclude_from_sim no)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (uuid 6c0f7ee0-559f-503b-9891-7b981e4403e0)
-    (property "Reference" "J1"
-      (at 147.32 99.05999999999999 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left)))
-    (property "Value" "PANEL"
-      (at 147.32 104.14 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left)))
-    (property "Footprint" "Connector_IDC:IDC-Header_2x04_P2.54mm_Vertical"
-      (at 147.32 101.6 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "Datasheet" "~"
-      (at 147.32 101.6 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "Description" "Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
-      (at 147.32 101.6 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "MPN" "Wannenstecker 2x4 RM2.54"
-      (at 147.32 106.67999999999999 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (pin "1"
-      (uuid 291cbf8b-d174-5fab-bd4d-cf565ca8d524))
-    (pin "2"
-      (uuid eefe9419-5dbb-5070-9aec-ce4921b72393))
-    (pin "3"
-      (uuid 492ab519-7a5a-5d9b-97fd-2f25e401ffcc))
-    (pin "4"
-      (uuid a3ab7163-9409-53b4-b856-5cbb0b01dd5d))
-    (pin "5"
-      (uuid 2f4bf0e9-32bc-5ef8-aef4-f97cba166167))
-    (pin "6"
-      (uuid b0d11b9d-4e3d-5308-a2b4-d6469ab4998c))
-    (pin "7"
-      (uuid 1ae23942-7adf-54cd-a9df-dafbb0da5572))
-    (pin "8"
-      (uuid 2b2f0dde-fbc5-5b2e-9df7-de04756be94e))
-    (instances
-      (project "encoder-carrier"
-        (path "/a99db074-4055-41d9-95f4-b496598f66b2/d4eb487a-0831-5316-8a19-151ba66fd530"
-          (reference "J1")
-          (unit 1)))))
-  (symbol
-    (lib_id "Connector_Generic:Conn_01x04")
-    (at 143.51 127.0 90)
-    (mirror x)
-    (unit 1)
-    (exclude_from_sim no)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (uuid 1b93c54c-4a6d-550c-9b86-161d56ccf44b)
-    (property "Reference" "J2"
-      (at 143.51 124.46 90)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left)))
-    (property "Value" "STOP"
-      (at 143.51 129.54 90)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (justify left)))
-    (property "Footprint" "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical"
-      (at 143.51 127.0 90)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "Datasheet" "~"
-      (at 143.51 127.0 90)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
-      (at 143.51 127.0 90)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "MPN" "JST B4B-XH-A + XHP-4"
-      (at 143.51 132.08 90)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (pin "1"
-      (uuid 139afd65-65cc-5183-840d-80c0eaa2946e))
-    (pin "2"
-      (uuid ac95101f-847d-5ebc-8ac0-c4f3217ecb46))
-    (pin "3"
-      (uuid 5be2fff2-5ccc-5aa9-8c1b-e5b1ba33066e))
-    (pin "4"
-      (uuid 8f16aa01-ec38-5b2c-84ec-c5ca4dcb1b38))
-    (instances
-      (project "encoder-carrier"
-        (path "/a99db074-4055-41d9-95f4-b496598f66b2/d4eb487a-0831-5316-8a19-151ba66fd530"
-          (reference "J2")
-          (unit 1)))))
+      (embedded_fonts no))(symbol "Connector_Generic:Conn_01x05"
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "J"
+			(at 0 7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x05"
+			(at 0 -7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "connector"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "Connector*:*_1x??_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "Conn_01x05_1_1"
+			(rectangle
+				(start -1.27 6.35)
+				(end 1.27 -6.35)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(rectangle
+				(start -1.27 5.207)
+				(end 0 4.953)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 2.667)
+				(end 0 2.413)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 0.127)
+				(end 0 -0.127)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 -2.413)
+				(end 0 -2.667)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 -4.953)
+				(end 0 -5.207)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin passive line
+				(at -5.08 5.08 0)
+				(length 3.81)
+				(name "Pin_1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 2.54 0)
+				(length 3.81)
+				(name "Pin_2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 0 0)
+				(length 3.81)
+				(name "Pin_3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 -2.54 0)
+				(length 3.81)
+				(name "Pin_4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 -5.08 0)
+				(length 3.81)
+				(name "Pin_5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+  )
   (symbol
     (lib_id "Device:RotaryEncoder_Switch")
     (at 149.86 87.63 0)
@@ -1045,198 +1163,6 @@
       (project "encoder-carrier"
         (path "/a99db074-4055-41d9-95f4-b496598f66b2/d4eb487a-0831-5316-8a19-151ba66fd530"
           (reference "SW1")
-          (unit 1)))))
-  (global_label "ENC_A_RAW"
-    (shape bidirectional)
-    (at 142.24 99.06 180)
-    (effects
-      (font
-        (size 1.27 1.27))
-      (justify right))
-    (uuid 2201d9fe-82ac-5cd4-8a5f-08a51c7c6956))
-  (symbol
-    (lib_id "power:GND")
-    (at 154.94 99.06 90.0)
-    (unit 1)
-    (exclude_from_sim yes)
-    (in_bom no)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (uuid a140a29a-8562-5649-9e0f-eda8c3a8f490)
-    (property "Reference" "#PWR001"
-      (at 154.94 97.79 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "Value" "GND"
-      (at 154.94 95.25 0)
-      (effects
-        (font
-          (size 1.27 1.27))))
-    (property "Footprint" ""
-      (at 154.94 99.06 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "Datasheet" ""
-      (at 154.94 99.06 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (pin "1"
-      (uuid f9e429f6-8879-513a-a7c2-f74290b189fd))
-    (instances
-      (project "encoder-carrier"
-        (path "/a99db074-4055-41d9-95f4-b496598f66b2/d4eb487a-0831-5316-8a19-151ba66fd530"
-          (reference "#PWR001")
-          (unit 1)))))
-  (global_label "ENC_B_RAW"
-    (shape bidirectional)
-    (at 142.24 101.6 180)
-    (effects
-      (font
-        (size 1.27 1.27))
-      (justify right))
-    (uuid 5635e061-b34e-5a17-a999-40784db19e1f))
-  (global_label "ENC_SW_RAW"
-    (shape bidirectional)
-    (at 154.94 101.6 0)
-    (effects
-      (font
-        (size 1.27 1.27))
-      (justify left))
-    (uuid 313469ba-be60-52e3-bf9b-9dd4c8a9cb18))
-  (global_label "STOP_NC_OUT"
-    (shape bidirectional)
-    (at 142.24 104.14 180)
-    (effects
-      (font
-        (size 1.27 1.27))
-      (justify right))
-    (uuid 70c9ffea-10b3-50c4-b993-22195967c0ca))
-  (global_label "STOP_NC_RET"
-    (shape bidirectional)
-    (at 154.94 104.14 0)
-    (effects
-      (font
-        (size 1.27 1.27))
-      (justify left))
-    (uuid df3afa6d-d09c-54b8-a16b-7093359650f4))
-  (global_label "STOP_NO_RAW"
-    (shape bidirectional)
-    (at 142.24 106.68 180)
-    (effects
-      (font
-        (size 1.27 1.27))
-      (justify right))
-    (uuid 05bd86e6-d693-5201-a083-1c2fa7ddb934))
-  (symbol
-    (lib_id "power:GND")
-    (at 154.94 106.68 90.0)
-    (unit 1)
-    (exclude_from_sim yes)
-    (in_bom no)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (uuid d66a8445-504a-5bb0-a173-ab3fb54eba09)
-    (property "Reference" "#PWR002"
-      (at 154.94 105.41000000000001 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "Value" "GND"
-      (at 154.94 102.87 0)
-      (effects
-        (font
-          (size 1.27 1.27))))
-    (property "Footprint" ""
-      (at 154.94 106.68 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "Datasheet" ""
-      (at 154.94 106.68 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (pin "1"
-      (uuid 4386e8b6-7a9a-5e26-89e9-858b34e5034a))
-    (instances
-      (project "encoder-carrier"
-        (path "/a99db074-4055-41d9-95f4-b496598f66b2/d4eb487a-0831-5316-8a19-151ba66fd530"
-          (reference "#PWR002")
-          (unit 1)))))
-  (global_label "STOP_NC_OUT"
-    (shape bidirectional)
-    (at 140.97 121.92 90)
-    (effects
-      (font
-        (size 1.27 1.27))
-      (justify left))
-    (uuid 3f9927e2-d6ee-54a3-9cd7-a51cb118ccf9))
-  (global_label "STOP_NC_RET"
-    (shape bidirectional)
-    (at 143.51 121.92 90)
-    (effects
-      (font
-        (size 1.27 1.27))
-      (justify left))
-    (uuid 2ac7c05a-3462-500f-9baf-f217af6500f6))
-  (global_label "STOP_NO_RAW"
-    (shape bidirectional)
-    (at 146.05 121.92 90)
-    (effects
-      (font
-        (size 1.27 1.27))
-      (justify left))
-    (uuid f149590c-34a3-515c-b76f-4b7033e43832))
-  (symbol
-    (lib_id "power:GND")
-    (at 148.59 121.92 180.0)
-    (unit 1)
-    (exclude_from_sim yes)
-    (in_bom no)
-    (on_board yes)
-    (dnp no)
-    (fields_autoplaced yes)
-    (uuid e076a5b8-51f2-503a-aac6-a7d2d95df2ee)
-    (property "Reference" "#PWR003"
-      (at 148.59 120.65 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "Value" "GND"
-      (at 148.59 118.11 0)
-      (effects
-        (font
-          (size 1.27 1.27))))
-    (property "Footprint" ""
-      (at 148.59 121.92 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property "Datasheet" ""
-      (at 148.59 121.92 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (pin "1"
-      (uuid b8bc181b-2c43-538d-aa0c-10567aa2bdf9))
-    (instances
-      (project "encoder-carrier"
-        (path "/a99db074-4055-41d9-95f4-b496598f66b2/d4eb487a-0831-5316-8a19-151ba66fd530"
-          (reference "#PWR003")
           (unit 1)))))
   (global_label "ENC_A_RAW"
     (shape bidirectional)
@@ -1341,4 +1267,164 @@
       (project "encoder-carrier"
         (path "/a99db074-4055-41d9-95f4-b496598f66b2/d4eb487a-0831-5316-8a19-151ba66fd530"
           (reference "#PWR005")
-          (unit 1))))))
+          (unit 1)))))  (symbol
+    (lib_id "Connector_Generic:Conn_01x05")
+    (at 147.32 101.6 0)
+    (unit 1)
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (fields_autoplaced yes)
+    (uuid 6c0f7ee0-559f-503b-9891-7b981e4403e0)
+    (property "Reference" "J1"
+      (at 147.32 99.05999999999999 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left)))
+    (property "Value" "ENCODER"
+      (at 147.32 104.14 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left)))
+    (property "Footprint" "Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical"
+      (at 147.32 101.6 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property "Datasheet" "~"
+      (at 147.32 101.6 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property "Description" "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)"
+      (at 147.32 101.6 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property "MPN" "JST B5B-XH-A"
+      (at 147.32 106.67999999999999 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (pin "1" (uuid "eb7a6e4e-4e01-4a0d-9ad4-795d7a789034"))
+    (pin "2" (uuid "f41940db-742e-42a6-8a2a-3879702fdf87"))
+    (pin "3" (uuid "629b73be-ec8a-4896-a08a-1d4668907b11"))
+    (pin "4" (uuid "38efaecc-c64f-4486-b39d-dccabd35262c"))
+    (pin "5" (uuid "70fd7b41-ac57-4318-b98d-f9225b0ecbc4"))
+    (instances
+      (project "encoder-carrier"
+        (path "/a99db074-4055-41d9-95f4-b496598f66b2/d4eb487a-0831-5316-8a19-151ba66fd530"
+          (reference "J1")
+          (unit 1)))))
+  (global_label "ENC_A_RAW"
+    (shape bidirectional)
+    (at 142.24 96.52 180)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify right))
+    (uuid "994b3ec9-fe75-4b10-b2bf-1d73ee91e8c1"))
+  (symbol
+    (lib_id "power:GND")
+    (at 142.24 99.06 270)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (fields_autoplaced yes)
+    (uuid "0ace7804-1a77-4ba7-bbd1-9e3c94cf26f9")
+    (property "Reference" "#PWR001"
+      (at 142.24 97.79 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property "Value" "GND"
+      (at 142.24 95.25 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property "Footprint" ""
+      (at 142.24 99.06 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property "Datasheet" ""
+      (at 142.24 99.06 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (pin "1"
+      (uuid "ce98a18a-06d9-443e-b4c0-21ba1e811cee"))
+    (instances
+      (project "encoder-carrier"
+        (path "/a99db074-4055-41d9-95f4-b496598f66b2/d4eb487a-0831-5316-8a19-151ba66fd530"
+          (reference "#PWR001")
+          (unit 1)))))
+  (global_label "ENC_B_RAW"
+    (shape bidirectional)
+    (at 142.24 101.6 180)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify right))
+    (uuid "218fabb5-7ffc-437b-8795-40c3eb038f7e"))
+  (global_label "ENC_SW_RAW"
+    (shape bidirectional)
+    (at 142.24 104.14 180)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify right))
+    (uuid "6a9139fd-812f-491e-b766-d684c562cf18"))
+  (symbol
+    (lib_id "power:GND")
+    (at 142.24 106.68 270)
+    (unit 1)
+    (exclude_from_sim yes)
+    (in_bom no)
+    (on_board yes)
+    (dnp no)
+    (fields_autoplaced yes)
+    (uuid "be330cdb-5290-4f3b-9857-69654d760a65")
+    (property "Reference" "#PWR002"
+      (at 142.24 105.41 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property "Value" "GND"
+      (at 142.24 102.87 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property "Footprint" ""
+      (at 142.24 106.68 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property "Datasheet" ""
+      (at 142.24 106.68 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (pin "1"
+      (uuid "f982a202-a62f-4ce3-b5b6-c08e0f3449a8"))
+    (instances
+      (project "encoder-carrier"
+        (path "/a99db074-4055-41d9-95f4-b496598f66b2/d4eb487a-0831-5316-8a19-151ba66fd530"
+          (reference "#PWR002")
+          (unit 1)))))
+)

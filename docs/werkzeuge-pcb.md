@@ -75,7 +75,10 @@ typischerweise Fehler.
   `java -jar freerouting-1.9.0.jar -de board.dsn -do board.ses -mp 40`. Sie beachtet die
   Durchlaufgrenze und schreibt die Sitzung erst nach Routing und Optimierung (hier ca. 2,5 min).
 - Nicht geeignet: **2.5.0** (JAR braucht Java 25; das Windows-CLI-Paket stürzt nach dem Einlesen
-  mit einem GraalVM-Serialisierungsfehler ab) und **2.1.0** (ignoriert `-mp` und
+  mit einem GraalVM-Serialisierungsfehler ab; das JAR mit portablem Temurin-JRE 25 läuft und beachtet
+  `--router.autorouter.max_passes`, liefert hier aber deutlich schlechtere Ergebnisse: 167 Leiterbahnen
+  unter der Mindestbreite, 12 zu nah an der Kante, USB D+/D− 102/42 mm, 154 statt 129 Vias – Vergleich
+  am 2026-10-29 auf derselben Platzierung) und **2.1.0** (ignoriert `-mp` und
   `--router.max_passes`, rechnet endlos; mit `--router.job_timeout` speichert es einen
   Zwischenstand mitten im Durchlauf, in KiCad fehlen dann 60–70 Verbindungen, obwohl Freerouting
   nur 4 offene meldet). 2.x sendet ohne `--usage_and_diagnostic_data.disable_analytics=true`
@@ -89,3 +92,11 @@ typischerweise Fehler.
 - GND als Fläche auf beiden Lagen: Freerouting hält GND über die Fläche für verbunden. Danach
   Inseln mit Durchkontaktierungen anbinden; SMD-Pads voll an die Fläche (Zone: „nur THT mit
   Wärmefalle“), sonst bleiben Pads hinter zu schmalen Stegen hängen.
+- Abgetrennte GND-Gruppen findet KiCads Python nicht (die DRC-Position offener Flächenstücke ist
+  der Zonenursprung). Eigene Analyse per Union-Find über Füllstücke, Vias, Pads und Leiterbahnen,
+  danach A* vom Pad der Gruppe bis in die Hauptfläche (beide Lagen, Via als Lagenwechsel).
+- Freerouting 1.9.0 hält die Kantenfreiheit nicht immer ein; die Durchkontaktierungen eines
+  Rasters nicht in eigene SMD-Pads setzen (Lot zieht beim Handlöten ins Loch).
+- Nach dem Verschieben der ganzen Platine (`Move`) die Platine neu laden bzw.
+  `BuildConnectivity()` aufrufen, bevor die Zonen gefüllt werden, sonst meldet der DRC Hunderte
+  „isolated copper“.

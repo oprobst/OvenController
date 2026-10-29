@@ -219,25 +219,28 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
 ## R9 – Bedienteil-Schnittstelle und Encoder-Träger
 
 - **Decision**:
-  - Hauptplatine: Stecker **IDC 2×4** (Raster 2,54 mm) für Encoder A/B/Taster, Stopp-Öffner
-    (Hin- und Rückleitung) und Stopp-Schließer, GND.
+  - Hauptplatine: **JST XH 1×5** (J4) für den Encoder (A, GND, B, Taster, GND) und **JST XH
+    1×4** (J11) für die Stopp-Taste (Öffner Hin- und Rückleitung, Schließer, GND), stehend
+    (B5B-/B4B-XH-A). Entscheidung 2026-10-29 (vorher IDC 2×4 für beides): eine Buchse je
+    Bedienelement, verschiedene Polzahlen gegen Verwechseln; ein abgezogener Stopp-Stecker öffnet
+    den Öffner-Kreis und wirkt wie eine gedrückte Stopp-Taste.
   - Eingänge mit 10 kΩ Pull-up, 10 kΩ Serie, 10 nF nach GND (Datenblatt Alps EC11E); ESD-Schutz
     mit **USBLC6-2SC6** (VBUS-Pin an 3,3 V). Ein Baustein schützt **zwei** Leitungen (Pins 1/6
     und 3/4 sind jeweils dieselbe Leitung): zwei Bausteine für ENC_A/ENC_B und ENC_SW/STOP_NO,
     ein dritter für die beiden Stopp-Öffner-Leitungen (Korrektur in T016).
   - `STOP_NC_OUT` über 220 Ω an 3,3 V, damit ein Kurzschluss im Kabel den LDO nicht belastet
     (Pegel an CLR bei geschlossenem Öffner weiterhin ca. 3,1 V).
-  - **Encoder-Träger** (eigene kleine Platine, ca. 25 × 30 mm): Alps EC11E15244G1, IDC 2×4 zur
-    Hauptplatine, Steckklemme bzw. JST-XH für die Litzen der Stopp-Taste. Befestigung nur über die
-    Mutter des Encoders.
+  - **Encoder-Träger** (eigene kleine Platine, ca. 25 × 30 mm): Alps EC11E15244G1, JST XH 1×5
+    zur Hauptplatine. Befestigung nur über die Mutter des Encoders.
   - Schritte pro Rastung: 2 (15 Impulse / 30 Rastungen) in `board_rev_a.h`.
 - **Rationale**: ESD-Schutz mit vorhandenem Baustein; Entprellung in Hardware entlastet die
   Interrupts; der Träger hält den Encoder mechanisch sauber in der Front.
 
 ## R10 – Display-Schnittstelle
 
-- **Decision**: Stecker **IDC 2×5**: 3,3 V, SCK, MOSI, CS, DC, RST, Hintergrundbeleuchtung und
-  drei GND zwischen den schnellen Leitungen. 33 Ω Serienwiderstand an SCK und MOSI nahe am
+- **Decision**: Stecker **JST XH 1×10** (stehend, B10B-XH-A; bis 2026-10-29 IDC 2×5, gleiche
+  Pin-Reihenfolge): 3,3 V, SCK, MOSI, CS, DC, RST, Hintergrundbeleuchtung und drei GND zwischen
+  den schnellen Leitungen; im Kabel die Adern in Pin-Reihenfolge eng führen. 33 Ω Serienwiderstand an SCK und MOSI nahe am
   Controller. SPI2 über IO-MUX, Start mit **26,7 MHz** (80/3 MHz); höher nur, wenn die Anzeige
   am 20-cm-Kabel fehlerfrei bleibt. Hintergrundbeleuchtung: AO3401A an 3,3 V, Gate mit
   100-kΩ-Pull-up (beim Start dunkel), PWM über LEDC.
@@ -453,7 +456,7 @@ nächsten Kleinspannungsbauteile beginnen bei x ≈ 23 mm.
   - J1 MSTBA 2,5/2-G-5,08 (horizontal): 8,6 mm hoch (KiCad-3D-Modell); Stecker
     MSTB 2,5/2-ST-5,08 laut Datenblatt 15 mm in der größten Abmessung, steckt waagerecht.
     Mit Kabelbogen ≤ 15 mm; am Muster bestätigen.
-  - F1 Schurter FAB 0031-355x mit Kappe: 10,1 mm hoch (KiCad-3D-Modell).
+  - F1 Schurter OGN 0031.8201 (offener Halter, ab 2026-10-29): max. 11,5 mm hoch (Distributor-Angabe).
   - RV1 S07K275: Scheibe stehend, ca. 10–13 mm (am Bauteil messen).
   - Alle Teile unter dem Deckel ≤ 21,5 mm: Innenhöhe 25 mm passt.
   - Netzkabel H05VV-F 2 × 0,75 mm²: Außendurchmesser 5,7–7,2 mm je Hersteller (Helukabel,
@@ -487,7 +490,7 @@ pro Stück inkl. MwSt.
 | Funktion | Hersteller / Teilenummer | Footprint (KiCad 10) | Quelle | Preis |
 |---|---|---|---|---|
 | Netzteil | Mean Well IRM-10-5 | eigener (hardware/lib) | Reichelt IRM-10-5 | 8,10 € |
-| Sicherung | Feinsicherung 5 × 20 mm T 500 mA + Leiterplatten-Sicherungshalter mit Schutzkappe | `Fuse:` Halter 5×20 (prüfen) | Reichelt | ca. 1,50 € |
+| Sicherung | Feinsicherung 5 × 20 mm T 500 mA + offener Leiterplatten-Sicherungshalter Schurter OGN 0031.8201 (Raster 22,5 mm, Sicherung wird von oben eingedrückt; ersetzt 2026-10-29 den geschlossenen FAB, dessen Einsatz axial gezogen wird und dafür ca. 25 mm Platz vor der Kappe braucht, den RV1 und das IRM-10-5 versperren). Berührschutz über die Netzabdeckung; eine Abdeckkappe (Schurter 0853.0551, ca. 15 mm breit) ist optional und müsste gegen die Wand der Abdeckung geprüft werden | `Fuse:Fuseholder_Cylinder-5x20mm_Schurter_0031_8201_Horizontal_Open` | Distributor (prüfen) | prüfen |
 | Varistor | TDK/EPCOS S07K275 (B72207S2271K101) | `Varistor:` Scheibe 7 mm | Reichelt | ca. 0,30 € |
 | LDO 3,3 V | Diodes AP7361C-33E-13 | `Package_TO_SOT_SMD:SOT-223-3_TabPin2` (Pinbelegung prüfen) | Mouser | ca. 0,50 € |
 | Dioden-ODER | SS34 (2×) | `Diode_SMD:D_SMA` | Magazin | – |
@@ -509,8 +512,9 @@ pro Stück inkl. MwSt.
 | LED | grün, 0805 | `LED_SMD:LED_0805_2012Metric` | Mouser/Reichelt | ca. 0,10 € |
 | Netzklemme | Phoenix MSTBA 2,5/2-G-5,08 + Stecker MSTB 2,5/2-ST-5,08 | `Connector_Phoenix_MSTB:PhoenixContact_MSTBA_2,5_2-G-5,08_1x02_P5.08mm_Horizontal` | Reichelt/Mouser | ca. 2 € |
 | Lastteil-Klemme | Phoenix MC 1,5/6-G-3,81 + Stecker MC 1,5/6-ST-3,81 | `Connector_Phoenix_MC:` 1x06 P3.81 mm horizontal | Reichelt/Mouser | ca. 2,50 € |
-| Display-Stecker | Wannenstecker 2×5, 2,54 mm (z. B. Würth WR-BHD) + Pfostenbuchse + Flachband | `Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical` | Reichelt | ca. 1 € |
-| Bedienteil-Stecker | Wannenstecker 2×4, 2,54 mm + Pfostenbuchse | `Connector_IDC:IDC-Header_2x04_P2.54mm_Vertical` | Reichelt | ca. 1 € |
+| Display-Stecker | JST XH 1×10 stehend B10B-XH-A + Gehäuse XHP-10 + Crimpkontakte SXH-001T-P0.6 | `Connector_JST:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical` | Reichelt/LCSC | prüfen |
+| Encoder-Stecker | JST XH 1×5 stehend B5B-XH-A (Hauptplatine und Encoder-Träger) + XHP-5 + SXH-001T-P0.6 | `Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical` | Reichelt/LCSC | prüfen |
+| Stopp-Stecker | JST XH 1×4 stehend B4B-XH-A + XHP-4 + SXH-001T-P0.6 | `Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical` | Reichelt/LCSC | prüfen |
 | Debug-UART | Stiftleiste 1×3, 2,54 mm (optional) | `Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical` | Magazin/Reichelt | – |
 | Taster | Kurzhubtaster 6 × 6 mm THT (2×) | `Button_Switch_THT:SW_PUSH_6mm` | Reichelt | ca. 0,20 € |
 | Elkos | 100 µF / 16 V, 105 °C | THT oder SMD (Magazin nur 16 V ohne Temperaturangabe) | Reichelt | ca. 0,20 € |
