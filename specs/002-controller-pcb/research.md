@@ -49,7 +49,7 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
 
 - **Decision**:
   - Mean Well **IRM-10-5** (5 V / 2 A, Printmodul).
-  - Netzeingang: steckbare Schraubklemme 2-polig, Raster 5,08 mm → Feinsicherung **T 500 mA**
+  - Netzeingang: Schraubklemme 2-polig (ab 2026-10-30 fest statt steckbar), Raster 5,08 mm → Feinsicherung **T 500 mA**
     (TR5 oder Halter 5 × 20, prüfen) → Varistor **S07K275** zwischen L und N → IRM-10-5.
   - **Primär ↔ sekundär: ≥ 6,0 mm Kriech- und Luftstrecke**, dazu ein **Frässchlitz** (≥ 2 mm
     breit) unter dem Modul zwischen Netz- und Kleinspannungsseite. L ↔ N hinter der Sicherung
@@ -106,8 +106,8 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
   - Umsetzung (T013): BIAS an T−, 10 nF differenziell zwischen T+ und T−.
   - **Geprüft am Originaldatenblatt (Maxim MAX31856, „Typical Application Circuit", 2026-10-26):**
     BIAS an T− bestätigt. Der Eingangsfilter ist dort **0,1 µF differenziell** zwischen T+ und T−
-    plus **je 0,01 µF von T+ und T− nach GND** (Gleichtaktfilter). **Umgesetzt 2026-10-26:** C14/C17
-    auf 100 nF, C27–C30 (je 10 nF, T+ bzw. T− nach GND) ergänzt, Referenznetzliste im selben
+    plus **je 0,01 µF von T+ und T− nach GND** (Gleichtaktfilter). **Umgesetzt 2026-10-26:** C32/C23
+    auf 100 nF, C21, C25, C31, C33 (je 10 nF, T+ bzw. T− nach GND) ergänzt, Referenznetzliste im selben
     Commit neu exportiert. AVDD und DVDD je 0,1 µF bestätigt. SPI: beide Taktpolaritäten, max.
     5 MHz. Betrieb −55…+125 °C.
   - Die Firmware liest Register zyklisch zurück und vergleicht sie mit der Soll-Konfiguration;
@@ -203,7 +203,7 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
 - **SSR**: **Crydom D2425** (Nullspannungsschalter, 25 A, 24–280 V AC), Steuereingang
   3–32 V DC, max. 12 mA (Distributorangaben). Bei ca. 4,4 V an `+5V_SSR` ausreichend. Nicht
   Carlo Gavazzi RM1A23D25: Steuereingang erst ab 4,25 V, zu knapp.
-  - Lastteil-Stecker 6-polig, steckbare Schraubklemme Raster 3,81 mm (Belegung:
+  - Lastteil-Anschluss 6-polig, Schraubklemme Raster 3,81 mm (ab 2026-10-30 fest statt steckbar) (Belegung:
     [contracts/connectors.md](contracts/connectors.md)).
 - **Reserve und Kühlung (Prinzip IVb)**:
   - Last je Kreis ca. 600 W / 2,6 A, gesamt ca. 5,2 A (beim Öffnen nachmessen).
@@ -220,7 +220,7 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
 
 - **Decision**:
   - Hauptplatine: **JST XH 1×5** (J4) für den Encoder (A, GND, B, Taster, GND) und **JST XH
-    1×4** (J11) für die Stopp-Taste (Öffner Hin- und Rückleitung, Schließer, GND), stehend
+    1×4** (J5) für die Stopp-Taste (Öffner Hin- und Rückleitung, Schließer, GND), stehend
     (B5B-/B4B-XH-A). Entscheidung 2026-10-29 (vorher IDC 2×4 für beides): eine Buchse je
     Bedienelement, verschiedene Polzahlen gegen Verwechseln; ein abgezogener Stopp-Stecker öffnet
     den Öffner-Kreis und wirkt wie eine gedrückte Stopp-Taste.
@@ -345,7 +345,7 @@ Quelle: Noctua PWM specifications white paper (gilt für alle 4-Pin-Lüfter mit 
   - **Lüfter**: Noctua NF-A4x10 5V PWM in der Gehäusewand, bläst Außenluft über die Platine.
     5 V, typisch 0,3 W / 0,06 A, maximal 0,35 W / 0,07 A (Noctua-Datenblatt), 0–5000 U/min,
     ca. 1050 U/min bei 20 % PWM, Betrieb −10…+70 °C. Geprüft in T072 (2026-10-26).
-  - **Stecker J10**: 4-poliger Lüfter-Wannenstecker Molex 47053-1000 (Raster 2,54 mm, mit
+  - **Stecker J9**: 4-poliger Lüfter-Wannenstecker Molex 47053-1000 (Raster 2,54 mm, mit
     Verpolschutz-Steg), Footprint `Connector:FanPinHeader_1x04_P2.54mm_Vertical`. Belegung nach
     Intel-4-Draht-Standard: 1 GND, 2 +5V, 3 Drehzahl, 4 PWM. Der Lüfter steckt direkt oder mit
     Verlängerung NA-SEC1 (30 cm).
@@ -364,7 +364,7 @@ Quelle: Noctua PWM specifications white paper (gilt für alle 4-Pin-Lüfter mit 
     3,3 V, 1 kΩ Serie und 1 nF nach GND vor GPIO 37; Zählung mit dem Pulszähler (PCNT).
     5000 U/min = 167 Hz. Blockierter Rotor und abgezogener Stecker liefern einen festen Pegel,
     also 0 Hz.
-  - **Testpunkt** TP12 FAN_TACH (Kleinspannung) für die Inbetriebnahme.
+  - **Testpunkt** TP11 FAN_TACH (Kleinspannung) für die Inbetriebnahme.
   - **Firmware**: neues Modul `cooling` (siehe [contracts/interfaces.md](contracts/interfaces.md#cooling-neu)).
     Kennlinie nach FR-038: 20 % bis 35 °C, linear bis 100 % bei 50 °C; Platinentemperatur
     ungültig (E202) → 100 %. Überwachung nach FR-037: Ausfall, wenn die Drehzahl 3 s lang
@@ -420,8 +420,8 @@ nächsten Kleinspannungsbauteile beginnen bei x ≈ 23 mm.
   - **Netzkabel**: Mantelleitung H05VV-F 2 × 0,75 mm² (Außendurchmesser am Muster messen,
     typisch ca. 6 mm). Durchführung in der linken Wand als Rundloch aus zwei Halbschalen
     (Durchmesser = gemessener Kabeldurchmesser + 0,3 mm), Mantel endet mindestens 5 mm innerhalb
-    der Abdeckung. Zugentlastung: Kabelbinder-Steg an der Unterschale außen. Der Klemmstecker
-    von J1 liegt ganz innen.
+    der Abdeckung. Zugentlastung: Kabelbinder-Steg an der Unterschale außen. Die Klemme J1
+    liegt ganz innen; Adern bei offener Abdeckung anklemmen.
   - **Werkstoff**: PC-Filament (Glasübergang ca. 110–145 °C, weit über 70 °C), bevorzugt eine
     flammgeschützte Sorte (UL 94 V-0), sonst Standard-PC; das Metallgehäuse bleibt die
     Brandschutzhülle.
@@ -455,7 +455,8 @@ nächsten Kleinspannungsbauteile beginnen bei x ≈ 23 mm.
     Modul ist damit das höchste Teil unter dem Deckel.
   - J1 MSTBA 2,5/2-G-5,08 (horizontal): 8,6 mm hoch (KiCad-3D-Modell); Stecker
     MSTB 2,5/2-ST-5,08 laut Datenblatt 15 mm in der größten Abmessung, steckt waagerecht.
-    Mit Kabelbogen ≤ 15 mm; am Muster bestätigen.
+    Mit Kabelbogen ≤ 15 mm; am Muster bestätigen. Ab 2026-10-30 ersetzt durch die feste Klemme
+    MKDS 1,5/2-5,08 (kein Stecker mehr, Drahteinführung zur linken Kante); Höhe am Muster messen.
   - F1 Schurter OGN 0031.8201 (offener Halter, ab 2026-10-29): max. 11,5 mm hoch (Distributor-Angabe).
   - RV1 S07K275: Scheibe stehend, ca. 10–13 mm (am Bauteil messen).
   - Alle Teile unter dem Deckel ≤ 21,5 mm: Innenhöhe 25 mm passt.
@@ -466,18 +467,18 @@ nächsten Kleinspannungsbauteile beginnen bei x ≈ 23 mm.
     Händler), Polymaker PolyMax PC-FR (V-0 nach IEC 60695-11-10, Makrolon-Basis). Alle
     brauchen einen geschlossenen Drucker (Düse 250–280 °C, Bett 90–110 °C); Prüfbericht beim
     Kauf anfordern. Ohne V-0 ist Standard-PC zulässig (R19, Werkstoff).
-- **Folgen für das Layout (vor T021)**: J5/U5 weiter vom IRM-10-5 abrücken (ohnehin offen in
+- **Folgen für das Layout (vor T021)**: J10/U12 weiter vom IRM-10-5 abrücken (ohnehin offen in
   T020, Wärme), damit Wand und Überstand an der rechten Modulkante Platz haben; die
-  Kleinspannungsbauteile an der Innenwand (J2, Q3–Q5, U7, C2, C3) so weit nach rechts, dass
+  Kleinspannungsbauteile an der Innenwand (J2, Q1–Q3, U3, C2, C1) so weit nach rechts, dass
   Sperrfläche und H5–H8 passen.
 - **Ergebnis T084 (2026-10-27)**: COV1 liegt im Ursprung der Platine; die Wandlage aus T083
   passt unverändert. **H8 liegt innen** bei (46,5 / 96) unter dem IRM-10-5, als Dom an der
   Innenseite der rechten Wand: Außen hätte der Flansch die Thermoelement-Buchsen blockiert, weil
-  J5 und J6 nebeneinander die ganze Unterkante zwischen Wand und H4 brauchen. Abstand zum
-  Netzkupfer > 30 mm. H5–H7 bleiben außen. Verschoben: J2 (+2 mm), U2, U9 (TC6501) und J5/J6
-  (+1,8 / +0,6 mm); J5 liegt 4 mm neben dem IRM-10-5, dazwischen die Wand. Q3–Q5, U7, C2 und C3
+  J10 und J8 nebeneinander die ganze Unterkante zwischen Wand und H4 brauchen. Abstand zum
+  Netzkupfer > 30 mm. H5–H7 bleiben außen. Verschoben: J2 (+2 mm), U1, U4 (TC6501) und J10/J8
+  (+1,8 / +0,6 mm); J10 liegt 4 mm neben dem IRM-10-5, dazwischen die Wand. Q1–Q3, U3, C2 und C1
   mussten nicht verschoben werden. DRC mit Schaltplanabgleich: keine Verletzung durch COV1; die
-  Gegenprobe (J5 in die Wand geschoben) meldet `items_not_allowed`.
+  Gegenprobe (J10 in die Wand geschoben) meldet `items_not_allowed`.
 
 ## Stückliste (Auswahl T008, 2026-10-25)
 
@@ -507,11 +508,11 @@ pro Stück inkl. MwSt.
 | MOSFET P | AO3401A (2×) | `Package_TO_SOT_SMD:SOT-23` | Magazin | – |
 | Schottky klein | MBR0530 (4×: Relais, Summer, FAULT oben/unten) | `Diode_SMD:D_SOD-123` | Magazin (Bestand prüfen) | – |
 | Summer | passiver Magnet-Summer 5 V, ≤ 30 mA, Betriebstemperatur ≥ 70 °C | `Buzzer_Beeper:` (prüfen) | offen | ca. 1 € |
-| Lüfterstecker J10 | Molex 47053-1000 (4-polig, 2,54 mm, mit Steg) | `Connector:FanPinHeader_1x04_P2.54mm_Vertical` | Mouser/Reichelt | ca. 0,50 € (prüfen) |
+| Lüfterstecker J9 | Molex 47053-1000 (4-polig, 2,54 mm, mit Steg) | `Connector:FanPinHeader_1x04_P2.54mm_Vertical` | Mouser/Reichelt | ca. 0,50 € (prüfen) |
 | Lüfter-Ansteuerung | BSS138 (2. Stück), 1 kΩ Pull-up an +5V, 100 kΩ Gate; Drehzahl 10 kΩ / 1 kΩ / 1 nF; 10 µF + 100 nF am Stecker | `Package_TO_SOT_SMD:SOT-23`, 0603/0805 | Magazin | – |
 | LED | grün, 0805 | `LED_SMD:LED_0805_2012Metric` | Mouser/Reichelt | ca. 0,10 € |
-| Netzklemme | Phoenix MSTBA 2,5/2-G-5,08 + Stecker MSTB 2,5/2-ST-5,08 | `Connector_Phoenix_MSTB:PhoenixContact_MSTBA_2,5_2-G-5,08_1x02_P5.08mm_Horizontal` | Reichelt/Mouser | ca. 2 € |
-| Lastteil-Klemme | Phoenix MC 1,5/6-G-3,81 + Stecker MC 1,5/6-ST-3,81 | `Connector_Phoenix_MC:` 1x06 P3.81 mm horizontal | Reichelt/Mouser | ca. 2,50 € |
+| Netzklemme | Phoenix MKDS 1,5/2-5,08 (feste Schraubklemme, ersetzt MSTBA/MSTB-Stecker am 2026-10-30) | `oven:Phoenix_MKDS-1,5-2-5.08_Horizontal_OvalPads` | Reichelt/Mouser | prüfen |
+| Lastteil-Klemme | Phoenix MKDS 1/6-3,81 (feste Schraubklemme, ersetzt MC-Stecker am 2026-10-30) | `oven:Phoenix_MKDS-1-6-3.81_Horizontal_OvalPads` | Reichelt/Mouser | prüfen |
 | Display-Stecker | JST XH 1×10 stehend B10B-XH-A + Gehäuse XHP-10 + Crimpkontakte SXH-001T-P0.6 | `Connector_JST:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical` | Reichelt/LCSC | prüfen |
 | Encoder-Stecker | JST XH 1×5 stehend B5B-XH-A (Hauptplatine und Encoder-Träger) + XHP-5 + SXH-001T-P0.6 | `Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical` | Reichelt/LCSC | prüfen |
 | Stopp-Stecker | JST XH 1×4 stehend B4B-XH-A + XHP-4 + SXH-001T-P0.6 | `Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical` | Reichelt/LCSC | prüfen |

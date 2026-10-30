@@ -6,7 +6,8 @@ Pin 1 ist auf der Platine markiert.
 
 ## J1 – Netz (230 V)
 
-Steckbare Schraubklemme 2-polig, Raster 5,08 mm. Nur im Netzbereich, Beschriftung „230 V~".
+Feste Schraubklemme 2-polig, Raster 5,08 mm (Phoenix MKDS 1,5/2-5,08, Footprint
+`oven:Phoenix_MKDS-1,5-2-5.08_Horizontal_OvalPads`). Nur im Netzbereich, Beschriftung „230 V~".
 
 | Pin | Signal |
 |---|---|
@@ -14,12 +15,13 @@ Steckbare Schraubklemme 2-polig, Raster 5,08 mm. Nur im Netzbereich, Beschriftun
 | 2 | N |
 
 Kein PE an der Platine. Zuleitung: Mantelleitung H05VV-F 2 × 0,75 mm² durch die Durchführung der
-Netzabdeckung (Mantel endet ≥ 5 mm innen, Zugentlastung an der Unterschale); der Klemmstecker
-liegt ganz unter der Abdeckung ([research.md R19](../research.md#r19--netzabdeckung-fr-039-sc-010)).
+Netzabdeckung (Mantel endet ≥ 5 mm innen, Zugentlastung an der Unterschale); die Klemme
+liegt ganz unter der Abdeckung und wird bei offener Abdeckung angeklemmt ([research.md R19](../research.md#r19--netzabdeckung-fr-039-sc-010)).
 
 ## J2 – Lastteil (Kleinspannung)
 
-Steckbare Schraubklemme 6-polig, Raster 3,81 mm.
+Feste Schraubklemme 6-polig, Raster 3,81 mm (Phoenix MKDS 1/6-3,81, Footprint
+`oven:Phoenix_MKDS-1-6-3.81_Horizontal_OvalPads`); Drahteinführung zur Platinenkante.
 
 | Pin | Signal | Gegenstelle |
 |---|---|---|
@@ -30,7 +32,41 @@ Steckbare Schraubklemme 6-polig, Raster 3,81 mm.
 | 5 | RELAY− | Relaisspule A2 |
 | 6 | GND | Reserve / Schirm |
 
-## J3 – Display
+## J3 – Debug-UART (optional bestückt)
+
+Pinleiste 3-polig: 1 GND, 2 TX (GPIO 43), 3 RX (GPIO 44).
+
+## J4 – Encoder (Encoder-Träger)
+
+JST XH 1×5, Raster 2,5 mm, stehend (B5B-XH-A). Gegenstück gleicher Belegung auf dem Encoder-Träger
+(Kabel 1:1). Die Reihenfolge folgt den Anschlüssen des Encoders (A, C, B, S1, S2).
+
+| Pin | Signal | Encoder |
+|---|---|---|
+| 1 | ENC_A | A |
+| 2 | GND | C (gemeinsam) |
+| 3 | ENC_B | B |
+| 4 | ENC_SW | S1 (Taster) |
+| 5 | GND | S2 (Taster) |
+
+Auf dem Encoder-Träger (`hardware/encoder-carrier`): J1 = JST XH 1×5 mit derselben Belegung,
+SW1 = Alps EC11E15244G1.
+
+## J5 – Stopp-Taste
+
+JST XH 1×4, Raster 2,5 mm, stehend (B4B-XH-A); die Litzen der Stopp-Taste gehen direkt an die
+Hauptplatine (nicht mehr über den Encoder-Träger). Andere Polzahl als J4, damit die Stecker nicht
+vertauscht werden können. Ist der Stecker abgezogen, ist der Öffner-Kreis offen und die
+Löschleitung aktiv: Ein fehlender Stecker wirkt wie eine gedrückte Stopp-Taste.
+
+| Pin | Signal | Kontakt |
+|---|---|---|
+| 1 | STOP_NC_OUT (3,3 V zum Öffner) | Öffner, Seite 1 |
+| 2 | STOP_NC_RET (vom Öffner zur Löschleitung) | Öffner, Seite 2 |
+| 3 | STOP_NO (Schließer → GPIO) | Schließer, Seite 1 |
+| 4 | GND | Schließer, Seite 2 |
+
+## J6 – Display
 
 JST XH 1×10, Raster 2,5 mm, stehend (B10B-XH-A), Kabel ≤ 20 cm; die Adern in Pin-Reihenfolge
 eng zusammenführen (gern Flachband AWG 28 in XH-Kontakten), damit SCK und MOSI je eine GND-Ader
@@ -49,54 +85,16 @@ als Nachbarn behalten.
 | 9 | TFT_RST |
 | 10 | TFT_BL (geschaltete 3,3 V) |
 
-## J4 – Encoder (Encoder-Träger)
-
-JST XH 1×5, Raster 2,5 mm, stehend (B5B-XH-A). Gegenstück gleicher Belegung auf dem Encoder-Träger
-(Kabel 1:1). Die Reihenfolge folgt den Anschlüssen des Encoders (A, C, B, S1, S2).
-
-| Pin | Signal | Encoder |
-|---|---|---|
-| 1 | ENC_A | A |
-| 2 | GND | C (gemeinsam) |
-| 3 | ENC_B | B |
-| 4 | ENC_SW | S1 (Taster) |
-| 5 | GND | S2 (Taster) |
-
-Auf dem Encoder-Träger (`hardware/encoder-carrier`): J1 = JST XH 1×5 mit derselben Belegung,
-SW1 = Alps EC11E15244G1.
-
-## J11 – Stopp-Taste
-
-JST XH 1×4, Raster 2,5 mm, stehend (B4B-XH-A); die Litzen der Stopp-Taste gehen direkt an die
-Hauptplatine (nicht mehr über den Encoder-Träger). Andere Polzahl als J4, damit die Stecker nicht
-vertauscht werden können. Ist der Stecker abgezogen, ist der Öffner-Kreis offen und die
-Löschleitung aktiv: Ein fehlender Stecker wirkt wie eine gedrückte Stopp-Taste.
-
-| Pin | Signal | Kontakt |
-|---|---|---|
-| 1 | STOP_NC_OUT (3,3 V zum Öffner) | Öffner, Seite 1 |
-| 2 | STOP_NC_RET (vom Öffner zur Löschleitung) | Öffner, Seite 2 |
-| 3 | STOP_NO (Schließer → GPIO) | Schließer, Seite 1 |
-| 4 | GND | Schließer, Seite 2 |
-
-## J5, J6 – Thermoelemente
-
-Mini-Thermoelement-Buchse Typ K, Print, IEC grün (RS PRO 381-7564, mit Schraube M2,5 auf der
-Platine befestigt). J5 = oben, J6 = unten, Polarität (+/−) im Bestückungsdruck.
-
 ## J7 – USB-C
 
 An der Platinenkante; Panel-Verlängerung zur Gehäusewand.
 
-## J8 – Antenne
+## J8, J10 – Thermoelemente
 
-U.FL am Modul (Modulkante), Pigtail zur RP-SMA-Durchführung.
+Mini-Thermoelement-Buchse Typ K, Print, IEC grün (RS PRO 381-7564, mit Schraube M2,5 auf der
+Platine befestigt). J10 = oben, J8 = unten, Polarität (+/−) im Bestückungsdruck.
 
-## J9 – Debug-UART (optional bestückt)
-
-Pinleiste 3-polig: 1 GND, 2 TX (GPIO 43), 3 RX (GPIO 44).
-
-## J10 – Platinenlüfter
+## J9 – Platinenlüfter
 
 4-poliger Lüfter-Wannenstecker Molex 47053-1000 (2,54 mm, Steg gegen Verpolen), Belegung nach
 Intel-4-Draht-Standard; passt direkt zum Stecker des Noctua NF-A4x10 5V PWM
@@ -108,6 +106,10 @@ Intel-4-Draht-Standard; passt direkt zum Stecker des Noctua NF-A4x10 5V PWM
 | 2 | +5V (dauernd) | gelb |
 | 3 | FAN_TACH (Open Collector, 2 Pulse/Umdrehung) | grün |
 | 4 | FAN_PWM (25 kHz, 5-V-Pegel) | blau |
+
+## Antenne (kein Steckverbinder auf der Platine)
+
+U.FL am Modul (Modulkante), Pigtail zur RP-SMA-Durchführung.
 
 ## Pinbelegung ESP32-S3 (REV A)
 
@@ -139,15 +141,17 @@ Intel-4-Draht-Standard; passt direkt zum Stecker des Noctua NF-A4x10 5V PWM
 | FAN_TACH | 37 | Ein (PCNT) | 10 kΩ Pull-up an 3,3 V, 1 kΩ Serie, 1 nF |
 | FAN_PWM | 38 | Aus (PWM, invertiert) | BSS138, 100 kΩ Gate-Pull-down, 1 kΩ Pull-up an +5V am Drain |
 | LATCH_Q | 47 | Ein | |
-| UART TX / RX | 43 / 44 | – | J9 |
+| UART TX / RX | 43 / 44 | – | J3 |
 | BOOT | 0 | Ein | Taster nach GND |
 | frei | 3, 45, 46, 48 | – | 3, 45, 46 Strapping: nicht beschalten |
 
 ## Testpunkte
 
-TP1 GND, TP2 3V3, TP3 5V (Reihenfolge und Wegfall von TP11 als zweitem GND-Testpunkt: Entscheidung des Benutzers 2026-10-30), TP4 LATCH_Q, TP5 CLR, TP6 ARM, TP7 HEAT_TOP, TP8 HEAT_BOT,
-TP9 +5V_SSR, TP10 WDI, TP12 FAN_TACH. Keine Testpunkte im Netzbereich. Steckverbinder und Testpunkte tragen im
-Schaltplan genau diese Referenzen (J1–J7, J9–J11, TP1–TP10, TP12); die übrigen Referenzen vergibt SKiDL.
+TP1 GND, TP2 3V3, TP3 5V, TP4 WDI, TP5 ARM, TP6 LATCH_Q, TP7 CLR, TP8 HEAT_TOP, TP9 HEAT_BOT,
+TP10 +5V_SSR, TP11 FAN_TACH. Keine Testpunkte im Netzbereich. Der frühere zweite GND-Testpunkt
+ist entfallen (Entscheidung des Benutzers 2026-10-30). Alle Referenzen sind nach ihrer Lage im
+Schaltplan nummeriert (Neuannotation durch den Benutzer 2026-10-30); Steckverbinder J1–J10,
+Testpunkte TP1–TP11.
 
 ## Mechanik
 

@@ -35,7 +35,7 @@ from sexp import children, parse_sexp, value  # noqa: E402
 REPO = Path(__file__).resolve().parents[2]
 KICAD_CLI = Path(r"D:\hobby\Elektronik\KiCad\10.0\bin\kicad-cli.exe")
 BOARD_HEADER = REPO / "firmware" / "include" / "board" / "board_rev_a.h"
-MCU_REF = "U3"
+MCU_REF = "U9"
 
 # ESP32-S3-WROOM-1/1U module pin per GPIO (Espressif datasheet v1.8, table 3-1).
 MODULE_PIN = {

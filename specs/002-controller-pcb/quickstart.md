@@ -42,7 +42,7 @@ Netzklassen-Abstände 6 mm primär/sekundär). Danach Exporte (Gerber, Bohrdaten
 |---|---|---|---|
 | 2a.1 | Ober- und Unterschale mit Polyamid-Schrauben an H5–H8 montieren, Netzkabel mit Zugentlastung | Schalen liegen spaltfrei auf; Lösen nur mit Schraubendreher | FR-039 |
 | 2a.2 | Prüfdraht 1 mm (starr, ca. 100 mm) an jeder Fuge, an der Kabeldurchführung, an den Hülsen H1/H3 und von unten ansetzen; Durchgangsprüfer zwischen Prüfdraht und L bzw. N | an keiner Stelle Durchgang, Draht dringt nirgends ein | SC-010 |
-| 2a.3 | Kabel mit ca. 30 N ziehen | Kabel und Mantel bewegen sich nicht, Stecker bleibt in J1 | FR-039 |
+| 2a.3 | Kabel mit ca. 30 N ziehen | Kabel und Mantel bewegen sich nicht, Adern bleiben fest in J1 | FR-039 |
 
 ## 3. Erster Start über USB (ohne Netz)
 
@@ -58,7 +58,7 @@ pio run -d firmware -e esp32s3_reva -t upload
 | 3.4 | Encoder drehen/drücken, Stopp drücken | Menü reagiert; Log zeigt Stopp | US1-4 |
 | 3.5 | Fühler oben/unten bei Raumtemperatur | beide ≤ 3 °C vom Referenzthermometer, ≤ 2 °C voneinander | US1-3, SC-005 |
 | 3.6 | Fühler abziehen | „E101 oben" bzw. „unten" innerhalb 2 s | SC-006 |
-| 3.7 | Lüfter an J10, Start beobachten | während Reset/Boot volle Drehzahl, danach ca. 20 % (≈ 1050 U/min); Log `mod=cooling msg="fan" duty=20 rpm=…` | US1-7, FR-038 |
+| 3.7 | Lüfter an J9, Start beobachten | während Reset/Boot volle Drehzahl, danach ca. 20 % (≈ 1050 U/min); Log `mod=cooling msg="fan" duty=20 rpm=…` | US1-7, FR-038 |
 
 ## 4. Host- und HIL-Tests
 
@@ -91,7 +91,7 @@ Manuelle HIL-Schritte (Test fordert per Log dazu auf und prüft das Ergebnis):
 | M2 | Freigabe setzen, Bedienteil-Kabel abziehen | Q gelöscht | US2-3 |
 | M3 | Freigabe setzen, TC6501 mit Heißluft (< 100 °C) erwärmen | Q gelöscht bei ca. 65 °C, bleibt nach Abkühlen gelöscht | US2-5 |
 | M4 | Freigabe setzen, 3,3 V über Labornetzteil absenken (Testaufbau) oder Brownout simulieren | Q gelöscht | FR-021 |
-| M5 | Freigabe setzen, Lüfter festhalten bzw. J10 abziehen | „E206" innerhalb 5 s, Q gelöscht, Fehler bleibt bis zur Quittierung | US2-9, FR-037, SC-009 |
+| M5 | Freigabe setzen, Lüfter festhalten bzw. J9 abziehen | „E206" innerhalb 5 s, Q gelöscht, Fehler bleibt bis zur Quittierung | US2-9, FR-037, SC-009 |
 | M6 | Ohne Freigabe Lüfter abziehen | „E206" angezeigt | FR-037 |
 | M7 | Platine mit Heißluft auf ca. 40 / 50 °C (CJ) erwärmen | Drehzahl steigt, bei ≥ 50 °C volle Drehzahl | FR-038 |
 
@@ -104,7 +104,7 @@ Ergebnis in `docs/compatibility.md` eintragen (Prinzip III).
 | 5.1 | Netz einschalten, USB getrennt | Start wie 3.3 | FR-001 |
 | 5.2 | USB während Netzbetrieb anstecken und wieder trennen | kein Neustart; am USB-Kabel keine Rückspeisung (Messung VBUS bei getrenntem PC-Ende: 0 V) | US1-5, FR-003 |
 | 5.3 | WLAN-Upload 30 s lang | keine Neustarts, 3,3 V ≥ 3,2 V | FR-001 |
-| 5.4 | Bei montierter Abdeckung an TP1–TP12 messen (Netzstecker eingesteckt) | Messungen ohne Zugang zu 230 V möglich | US1-6, FR-039 |
+| 5.4 | Bei montierter Abdeckung an TP1–TP11 messen (Netzstecker eingesteckt) | Messungen ohne Zugang zu 230 V möglich | US1-6, FR-039 |
 | 5.5 | 60 min Dauerlast (Display hell, WLAN aktiv, Relais angezogen ohne Last, Lüfter 100 %), danach Netzstecker ziehen, Abdeckung öffnen und innerhalb von 30 s die Gehäusetemperatur des IRM-10-5 mit IR-Thermometer messen; Vergleich mit der Luft außerhalb (kein Messfühler durch die Abdeckung, solange Netz anliegt) | Erwärmung ≤ 10 K gegenüber der Luft außerhalb; sonst Labyrinth-Lamellen nach research R19 | FR-039, R19 |
 
 ## 6. Lastteil mit Ersatzlast

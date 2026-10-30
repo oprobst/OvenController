@@ -393,11 +393,11 @@ auf 70 °C. FAULT-Schwelle der Kammer und zulässige Abweichung oben/unten legt 
 
 | Anschluss | Signale | Bauform |
 |---|---|---|
-| Netz 230 V | L, N für das Netzteil | steckbare Schraubklemme, 2-polig, Raster 5,08 mm |
-| Lastteil (Kleinspannung) | +5 V geschaltet, SSR oben −, SSR unten −, Relaisspule +/−, GND | steckbare Schraubklemme, 6-polig, Raster 3,81 mm |
-| Display | 3,3 V, SCK, MOSI, CS, DC, RST, BL, mehrere GND | eigenes Kabel, JST XH 1×10 (J3) |
+| Netz 230 V | L, N für das Netzteil | feste Schraubklemme Phoenix MKDS 1,5/2-5,08, 2-polig, Raster 5,08 mm |
+| Lastteil (Kleinspannung) | +5 V geschaltet, SSR oben −, SSR unten −, Relaisspule +/−, GND | feste Schraubklemme Phoenix MKDS 1/6-3,81, 6-polig, Raster 3,81 mm |
+| Display | 3,3 V, SCK, MOSI, CS, DC, RST, BL, mehrere GND | eigenes Kabel, JST XH 1×10 (J6) |
 | Encoder | A, B, SW, GND | JST XH 1×5 (J4) zum Encoder-Träger |
-| Stopp-Taste | Öffner (2 Adern), Schließer, GND | JST XH 1×4 (J11), direkt |
+| Stopp-Taste | Öffner (2 Adern), Schließer, GND | JST XH 1×4 (J5), direkt |
 | Thermoelemente | oben, unten | Mini-TC-Buchsen Typ K |
 | USB-C | über Panel-Verlängerung zur Gehäusewand | USB-C-Buchse an der Platinenkante |
 | Debug-UART | TX (43), RX (44), GND | 3-polige Pinleiste, optional bestückt |

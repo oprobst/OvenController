@@ -26,7 +26,7 @@ BOARD = (0.0, 0.0, 100.0, 100.0)
 WALL = 2.0            # inner wall thickness
 TOL = 0.5             # placement tolerance on both sides of the inner wall
 # Inner side of the inner wall: column with J1, F1, RV1 (x < COLUMN_X) and band with the
-# whole IRM-10-5 (y > BAND_Y, x < BAND_X). Clear of the courtyards of F1 (x 16.3) and U1 (x 49.15,
+# whole IRM-10-5 (y > BAND_Y, x < BAND_X). Clear of the courtyards of F1 (x 16.3) and U2 (x 49.15,
 # y 65.0) by TOL.
 COLUMN_X = 16.8
 BAND_Y = 64.5
@@ -38,7 +38,7 @@ SCREWS = {            # >= 6 mm from mains copper (DRC rule cover_holes_to_mains
     "H6": (20.8, 56.0),
     "H7": (55.0, 61.0),
     # Inside the cover below the IRM-10-5 (boss on the inner side of the right wall): outside,
-    # the flange would block the thermocouple sockets J5/J6, which need the whole bottom edge
+    # the flange would block the thermocouple sockets J10/J8, which need the whole bottom edge
     # between the wall and H4 (T084).
     "H8": (46.5, 96.0),
 }
