@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "D:\\git\\oven\\hardware\\controller\\controller.kicad_sch")
-		(date "2026-10-29T22:57:38")
+		(date "2026-10-30T07:39:50")
 		(tool "Eeschema 10.0.3")
 		(sheet
 			(number "1")
@@ -2249,7 +2249,7 @@
 		)
 		(comp
 			(ref "TP1")
-			(value "+5V")
+			(value "GND")
 			(footprint "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
 			(description "test point")
 			(fields
@@ -2286,7 +2286,7 @@
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
 			)
-			(tstamps "1d3c665c-d741-5243-a8b9-3735fbbceb1f")
+			(tstamps "85cae11e-d9b5-5217-b1fc-59521ba02341")
 			(units
 				(unit
 					(name "A")
@@ -2351,7 +2351,7 @@
 		)
 		(comp
 			(ref "TP3")
-			(value "GND")
+			(value "+5V")
 			(footprint "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
 			(description "test point")
 			(fields
@@ -2388,7 +2388,7 @@
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
 			)
-			(tstamps "018ac1a8-ef07-52f4-ba3e-e358d35a7e0d")
+			(tstamps "1d3c665c-d741-5243-a8b9-3735fbbceb1f")
 			(units
 				(unit
 					(name "A")
@@ -2758,57 +2758,6 @@
 			)
 		)
 		(comp
-			(ref "TP11")
-			(value "GND")
-			(footprint "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
-			(description "test point")
-			(fields
-				(field
-					(name "Footprint") "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description") "test point")
-			)
-			(libsource
-				(lib "Connector")
-				(part "TestPoint")
-				(description "test point")
-			)
-			(property
-				(name "Sheetname")
-				(value "Leistung und Sicherheit")
-			)
-			(property
-				(name "Sheetfile")
-				(value "controller_leistung.kicad_sch")
-			)
-			(property
-				(name "ki_keywords")
-				(value "test point tp")
-			)
-			(property
-				(name "ki_fp_filters")
-				(value "Pin* Test*")
-			)
-			(sheetpath
-				(names "/Leistung und Sicherheit/")
-				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
-			)
-			(tstamps "85cae11e-d9b5-5217-b1fc-59521ba02341")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-					)
-				)
-			)
-		)
-		(comp
 			(ref "U1")
 			(value "IRM-10-5")
 			(footprint "Converter_ACDC:Converter_ACDC_MeanWell_IRM-10-xx_THT")
@@ -3000,7 +2949,7 @@
 				(names "/Leistung und Sicherheit/")
 				(tstamps "/f9999682-1a8c-57fe-b092-aa8da806f2d4/")
 			)
-			(tstamps "df74831f-3ee7-5501-b69c-4225178c5b55" "ff79d87b-fff8-5565-bdb4-6fb2149f47ef"
+			(tstamps "ff79d87b-fff8-5565-bdb4-6fb2149f47ef" "df74831f-3ee7-5501-b69c-4225178c5b55"
 				"29784ef7-0c6d-5643-94a8-1101d80ce3e9"
 			)
 			(units
@@ -10247,7 +10196,7 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "TP1")
+				(ref "TP3")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -11244,13 +11193,7 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "TP11")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "TP3")
+				(ref "TP1")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")

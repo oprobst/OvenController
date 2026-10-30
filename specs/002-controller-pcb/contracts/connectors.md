@@ -145,9 +145,9 @@ Intel-4-Draht-Standard; passt direkt zum Stecker des Noctua NF-A4x10 5V PWM
 
 ## Testpunkte
 
-TP1 5V, TP2 3V3, TP3 und TP11 GND, TP4 LATCH_Q, TP5 CLR, TP6 ARM, TP7 HEAT_TOP, TP8 HEAT_BOT,
+TP1 GND, TP2 3V3, TP3 5V (Reihenfolge und Wegfall von TP11 als zweitem GND-Testpunkt: Entscheidung des Benutzers 2026-10-30), TP4 LATCH_Q, TP5 CLR, TP6 ARM, TP7 HEAT_TOP, TP8 HEAT_BOT,
 TP9 +5V_SSR, TP10 WDI, TP12 FAN_TACH. Keine Testpunkte im Netzbereich. Steckverbinder und Testpunkte tragen im
-Schaltplan genau diese Referenzen (J1–J7, J9–J11, TP1–TP12); die übrigen Referenzen vergibt SKiDL.
+Schaltplan genau diese Referenzen (J1–J7, J9–J11, TP1–TP10, TP12); die übrigen Referenzen vergibt SKiDL.
 
 ## Mechanik
 
