@@ -282,6 +282,14 @@ Datenblatt bestätigt (Regel aus `docs/werkzeuge-pcb.md`).
   - **Testpunkte** (Lötaugen bzw. Testösen) für 5 V, 3,3 V, GND, Q, Löschleitung, ARM, HEAT_TOP,
     HEAT_BOT, SSR-Versorgung, WDI; keine im Netzbereich (FR-034).
   - Silkscreen: „REV A", Projektname, Warnhinweis „230 V" im Netzbereich.
+  - **Kupferausgleich (2026-10-30, Hinweis von Aisler „ungleichmäßige Kupferverteilung“)**: Netzbereich
+    und IRM-Feld hatten auf beiden Lagen 0–20 % Kupfer, der Rest 50–100 %. Abhilfe: Fläche am Netz
+    N_IN auf beiden Lagen links vom Frässchlitz (Zonen „Netz oben/unten“, Umriss (0/0)–(19,3/0)–
+    (19,3/62)–(25/62)–(25/100)–(0/100) relativ zum Platinenursprung), GND-Flächen unter die
+    Sekundärseite des IRM-10-5 rechts vom Schlitz erweitert (ab x = 27). Abstände regeln die
+    DRC-Regeln (6 mm zur Kleinspannung, 3 mm L–N und Kante, 6 mm zu den Abdeckungsschrauben).
+    Kein freies Kupfer ohne Netz, damit nichts die Isolationsgrenze überbrückt. Bedeckung danach
+    F.Cu 54 → 66 %, B.Cu 58 → 75 %.
 - **Rationale**: 2 Lagen reichen bei dieser Signaldichte und SPI-Takten; die Reihenfolge der
   Zonen trennt Netz und Messung maximal und hält die Wärmequellen von den Buchsen fern.
 
